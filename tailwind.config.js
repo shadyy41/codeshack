@@ -12,10 +12,7 @@ module.exports = {
       colors: {
         "primary-dark": "#0a0d14",
         "primary-light": "#fbf8f8",
-      },
-      fontFamily: {
-        'logo': ['Josefin Sans', ...defaultTheme.fontFamily.sans],
-      },
+      }
     },
   },
   plugins: [],
