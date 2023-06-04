@@ -1,4 +1,10 @@
 import Link from "next/link"
+import { Josefin_Sans } from "next/font/google"
+
+const josefin = Josefin_Sans({
+  subsets: ['latin'],
+  display: 'swap',
+})
 
 export interface Props {
   showText: boolean;
@@ -6,7 +12,7 @@ export interface Props {
 
 const Logo = ({ showText }:Props) => {
   return (
-    <span className="font-logo text-3xl">
+    <span className={`text-3xl ${josefin.className}`}>
       <Link href={"/"} className="custom-outline">
         <span className="text-blue-600">{"<"}</span>{ showText ? "codeshack" : ""}<span className="text-blue-600">{"/>"}</span>
       </Link>
