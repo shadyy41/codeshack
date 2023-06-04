@@ -57,7 +57,7 @@ const UserMenu = ({authenticated, name, userImage} : Props) => {
             Login
           </li>
         </Link>
-        <Link href="/signup" className="custom-outline px-4 py-1 rounded-lg bg-blue-600 hover:cursor-pointer hover:bg-blue-500 transition-colors">
+        <Link href="/auth/signin" className="custom-outline px-4 py-1 rounded-lg bg-blue-600 hover:cursor-pointer hover:bg-blue-500 transition-colors">
           <li>
             Sign Up
           </li>
@@ -82,14 +82,10 @@ const UserMenu = ({authenticated, name, userImage} : Props) => {
           <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right  rounded-md bg-primary-dark shadow-lg ring-1 ring-white ring-opacity-5 focus:outline-none">
             <div className="py-1 text-slate-300 font-mono">
               <Menu.Item>
-                <button className= 'block w-full px-4 py-2 text-left'>
-                  Log in
-                </button>
+                <Link href="/auth/signin" className="block w-full px-4 py-2 text-left hover:text-white transition-colors">Log in</Link>
               </Menu.Item>
               <Menu.Item>
-                <button className= 'block w-full px-4 py-2 text-left'>
-                  Sign up
-                </button>
+                <Link href="/auth/signin" className="block w-full px-4 py-2 text-left hover:text-white transition-colors">Sign up</Link>
               </Menu.Item>
             </div>
           </Menu.Items>
