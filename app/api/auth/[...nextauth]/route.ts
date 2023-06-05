@@ -1,8 +1,8 @@
 import NextAuth from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
 import type { NextAuthOptions } from 'next-auth'
-import { MongoDBAdapter } from "@next-auth/mongodb-adapter"
-import clientPromise from "@/app/lib/mongodb"
+import { PrismaAdapter } from "@auth/prisma-adapter"
+import prisma from "@/app/lib/prismaclient"
 
 export const authOptions: NextAuthOptions = {
   providers: [
@@ -15,8 +15,15 @@ export const authOptions: NextAuthOptions = {
     signIn: '/auth/signin',
     signOut: '/auth/signout'
   },
-  adapter: MongoDBAdapter(clientPromise),
-  secret: process.env.NEXTAUTH_SECRET
+  adapter: PrismaAdapter(prisma),
+  secret: process.env.NEXTAUTH_SECRET,
+  callbacks: {
+    async session({ session, token, user }) {
+      session.user.id = user.id
+      session.user.isPremium = user.isPremium
+      return session
+    }
+  }
 }
 
 const handler = NextAuth(
