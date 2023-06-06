@@ -8,16 +8,17 @@ import Image from "next/image";
 export interface Props {
   authenticated: boolean,
   name: string | null | undefined,
-  userImage: string | null | undefined
+  userImage: string | null | undefined,
+  isPremium: boolean | null | undefined
 }
 
-const UserMenu = ({authenticated, name, userImage} : Props) => {
+const UserMenu = ({authenticated, name, userImage, isPremium} : Props) => {
   return (
     authenticated ? 
     <Menu as="div" className="relative inline-block text-left">
-      <div>
-        <Menu.Button className="w-8 h-8 rounded-full relative overflow-hidden custom-outline bg-blue-600">
-          {userImage ? <Image src={userImage} alt="Profile Picture" sizes="2rem" fill={true} priority={true}/> : <UserCircleIcon/>}
+      <div className="w-8 h-8">
+        <Menu.Button className="w-full h-full rounded-full relative overflow-hidden custom-outline bg-blue-600">
+          {userImage ? <Image src={userImage} alt="Profile Picture" priority={true} height={32} width={32}/> : <UserCircleIcon height={36} width={36} color="#fbf8f8"/>}
         </Menu.Button>
       </div>
 
@@ -34,16 +35,20 @@ const UserMenu = ({authenticated, name, userImage} : Props) => {
           <div className="py-1 text-slate-300 font-mono">
             <Menu.Item>
               <div className="block py-2 text-slate-400 border-b border-white border-opacity-5">
-                <p className= 'w-full px-4 text-sm'>
+                <p className= 'w-full px-4 text-xs'>
                   Signed in as
                 </p>
-                <p className= 'w-full px-4 font-mono'>
+                <p className="w-full px-4">
                   {name}
                 </p>
+                {isPremium && <p className="text-xs w-full px-4 bg-clip-text bg-gradient-to-br from-yellow-700 to-yellow-300 text-transparent">Premium User</p>}
               </div>
             </Menu.Item>
+            {!isPremium && <Menu.Item>
+              <Link href="/premium" className="text-sm block w-full px-4 py-2 text-left hover:from-yellow-600 hover:to-yellow-300 transition-colors bg-clip-text bg-gradient-to-br from-yellow-700 to-yellow-300 text-transparent">Buy Premium</Link>
+            </Menu.Item>}
             <Menu.Item>
-              <Link href="/auth/signout" className="block w-full px-4 py-2 text-left hover:text-white transition-colors">Sign out</Link>
+              <Link href="/auth/signout" className="text-sm block w-full px-4 py-2 text-left hover:text-white transition-colors">Sign out</Link>
             </Menu.Item>
           </div>
         </Menu.Items>
@@ -51,7 +56,7 @@ const UserMenu = ({authenticated, name, userImage} : Props) => {
     </Menu>
     : 
     <>
-      <ul className="hidden text-lg sm:flex gap-2 font-mono items-center">
+      <ul className="hidden text-md sm:flex gap-2 font-mono items-center">
         <Link className="custom-outline px-4 py-1 rounded-lg transition-colors" href="/auth/signin">
           <li>
             Login
@@ -64,9 +69,9 @@ const UserMenu = ({authenticated, name, userImage} : Props) => {
         </Link>
       </ul>
       <Menu as="div" className="sm:hidden relative inline-block text-left">
-        <div>
-          <Menu.Button className="sm:hidden custom-outline">
-          <Bars3Icon className="h-6 w-6" aria-hidden="true"/>
+        <div className="w-8 h-8">
+          <Menu.Button className="sm:hidden custom-outline w-full h-full">
+            <Bars3Icon height={32} width={32} aria-hidden="true"/>
           </Menu.Button>
         </div>
 
