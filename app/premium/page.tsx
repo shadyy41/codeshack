@@ -1,6 +1,5 @@
 import { getServerSession } from "next-auth"
 import ClientSide from "./components/clientside"
-import { redirect } from "next/navigation"
 import { authOptions } from "../api/auth/[...nextauth]/route"
 
 const Premium = async () => {
