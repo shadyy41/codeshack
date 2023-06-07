@@ -41,11 +41,11 @@ const UserMenu = ({authenticated, name, userImage, isPremium} : Props) => {
                 <p className="w-full px-4">
                   {name}
                 </p>
-                {isPremium && <p className="text-xs w-full px-4 bg-clip-text bg-gradient-to-br from-yellow-700 to-yellow-300 text-transparent">Premium User</p>}
+                {isPremium && <p className="text-xs w-full px-4 premium-text">Premium User</p>}
               </div>
             </Menu.Item>
             {!isPremium && <Menu.Item>
-              <Link href="/premium" className="text-sm block w-full px-4 py-2 text-left hover:from-yellow-600 hover:to-yellow-300 transition-colors bg-clip-text bg-gradient-to-br from-yellow-700 to-yellow-300 text-transparent">Buy Premium</Link>
+              <Link href="/premium" className="text-sm block w-full px-4 py-2 text-left hover:from-yellow-600 hover:to-yellow-300 transition-colors premium-text">Buy Premium</Link>
             </Menu.Item>}
             <Menu.Item>
               <Link href="/auth/signout" className="text-sm block w-full px-4 py-2 text-left hover:text-white transition-colors">Sign out</Link>
@@ -57,7 +57,7 @@ const UserMenu = ({authenticated, name, userImage, isPremium} : Props) => {
     : 
     <>
       <ul className="hidden text-md sm:flex gap-2 font-mono items-center">
-        <Link className="custom-outline px-4 py-1 rounded-lg transition-colors" href="/auth/signin">
+        <Link className="custom-outline px-4 py-1 rounded-lg hover:text-white transition-colors" href="/auth/signin">
           <li>
             Login
           </li>
@@ -86,6 +86,9 @@ const UserMenu = ({authenticated, name, userImage, isPremium} : Props) => {
         >
           <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right  rounded-md bg-primary-dark shadow-lg ring-1 ring-white ring-opacity-5 focus:outline-none">
             <div className="py-1 text-slate-300 font-mono">
+              <Menu.Item>
+                <Link href="/auth/signin" className="block w-full px-4 py-2 text-left hover:text-white transition-colors">Log in</Link>
+              </Menu.Item>
               <Menu.Item>
                 <Link href="/auth/signin" className="block w-full px-4 py-2 text-left hover:text-white transition-colors">Log in</Link>
               </Menu.Item>

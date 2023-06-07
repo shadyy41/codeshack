@@ -17,3 +17,7 @@ body{
 .custom-outline{
   @apply focus:outline-none focus:outline-blue-900;
 }
+
+.premium-text{
+  @apply bg-clip-text bg-gradient-to-br from-yellow-700 to-yellow-300 text-transparent;
+}

@@ -14,8 +14,8 @@ export default function Home() {
           <h1 className="text-5xl font-extrabold sm:font-bold sm:text-6xl">Code Shack<span className="text-blue-600">.</span></h1>
         </div>
         <p className="text-slate-400 text-2xl max-w-sm">Peer to peer video calls, collaborative coding, and much more!</p>
-        <br/>
-        <div className="flex flex-col w-full text-xl gap-3 text-slate-300 max-w-xs">
+        <br />
+        <div className="flex flex-col w-full text-lg gap-3 text-slate-300 max-w-xs">
           <input type="text" placeholder="Enter your name" className="py-3 px-4 rounded-md border-2 border-white border-opacity-20 hover:border-opacity-40 transition-colors custom-outline bg-transparent backdrop-blur-sm"/>
           <button className="py-3 rounded-md bg-blue-600 text-white hover:bg-blue-500 transition-colors custom-outline" onClick={handleCreate}>Create Room</button>
         </div>
