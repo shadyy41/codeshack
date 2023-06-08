@@ -3,6 +3,7 @@ import Script from "next/script"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 import { toast } from "react-hot-toast"
+import Divider from "@/app/components/divider";
 
 export interface Props {
   authenticated: boolean,
@@ -23,7 +24,6 @@ const ClientSide = ({ authenticated, isPremium }: Props) => {
       toast.error("You are already a premium user.")
       return
     }
-    if(loading) return
     setLoading(true)
     try {
       const res = await fetch("/api/payment", { method: "POST" })
@@ -52,7 +52,6 @@ const ClientSide = ({ authenticated, isPremium }: Props) => {
             router.refresh()
           } catch (error) {
             toast.error("Unable to verify payment")
-            return
           }  
           finally {
             setLoading(false)
@@ -71,7 +70,6 @@ const ClientSide = ({ authenticated, isPremium }: Props) => {
       paymentObject.on("payment.failed", function (response) {
         alert("Payment failed. Please try again.")
         toast.error("Payment failed. Please try again.")
-
       })
     } catch (error) {
       toast.error("Unable to initialize payment")
@@ -88,13 +86,9 @@ const ClientSide = ({ authenticated, isPremium }: Props) => {
         id="razorpay-checkout-js"
         src="https://checkout.razorpay.com/v1/checkout.js"
       />
-      <div className="h-fit w-full max-w-sm border rounded-lg border-white border-opacity-10 flex flex-col items-center justify-start py-4 px-4 backdrop-blur-md gap-4">
+      <div className="h-fit w-full max-w-sm border rounded-lg border-white border-opacity-10 flex flex-col items-center justify-start py-4 px-4 bg-zinc-950 gap-4">
         <h1 className="text-3xl font-extrabold sm:font-bold sm:text-4xl premium-text">Join Premium</h1>
-        <div className="w-full flex gap-3 items-center justify-center">
-          <div className="flex-grow h-px bg-white opacity-10"></div>
-          <p className="text-sm font-medium font-mono text-slate-400">lifetime access</p>
-          <div className="flex-grow h-px bg-white opacity-10"></div>
-        </div>
+        <Divider text="Lifetime Access"/>
         <div className="flex gap-1 flex-col w-full py-3">
           <p className="text-slate-200 text-6xl font-bold">
             <span className="font-thin">&#8377;</span>51
@@ -103,12 +97,8 @@ const ClientSide = ({ authenticated, isPremium }: Props) => {
             Customized username, profile pictures and more. Pay once, use forever.
           </p>
         </div>
-        <div className="w-full flex gap-3 items-center justify-center">
-          <div className="flex-grow h-px bg-white opacity-10"></div>
-          <p className="text-sm font-medium font-mono text-slate-400">powered by razorpay</p>
-          <div className="flex-grow h-px bg-white opacity-10"></div>
-        </div>
-        <button className={`py-3 rounded-md bg-blue-600 text-white hover:bg-blue-500 ${loading ? 'cursor-wait' : ''} transition-colors custom-outline w-full max-w-sm font-mono`} onClick={makePayment}>
+        <Divider text="Powered by Razorpay"/>
+        <button className={`py-3 rounded-md bg-blue-600 text-white hover:bg-blue-500 ${loading ? 'cursor-wait' : ''} transition-colors custom-outline w-full max-w-sm`} onClick={makePayment} disabled={loading}>
           {loading ? 'Processing' : 'Join Premium'}
         </button>
       </div>

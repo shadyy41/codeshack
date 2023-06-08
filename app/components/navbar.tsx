@@ -10,7 +10,7 @@ const Navbar = async () => {
   const isPremium = session?.user?.isPremium
 
   return (
-    <nav className="px-8 py-6 flex items-center justify-between sm:px-16 flex-shrink-0 border-b border-white border-opacity-10">
+    <nav className="px-8 py-4 flex items-center justify-between sm:px-16 flex-shrink-0 border-b border-white border-opacity-10">
       <Logo showText={true}/>
       <UserMenu authenticated={ session!==null } name={ name } userImage = { userImage } isPremium = { isPremium }/>
     </nav>

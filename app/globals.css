@@ -7,7 +7,7 @@ body{
 
 .svg-background{
   background-image: linear-gradient(
-    to bottom, transparent, transparent, transparent, #0a0d14,  #0a0d14
+    to bottom, transparent, transparent, transparent, rgb(9, 9, 11),  rgb(9, 9, 11)
   ), url('/back.svg');
   background-position: bottom;
   background-repeat: no-repeat;

@@ -3,6 +3,12 @@ import Navbar from '@/app/components/navbar'
 import NextTopLoader from 'nextjs-toploader'
 import AuthContext from './context/AuthContext'
 import { Toaster } from 'react-hot-toast'
+import { Inter as FontFamily } from "next/font/google"
+
+const font = FontFamily({
+  subsets: ['latin'],
+  display: 'swap',
+})
 
 export const metadata = {
   title: 'CodeShack',
@@ -15,12 +21,12 @@ export default function RootLayout({
   children: React.ReactNode
 }) {
   return (
-    <html lang="en" className="h-full">
+    <html lang="en" className={`h-full ${font.className}`}>
       <head>
         <link rel="icon" href="/favicon.ico" sizes="any"/>
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" type="image/png"sizes="180x180"/>
       </head>
-      <body className="bg-primary-dark text-primary-light h-full">
+      <body className="bg-zinc-950 text-slate-100 h-full">
         <AuthContext>
           <NextTopLoader showSpinner={false} shadow={false} height={3} color='#2563EB'/>
           <div className="flex flex-col h-full">

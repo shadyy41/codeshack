@@ -31,24 +31,27 @@ const UserMenu = ({authenticated, name, userImage, isPremium} : Props) => {
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-primary-dark shadow-lg ring-1 ring-white ring-opacity-5 focus:outline-none">
-          <div className="py-1 text-slate-300 font-mono">
+        <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-zinc-950 shadow-lg ring-1 ring-white ring-opacity-10 focus:outline-none">
+          <div className="py-1 text-slate-300">
             <Menu.Item>
-              <div className="block py-2 text-slate-400 border-b border-white border-opacity-5">
-                <p className= 'w-full px-4 text-xs'>
+              <div className="block py-2 border-b border-white border-opacity-5">
+                <p className= 'w-full px-4 text-xs text-slate-400'>
                   Signed in as
                 </p>
                 <p className="w-full px-4">
                   {name}
                 </p>
-                {isPremium && <p className="text-xs w-full px-4 premium-text">Premium User</p>}
+                {isPremium && <p className="text-sm w-full px-4 premium-text">Premium User</p>}
               </div>
             </Menu.Item>
             {!isPremium && <Menu.Item>
-              <Link href="/premium" className="text-sm block w-full px-4 py-2 text-left hover:from-yellow-600 hover:to-yellow-300 transition-colors premium-text">Buy Premium</Link>
+              <Link href="/premium" className="block w-full px-4 py-2 text-left hover:from-yellow-600 hover:to-yellow-300 transition-colors premium-text">Buy Premium</Link>
             </Menu.Item>}
             <Menu.Item>
-              <Link href="/auth/signout" className="text-sm block w-full px-4 py-2 text-left hover:text-white transition-colors">Sign out</Link>
+              <Link href="/user" className="block w-full px-4 py-2 text-left hover:text-white transition-colors">Edit profile</Link>
+            </Menu.Item>
+            <Menu.Item>
+              <Link href="/auth/signout" className="block w-full px-4 py-2 text-left hover:text-white transition-colors">Sign out</Link>
             </Menu.Item>
           </div>
         </Menu.Items>
@@ -56,7 +59,7 @@ const UserMenu = ({authenticated, name, userImage, isPremium} : Props) => {
     </Menu>
     : 
     <>
-      <ul className="hidden text-md sm:flex gap-2 font-mono items-center">
+      <ul className="hidden text-md sm:flex gap-2 items-center">
         <Link className="custom-outline px-4 py-1 rounded-lg hover:text-white transition-colors" href="/auth/signin">
           <li>
             Login
@@ -84,11 +87,8 @@ const UserMenu = ({authenticated, name, userImage, isPremium} : Props) => {
           leaveFrom="transform opacity-100 scale-100"
           leaveTo="transform opacity-0 scale-95"
         >
-          <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right  rounded-md bg-primary-dark shadow-lg ring-1 ring-white ring-opacity-5 focus:outline-none">
-            <div className="py-1 text-slate-300 font-mono">
-              <Menu.Item>
-                <Link href="/auth/signin" className="block w-full px-4 py-2 text-left hover:text-white transition-colors">Log in</Link>
-              </Menu.Item>
+          <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right  rounded-md bg-zinc-950 shadow-lg ring-1 ring-white ring-opacity-10 focus:outline-none">
+            <div className="py-1 text-slate-300">
               <Menu.Item>
                 <Link href="/auth/signin" className="block w-full px-4 py-2 text-left hover:text-white transition-colors">Log in</Link>
               </Menu.Item>
