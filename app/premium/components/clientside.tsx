@@ -101,6 +101,9 @@ const ClientSide = ({ authenticated, isPremium }: Props) => {
         <button className={`py-3 rounded-md bg-blue-600 text-white hover:bg-blue-500 ${loading ? 'cursor-wait' : ''} transition-colors custom-outline w-full max-w-sm`} onClick={makePayment} disabled={loading}>
           {loading ? 'Processing' : 'Join Premium'}
         </button>
+        <button className="py-3 rounded-md border border-white border-opacity-30 text-white hover:bg-neutral-900 bg-neutral-950 transition-colors custom-outline w-full max-w-sm" onClick={()=>router.back()}>
+          Back
+        </button>
       </div>
     </div>
   )

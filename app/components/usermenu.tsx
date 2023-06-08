@@ -33,7 +33,7 @@ const UserMenu = ({authenticated, name, userImage, isPremium} : Props) => {
       >
         <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-zinc-950 shadow-lg ring-1 ring-white ring-opacity-10 focus:outline-none">
           <div className="py-1 text-slate-300">
-            <Menu.Item>
+            <Menu.Item disabled>
               <div className="block py-2 border-b border-white border-opacity-5">
                 <p className= 'w-full px-4 text-xs text-slate-400'>
                   Signed in as
@@ -45,13 +45,21 @@ const UserMenu = ({authenticated, name, userImage, isPremium} : Props) => {
               </div>
             </Menu.Item>
             {!isPremium && <Menu.Item>
-              <Link href="/premium" className="block w-full px-4 py-2 text-left hover:from-yellow-600 hover:to-yellow-300 transition-colors premium-text">Buy Premium</Link>
+              {({ active }) => (
+                <Link href="/premium" className={`${active && 'bg-zinc-900'} hover:bg-zinc-900 text-sm sm:text-md block w-full px-4 py-2 text-left transition-colors`}>
+                  <span className="premium-text">Buy Premium</span>
+                </Link>
+              )}
             </Menu.Item>}
             <Menu.Item>
-              <Link href="/user" className="block w-full px-4 py-2 text-left hover:text-white transition-colors">Edit profile</Link>
+              {({ active }) => (
+                <Link href="/user" className={`${active && 'bg-zinc-900'} text-sm sm:text-md block w-full px-4 py-2 text-left hover:bg-zinc-900 transition-colors`}>Edit profile</Link>
+              )}
             </Menu.Item>
             <Menu.Item>
-              <Link href="/auth/signout" className="block w-full px-4 py-2 text-left hover:text-white transition-colors">Sign out</Link>
+              {({ active }) => (
+                <Link href="/auth/signout" className={`${active && 'bg-zinc-900'} text-sm sm:text-md block w-full px-4 py-2 text-left hover:bg-zinc-900 transition-colors`}>Sign out</Link>
+              )}
             </Menu.Item>
           </div>
         </Menu.Items>
@@ -90,10 +98,14 @@ const UserMenu = ({authenticated, name, userImage, isPremium} : Props) => {
           <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right  rounded-md bg-zinc-950 shadow-lg ring-1 ring-white ring-opacity-10 focus:outline-none">
             <div className="py-1 text-slate-300">
               <Menu.Item>
-                <Link href="/auth/signin" className="block w-full px-4 py-2 text-left hover:text-white transition-colors">Log in</Link>
+                {({ active }) => (
+                  <Link href="/auth/signin" className={`${active && 'bg-zinc-900'} text-sm sm:text-md block w-full px-4 py-2 text-left hover:bg-zinc-900 transition-colors`}>Sign in</Link>
+                )}
               </Menu.Item>
               <Menu.Item>
-                <Link href="/auth/signin" className="block w-full px-4 py-2 text-left hover:text-white transition-colors">Sign up</Link>
+                {({ active }) => (
+                  <Link href="/auth/signin" className={`${active && 'bg-zinc-900'} text-sm sm:text-md block w-full px-4 py-2 text-left hover:bg-zinc-900 transition-colors`}>Sign out</Link>
+                )}
               </Menu.Item>
             </div>
           </Menu.Items>
