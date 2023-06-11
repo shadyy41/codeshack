@@ -9,10 +9,11 @@ export interface Props {
   authenticated: boolean,
   name: string | null | undefined,
   userImage: string | null | undefined,
-  isPremium: boolean | null | undefined
+  isPremium: boolean | null | undefined,
+  email: string | null | undefined
 }
 
-const UserMenu = ({authenticated, name, userImage, isPremium} : Props) => {
+const UserMenu = ({ authenticated, name, userImage, isPremium, email } : Props) => {
   return (
     authenticated ? 
     <Menu as="div" className="relative inline-block text-left">
@@ -38,10 +39,13 @@ const UserMenu = ({authenticated, name, userImage, isPremium} : Props) => {
                 <p className= 'w-full px-4 text-xs text-slate-400'>
                   Signed in as
                 </p>
-                <p className="w-full px-4">
-                  {name}
+                <p className="w-full px-4 text-ellipsis overflow-hidden whitespace-nowrap">
+                  { name }
                 </p>
-                {isPremium && <p className="text-sm w-full px-4 premium-text">Premium User</p>}
+                <p className= 'w-full px-4 text-sm text-slate-400 text-ellipsis overflow-hidden whitespace-nowrap'>
+                  { email }
+                </p>
+                { isPremium && <p className="text-sm w-full px-4 premium-text">Premium User</p> }
               </div>
             </Menu.Item>
             {!isPremium && <Menu.Item>

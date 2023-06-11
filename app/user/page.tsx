@@ -13,7 +13,7 @@ const User = async () => {
   const userImage = session?.user?.image
   const isPremium = session?.user?.isPremium
 
-  // if(!session) redirect('/')
+  if(!session) redirect('/')
 
   const editUserimage = async (data: FormData) => {
     "use server";

@@ -3,6 +3,7 @@ import { experimental_useFormStatus as useFormStatus } from "react-dom"
 import { useState, useEffect } from "react"
 import Image from "next/image"
 import Link from "next/link"
+import { useRouter } from "next/navigation";
 
 export interface Props {
   name?: string | null | undefined,
@@ -14,6 +15,7 @@ const UserimageForm = ({ name, userImage, isPremium }: Props) => {
   const { pending } = useFormStatus()
   const [canSubmit, setCanSubmit] = useState<boolean>(true)
   const [selected, setSelected] = useState<string>("/dicebear/avataaarsNeutral-0.svg")
+  const router = useRouter()
 
   useEffect(()=>{
 
@@ -28,7 +30,7 @@ const UserimageForm = ({ name, userImage, isPremium }: Props) => {
 
   return (
     <>
-      <div className="flex flex-col gap-2 w-full sm:gap-4">
+      <div className={`flex flex-col gap-2 w-full sm:gap-4`}>
         <div className="grid grid-cols-3 gap-2 sm:gap-4 w-full">
           {[...Array(3)].map((im, idx)=><label key={idx} id={`/dicebear/avataaarsNeutral-${idx}.svg`} className={`overflow-hidden custom-outline cursor-pointer border-blue-600 border-4 border-opacity-30 bg-neutral-950 aspect-square relative ${ selected===`/dicebear/avataaarsNeutral-${idx}.svg` ? 'border-opacity-80' : 'hover:border-opacity-80' } rounded-lg`} tabIndex={0} onKeyUp={handleChangeLabel}>
             <Image src={`/dicebear/avataaarsNeutral-${idx}.svg`} alt="profile image" fill sizes="1rem"/>
@@ -43,9 +45,14 @@ const UserimageForm = ({ name, userImage, isPremium }: Props) => {
         </div>
       </div>
       <div className="w-full flex gap-2 text-sm">
-        <Link href={"/user/collections"} className={`py-3 rounded-md border border-white border-opacity-20 text-white hover:bg-neutral-900 bg-neutral-950 transition-colors custom-outline w-1/2`}>
+        {isPremium ? <Link href={"/user/collections"} className={`py-3 rounded-md border border-white border-opacity-20 text-white hover:bg-neutral-900 bg-neutral-950 transition-colors custom-outline w-1/2`}>
           View More
-        </Link>
+        </Link> : <button onClick={(e)=>{
+          e.preventDefault()
+          router.back()
+        }} className={`py-3 rounded-md border border-white border-opacity-20 text-white hover:bg-neutral-900 bg-neutral-950 transition-colors custom-outline w-1/2`}>
+          Back
+        </button>}
         <button type="submit" disabled={ !isPremium || pending || !canSubmit } className={`py-3 rounded-md bg-blue-600 text-white hover:bg-blue-500 transition-colors custom-outline w-1/2 ${ (!isPremium || !canSubmit) && 'cursor-not-allowed' } ${ pending && 'cursor-wait' }`}>
           {pending ? 'Updating...' : 'Update'}
         </button>

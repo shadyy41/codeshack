@@ -7,12 +7,13 @@ const Navbar = async () => {
   const session = await getServerSession(authOptions)
   const name = session?.user?.name
   const userImage = session?.user?.image
+  const email = session?.user?.email
   const isPremium = session?.user?.isPremium
 
   return (
     <nav className="px-8 py-4 flex items-center justify-between sm:px-16 flex-shrink-0 border-b border-white border-opacity-10">
       <Logo showText={true}/>
-      <UserMenu authenticated={ session!==null } name={ name } userImage = { userImage } isPremium = { isPremium }/>
+      <UserMenu authenticated={ session!==null } name={ name } userImage = { userImage } isPremium = { isPremium } email = { email }/>
     </nav>
   )
 }

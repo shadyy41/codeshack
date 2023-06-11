@@ -1,9 +1,9 @@
 import { getServerSession } from "next-auth"
-import Divider from "@/app/components/divider"
 import { revalidatePath } from "next/cache"
 import { authOptions } from "@/app/api/auth/[...nextauth]/route"
 import prisma from "@/app/lib/prismaclient"
 import ClientSide from "./components/clientside"
+import { redirect } from "next/navigation"
 
 const Collections = async () => {
   const session = await getServerSession(authOptions)
@@ -11,7 +11,7 @@ const Collections = async () => {
   const userImage = session?.user?.image
   const isPremium = session?.user?.isPremium
 
-  // if(!session) redirect('/')
+  if(!session || !isPremium) redirect('/')
 
   const editUserimage = async (data: FormData) => {
     "use server";
