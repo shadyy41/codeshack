@@ -81,7 +81,7 @@ const ClientSide = ({ authenticated, isPremium }: Props) => {
   }
 
   return (
-    <div className="svg-background h-full w-full flex items-center justify-center px-8 sm:px-0 text-center py-6">
+    <div className="h-full w-full flex items-center justify-center px-8 sm:px-0 text-center py-6">
       <Script
         id="razorpay-checkout-js"
         src="https://checkout.razorpay.com/v1/checkout.js"

@@ -2,8 +2,8 @@
 import { Fragment } from "react"
 import Link from "next/link"
 import { Menu, Transition } from "@headlessui/react"
-import { Bars3Icon, UserCircleIcon } from "@heroicons/react/20/solid"
-import Image from "next/image";
+import { Bars3Icon, UserIcon } from "@heroicons/react/20/solid"
+import Image from "next/image"
 
 export interface Props {
   authenticated: boolean,
@@ -17,8 +17,8 @@ const UserMenu = ({authenticated, name, userImage, isPremium} : Props) => {
     authenticated ? 
     <Menu as="div" className="relative inline-block text-left">
       <div className="w-8 h-8">
-        <Menu.Button className="w-full h-full rounded-full relative overflow-hidden custom-outline bg-blue-600">
-          {userImage ? <Image src={userImage} alt="Profile Picture" priority={true} height={32} width={32}/> : <UserCircleIcon height={36} width={36} color="#fbf8f8"/>}
+        <Menu.Button className={`w-full h-full rounded-sm relative overflow-hidden custom-outline bg-blue-600`}>
+          <Image src={userImage ? userImage : "/default-user.png"} alt="Profile Picture" priority={true} height={32} width={32}/>
         </Menu.Button>
       </div>
 

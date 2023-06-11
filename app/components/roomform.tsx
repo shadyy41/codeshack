@@ -1,6 +1,14 @@
 'use client';
+import { useEffect } from "react"
 
-const RoomForm = () => {
+export interface Props {
+  authenticated: boolean,
+  name: string | null | undefined,
+  userImage: string | null | undefined,
+  isPremium: boolean | null | undefined
+}
+
+const RoomForm = ({authenticated, name, userImage, isPremium} : Props) => {
   const handleCreate = () =>{
 
   }

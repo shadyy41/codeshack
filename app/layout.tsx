@@ -36,7 +36,8 @@ export default function RootLayout({
               style: {
                 border: '1px solid rgba(255, 255, 255, 0.1)',
                 color: '#fbf8f8',
-                background: '#0a0d14',
+                background: 'rgb(10, 10, 10)',
+                fontSize: '14px'
               },
               success: {
                 iconTheme: {
@@ -51,7 +52,7 @@ export default function RootLayout({
                 },
               },
             }}/>
-            <main className="flex-grow">
+            <main className="flex-grow svg-background">
               {children}
             </main>
           </div>
