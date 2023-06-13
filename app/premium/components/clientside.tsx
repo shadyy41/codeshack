@@ -90,8 +90,8 @@ const ClientSide = ({ authenticated, isPremium }: Props) => {
         <h1 className="text-xl font-bold sm:text-2xl premium-text">Premium Features</h1>
         <Divider text="Lifetime Access"/>
         <div className="flex gap-1 flex-col w-full py-3">
-          <p className="text-slate-200 text-5xl font-bold">
-            <span className="font-thin">&#8377;</span>51
+          <p className="text-slate-200 text-5xl font-medium">
+            <span className="font-thin">&#36;</span>4.99
           </p>
           <p className="text-xl text-slate-300 w-full flex flex-col">
             Customized username, profile pictures and more. Pay once, use forever.

@@ -39,13 +39,13 @@ const UserMenu = ({ authenticated, name, userImage, isPremium, email } : Props) 
                 <p className= 'w-full px-4 text-xs text-slate-400'>
                   Signed in as
                 </p>
-                <p className="w-full px-4 text-ellipsis overflow-hidden whitespace-nowrap">
+                <p className="w-full px-4 text-ellipsis overflow-hidden whitespace-nowrap font-medium">
                   { name }
                 </p>
-                <p className= 'w-full px-4 text-sm text-slate-400 text-ellipsis overflow-hidden whitespace-nowrap'>
+                <p className= 'w-full px-4 text-xs text-slate-400 text-ellipsis overflow-hidden whitespace-nowrap'>
                   { email }
                 </p>
-                { isPremium && <p className="text-sm w-full px-4 premium-text">Premium User</p> }
+                { isPremium && <p className="text-xs w-full px-4 premium-text font-medium">Premium User</p> }
               </div>
             </Menu.Item>
             {!isPremium && <Menu.Item>
