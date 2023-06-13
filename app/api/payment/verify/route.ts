@@ -20,6 +20,7 @@ export async function POST(request: Request) {
         data: { isPremium: true },
       })
     } catch (error) {
+      //@ts-ignore
       console.log(error, "COULD NOT UPDATE PREMIUM STATUS", session.id)
     }
     return NextResponse.json({ message: "Payment verified" }, { status: 200 })
