@@ -1,12 +1,8 @@
-import { createClient } from '@vercel/kv'
+import { kv } from '@vercel/kv'
 
 export default async function Room() {
   
   async function test() {
-    const roomClient = createClient({
-      url: process.env.KV_REST_API_URL,
-      token: process.env.KV_REST_API_TOKEN,
-    })
     try{
       const obj = {
         creator: 'creatorid',
@@ -15,8 +11,8 @@ export default async function Room() {
       }
       const str = JSON.stringify(obj)
       console.log(str)
-      await roomClient.set('example-room-id', str)
-      const room = await roomClient.get('example-room-id')
+      await kv.set('example-room-id', str)
+      const room = await kv.get('example-room-id')
       console.log(room)
     }
     catch(e){

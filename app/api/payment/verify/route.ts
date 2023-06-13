@@ -15,6 +15,7 @@ export async function POST(request: Request) {
   if(validatePaymentVerification({order_id, payment_id}, signature, RZP_SECRET)){
     try {
       await prisma.user.update({
+        //@ts-ignore
         where: { id: session.user?.id },
         data: { isPremium: true },
       })
