@@ -8,6 +8,7 @@ const Navbar = async () => {
   const name = session?.user?.name
   const userImage = session?.user?.image
   const email = session?.user?.email
+  //@ts-ignore
   const isPremium = session?.user?.isPremium
 
   return (

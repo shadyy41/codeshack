@@ -22,6 +22,7 @@ export default async function SignIn() {
         <EmailButton/>
       </div>
       <Divider text="Or"/>
+      {/*@ts-ignore*/}
       {Object.values(providers).map((provider) => (
         <ProviderButton provider={provider}/>
       ))}

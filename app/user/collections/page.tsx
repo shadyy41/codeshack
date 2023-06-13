@@ -9,6 +9,8 @@ const Collections = async () => {
   const session = await getServerSession(authOptions)
   const name = session?.user?.name
   const userImage = session?.user?.image
+  //@ts-ignore
+
   const isPremium = session?.user?.isPremium
 
   if(!session || !isPremium) redirect('/')
@@ -18,6 +20,7 @@ const Collections = async () => {
     if(!session) return
     const img = data.get('userimage')
     await prisma.user.update({
+    //@ts-ignore
       where: { id: session?.user?.id },
       data: { image: img },
     })

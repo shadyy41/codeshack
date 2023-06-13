@@ -10,6 +10,7 @@ export default async function Home() {
   const session = await getServerSession(authOptions)
   const name = session?.user?.name
   const userImage = session?.user?.image
+  //@ts-ignore
   const isPremium = session?.user?.isPremium
 
   return (
