@@ -16,8 +16,8 @@ const ClientSide = ({ authenticated, isPremium }: Props) => {
 
   const makePayment = async () => {
     if(!authenticated){
-      toast.error("You need to be signed in first.")
       router.replace("/auth/signin")
+      toast.error("You need to be signed in first.")
       return
     }
     if(isPremium){
