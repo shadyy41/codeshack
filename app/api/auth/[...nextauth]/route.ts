@@ -2,6 +2,7 @@ import NextAuth from "next-auth"
 import GoogleProvider from "next-auth/providers/google"
 import type { NextAuthOptions } from 'next-auth'
 import { PrismaAdapter } from "@auth/prisma-adapter"
+import type { Adapter } from "next-auth/adapters"
 import prisma from "@/app/lib/prismaclient"
 
 export const authOptions: NextAuthOptions = {
@@ -15,7 +16,7 @@ export const authOptions: NextAuthOptions = {
     signIn: '/auth/signin',
     signOut: '/auth/signout'
   },
-  adapter: PrismaAdapter(prisma),
+  adapter: PrismaAdapter(prisma) as Adapter<boolean>,
   secret: process.env.NEXTAUTH_SECRET,
   callbacks: {
     async session({ session, user }) {
