@@ -30,6 +30,7 @@ export default function RootLayout({
         <AuthContext>
           <NextTopLoader showSpinner={false} shadow={false} height={3} color='#2563EB'/>
           <div className="flex flex-col h-full">
+            {/* @ts-ignore */}
             <Navbar/>
             <Toaster toastOptions={{
               duration: 3000,
