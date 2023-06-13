@@ -64,10 +64,10 @@ const ClientSide = ({ authenticated, isPremium }: Props) => {
           contact: "9876543210",
         },
       }
-  
+      //@ts-ignore
       const paymentObject = new window.Razorpay(options)
       paymentObject.open()
-  
+      //@ts-ignore
       paymentObject.on("payment.failed", function (response) {
         alert("Payment failed. Please try again.")
         toast.error("Payment failed. Please try again.")
