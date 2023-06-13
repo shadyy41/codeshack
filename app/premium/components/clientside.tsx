@@ -36,6 +36,7 @@ const ClientSide = ({ authenticated, isPremium }: Props) => {
         amount: data.amount,
         order_id: data.id,
         description: "Testing Description",
+        //@ts-ignore
         handler: async (response) => {
           setLoading(true)
           const body = {
