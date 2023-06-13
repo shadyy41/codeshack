@@ -24,7 +24,7 @@ export default async function Home() {
         </div>
         <p className="text-slate-400 text-2xl max-w-sm w-full break-words">Peer to peer video calls, collaborative coding, and much more!</p>
         <br />
-        <div className="flex flex-col w-full text-md gap-3 text-slate-300 max-w-xs">
+        <div className="flex flex-col w-full text-md gap-3 text-slate-300 max-w-xs text-center">
           {/* <input type="text" placeholder="Enter your name" className="w-full py-3 px-4 rounded-md border-2 border-white border-opacity-20 hover:border-opacity-40 transition-colors custom-outline bg-transparent backdrop-blur-sm"/> */}
           <Link className="w-full py-3 rounded-md bg-blue-600 text-white hover:bg-blue-500 transition-colors custom-outline" href="/room/create">Create Room</Link>
           <a className="py-3 rounded-md border border-white border-opacity-20 text-white hover:bg-neutral-900 bg-neutral-950 transition-colors custom-outline w-full max-w-sm" href="https://github.com/shadyy41/codeshack" target="_blank" rel="noopener noreferrer">
