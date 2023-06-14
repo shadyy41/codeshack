@@ -3,7 +3,8 @@ import Script from "next/script"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
 import { toast } from "react-hot-toast"
-import Divider from "@/app/components/divider";
+import Divider from "@/app/components/divider"
+import { TailSpin } from "react-loader-spinner"
 
 export interface Props {
   authenticated: boolean,
@@ -16,7 +17,7 @@ const ClientSide = ({ authenticated, isPremium }: Props) => {
 
   const makePayment = async () => {
     if(!authenticated){
-      router.replace("/auth/signin")
+      router.push("/auth/signin")
       toast.error("You need to be signed in first.")
       return
     }
@@ -94,15 +95,15 @@ const ClientSide = ({ authenticated, isPremium }: Props) => {
           <p className="text-slate-200 text-5xl font-medium">
             <span className="font-thin">&#36;</span>4.99
           </p>
-          <p className="text-xl text-slate-300 w-full flex flex-col">
+          <p className="text-lg sm:text-xl text-slate-300 w-full flex flex-col">
             Customized username, profile pictures and more. Pay once, use forever.
           </p>
         </div>
         <Divider text="Powered by Razorpay"/>
-        <button className={`py-3 rounded-md bg-blue-600 text-white hover:bg-blue-500 ${loading ? 'cursor-wait' : ''} transition-colors custom-outline w-full max-w-sm`} onClick={makePayment} disabled={loading}>
-          {loading ? 'Processing' : 'Join Premium'}
+        <button className={`text-sm sm:text-base py-3 rounded-md bg-blue-600 text-white hover:bg-blue-500 ${loading ? 'cursor-wait' : ''} transition-colors custom-outline w-full max-w-sm flex items-center justify-center`} onClick={makePayment} disabled={loading}>
+          {loading ? <TailSpin height={24} width={24} color="white"/> : 'Join Premium'}
         </button>
-        <button className="py-3 rounded-md border border-white border-opacity-30 text-white hover:bg-neutral-900 bg-neutral-950 transition-colors custom-outline w-full max-w-sm" onClick={()=>router.back()}>
+        <button className="text-sm sm:text-base py-3 rounded-md border border-white border-opacity-30 text-white hover:bg-neutral-900 bg-neutral-950 transition-colors custom-outline w-full max-w-sm" onClick={()=>router.back()}>
           Back
         </button>
       </div>

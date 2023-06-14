@@ -1,27 +1,29 @@
-import { createClient } from '@vercel/kv'
+import { kv } from '@vercel/kv'
 import { NextResponse } from 'next/server'
+import { getServerSession } from 'next-auth'
+import { nanoid } from 'nanoid'
+import { authOptions } from '../../auth/[...nextauth]/route'
  
 export async function GET() {
-  const roomClient = createClient({
-    url: process.env.KV_REST_API_URL,
-    token: process.env.KV_REST_API_TOKEN,
-  })
-  console.log("????")
+  const session = await getServerSession(authOptions)
+  if(!session) return NextResponse.json({message: "Unauthenticated"}, {status: 401})
+  //@ts-ignore
+  const userId = session?.user?.id
+  const roomId = nanoid(12)
+
   try{
     const obj = {
-      creator: 'creatorid',
-      roomId: 'roomid',
+      creator: userId,
       joinable: true
     }
     const str = JSON.stringify(obj)
-    console.log(str)
-    await roomClient.set('example-room-id', str)
-    const room = await roomClient.get('example-room-id')
+    await kv.set(roomId, str)
+    const room = await kv.get(roomId)
     console.log(room)
-    return NextResponse.json({ room })
+    return NextResponse.json({ message: "Created Successfully", roomId})
   }
   catch(e){
-    console.log(e, "Error")
-    return NextResponse.json({ mesage: "Error" }, {status: 404})
+    console.log(e, "Error in room creation")
+    return NextResponse.json({ mesage: "Could Not Create Room" }, {status: 500})
   }
 }

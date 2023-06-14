@@ -50,10 +50,10 @@ const UserimageForm = ({ name, userImage, isPremium }: Props) => {
         </Link> : <button onClick={(e)=>{
           e.preventDefault()
           router.back()
-        }} className={`py-3 rounded-md border border-white border-opacity-20 text-white hover:bg-neutral-900 bg-neutral-950 transition-colors custom-outline w-1/2`}>
+        }} className={`text-sm sm:text-base py-3 rounded-md border border-white border-opacity-20 text-white hover:bg-neutral-900 bg-neutral-950 transition-colors custom-outline w-1/2`}>
           Back
         </button>}
-        <button type="submit" disabled={ !isPremium || pending || !canSubmit } className={`py-3 rounded-md bg-blue-600 text-white hover:bg-blue-500 transition-colors custom-outline w-1/2 ${ (!isPremium || !canSubmit) && 'cursor-not-allowed' } ${ pending && 'cursor-wait' }`}>
+        <button type="submit" disabled={ !isPremium || pending || !canSubmit } className={`text-sm sm:text-base py-3 rounded-md bg-blue-600 text-white hover:bg-blue-500 transition-colors custom-outline w-1/2 ${ (!isPremium || !canSubmit) && 'cursor-not-allowed' } ${ pending && 'cursor-wait' }`}>
           {pending ? 'Updating...' : 'Update'}
         </button>
       </div>
