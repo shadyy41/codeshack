@@ -6,6 +6,7 @@ import Divider from "../components/divider"
 import UsernameForm from "./components/usernameform"
 import UserimageForm from "./components/userimageform"
 import { redirect } from "next/navigation"
+import FormHeader from "../components/formheader"
 
 const User = async () => {
   const session = await getServerSession(authOptions)
@@ -43,7 +44,7 @@ const User = async () => {
   return (
     <div className="h-full w-full flex items-center justify-center px-8 sm:px-0 text-center py-6">
       <div className="h-fit w-full max-w-md border rounded-lg border-white border-opacity-10 flex flex-col items-center justify-start py-4 px-4 bg-zinc-950 gap-4">
-        <h1 className="flex-shrink-0 text-xl font-bold sm:text-2xl">Edit Profile</h1>
+        <FormHeader text="Edit Profile"/>
         <Divider text="Update username"/>
         <form action={editUsername} className="w-full flex flex-col items-center justify-center gap-2">
           <UsernameForm name={ name } userImage = { userImage } isPremium = { isPremium }/>

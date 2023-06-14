@@ -6,6 +6,7 @@ import { authOptions } from "@/app/api/auth/[...nextauth]/route"
 import EmailButton from "./components/emailbutton"
 import Divider from "@/app/components/divider"
 import BackButton from "../components/backbutton"
+import FormHeader from "@/app/components/formheader"
 
 
 export default async function SignIn() {
@@ -15,10 +16,10 @@ export default async function SignIn() {
 
   return (
     <>
-      <h1 className="w-full text-xl font-bold sm:text-2xl">Sign In</h1>
+      <FormHeader text="Sign In"/>
       <Divider text="With Email"/>
       <div className="w-full flex flex-col gap-2">
-        <input type="text" placeholder="Enter your email" className="w-full text-slate-300 py-3 px-4 rounded-md border border-white border-opacity-20 hover:border-opacity-40 transition-colors custom-outline bg-transparent backdrop-blur-sm" disabled/>
+        <input type="text" placeholder="Enter your email" className="text-sm sm:text-base w-full text-slate-300 py-3 px-4 rounded-md border border-white border-opacity-20 hover:border-opacity-40 transition-colors custom-outline bg-transparent backdrop-blur-sm" disabled/>
         <EmailButton/>
       </div>
       <Divider text="Or"/>

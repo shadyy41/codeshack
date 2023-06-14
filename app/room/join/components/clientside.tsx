@@ -41,9 +41,9 @@ const ClientSide = ({ name="Anonymous" } : { name: string | undefined | null }) 
     <>
       <div className="flex flex-col gap-2 w-full">
         {/* @ts-ignore */}
-        <input type="text" placeholder="Join as" value={name_s} onChange={e=>setName_s(e.target.value)} className="w-full text-slate-300 py-3 px-4 rounded-md border border-white border-opacity-20 hover:border-opacity-40 transition-colors custom-outline bg-transparent backdrop-blur-sm"/>
+        <input type="text" placeholder="Join as" value={name_s} onChange={e=>setName_s(e.target.value)} className="text-sm sm:text-base w-full text-slate-300 py-3 px-4 rounded-md border border-white border-opacity-20 hover:border-opacity-40 transition-colors custom-outline bg-transparent backdrop-blur-sm"/>
         {/* @ts-ignore */}
-        <input type="text" placeholder="Enter Room ID" value={roomId} onChange={e=>setRoomId(e.target.value)} className="w-full text-slate-300 py-3 px-4 rounded-md border border-white border-opacity-20 hover:border-opacity-40 transition-colors custom-outline bg-transparent backdrop-blur-sm"/>
+        <input type="text" placeholder="Enter Room ID" value={roomId} onChange={e=>setRoomId(e.target.value)} className="text-sm sm:text-base w-full text-slate-300 py-3 px-4 rounded-md border border-white border-opacity-20 hover:border-opacity-40 transition-colors custom-outline bg-transparent backdrop-blur-sm"/>
         <button className={`text-sm sm:text-base py-3 rounded-md bg-blue-600 text-white hover:bg-blue-500 transition-colors custom-outline w-full max-w-sm ${isLoading ? 'cursor-progress' : ''}`} onClick={()=>setIsOpen(true)} disabled={isLoading}>
           Preview Video
         </button>

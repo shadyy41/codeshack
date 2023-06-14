@@ -60,18 +60,20 @@ const PreviewModal = ({ isOpen, setIsOpen, joinRoom, isLoading } : any) => {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden border rounded-lg border-white border-opacity-10 bg-zinc-950 p-4 text-center flex flex-col gap-2 transition-all">
+                <Dialog.Panel className="w-full max-w-md transform overflow-hidden border rounded-lg border-white border-opacity-10 bg-zinc-950 p-4 text-center flex flex-col gap-4 transition-all">
                   <Dialog.Title
                     as="h3"
                     className="w-full text-xl font-bold sm:text-2xl text-white"
                   >
                     Video Preview
                   </Dialog.Title>
-                  <Divider text="Ready to Join?"/>
+                  <Divider/>
                   <div className="w-full aspect-video overflow-hidden border rounded-lg border-white border-opacity-20 bg-neutral-950 flex items-center justify-center">
                     {videoLoading && <TailSpin height={24} width={24} color="white"/>} 
                     <video className={`w-full aspect-video ${videoLoading ? 'hidden' : 'block'}`} ref={videoRef} autoPlay playsInline />
                   </div>
+                  <Divider/>
+
                   <div className="flex gap-2">
                     <button type="button" className="text-sm sm:text-base py-3 rounded-md border border-white border-opacity-20 text-white hover:bg-neutral-900 bg-neutral-950 transition-colors custom-outline w-full max-w-sm" onClick={()=>setIsOpen(false)}>
                       Close
