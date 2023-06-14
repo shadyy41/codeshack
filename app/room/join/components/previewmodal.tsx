@@ -3,7 +3,7 @@ import { Fragment, useState } from "react"
 import { useEffect, useRef } from "react"
 import { toast } from "react-hot-toast"
 import Divider from "@/app/components/divider"
-import { TailSpin } from "react-loader-spinner"
+import Spinner from "@/app/components/spinner"
 
 const PreviewModal = ({ isOpen, setIsOpen, joinRoom, isLoading } : any) => {
   const streamRef = useRef<any>()
@@ -69,7 +69,7 @@ const PreviewModal = ({ isOpen, setIsOpen, joinRoom, isLoading } : any) => {
                   </Dialog.Title>
                   <Divider/>
                   <div className="w-full aspect-video overflow-hidden border rounded-lg border-white border-opacity-20 bg-neutral-950 flex items-center justify-center">
-                    {videoLoading && <TailSpin height={24} width={24} color="white"/>} 
+                    {videoLoading && <Spinner/>} 
                     <video className={`w-full aspect-video ${videoLoading ? 'hidden' : 'block'}`} ref={videoRef} autoPlay playsInline />
                   </div>
                   <Divider/>
@@ -79,7 +79,7 @@ const PreviewModal = ({ isOpen, setIsOpen, joinRoom, isLoading } : any) => {
                       Close
                     </button>
                     <button className={`text-sm sm:text-base py-3 rounded-md bg-blue-600 text-white hover:bg-blue-500 transition-colors custom-outline w-full max-w-sm ${isLoading ? 'cursor-progress' : ''} flex items-center justify-center`} onClick={joinRoom} disabled={isLoading}>
-                      {isLoading ? <TailSpin height={24} width={24} color="white"/> : 'Join Room'}
+                      {isLoading ? <Spinner/> : 'Join Room'}
                     </button>
                   </div>
                 </Dialog.Panel>

@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation"
 import { useState } from "react"
 import { toast } from "react-hot-toast"
 import Divider from "@/app/components/divider"
-import { TailSpin } from "react-loader-spinner"
+import Spinner from "@/app/components/spinner"
 
 export interface Props {
   authenticated: boolean,
@@ -101,7 +101,7 @@ const ClientSide = ({ authenticated, isPremium }: Props) => {
         </div>
         <Divider text="Powered by Razorpay"/>
         <button className={`text-sm sm:text-base py-3 rounded-md bg-blue-600 text-white hover:bg-blue-500 ${loading ? 'cursor-wait' : ''} transition-colors custom-outline w-full max-w-sm flex items-center justify-center`} onClick={makePayment} disabled={loading}>
-          {loading ? <TailSpin height={24} width={24} color="white"/> : 'Join Premium'}
+          {loading ?  <Spinner/>  : 'Join Premium'}
         </button>
         <button className="text-sm sm:text-base py-3 rounded-md border border-white border-opacity-30 text-white hover:bg-neutral-900 bg-neutral-950 transition-colors custom-outline w-full max-w-sm" onClick={()=>router.back()}>
           Back

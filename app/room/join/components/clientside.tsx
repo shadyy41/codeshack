@@ -3,7 +3,7 @@ import { useState } from "react"
 import { useSearchParams, useRouter } from "next/navigation"
 import { toast } from "react-hot-toast"
 import Divider from "@/app/components/divider"
-import { TailSpin } from "react-loader-spinner"
+import Spinner from "@/app/components/spinner"
 import PreviewModal from "./previewmodal"
 
 const ClientSide = ({ name="Anonymous" } : { name: string | undefined | null }) => {
@@ -51,7 +51,7 @@ const ClientSide = ({ name="Anonymous" } : { name: string | undefined | null }) 
       <Divider text="Ready to Join?"/>
       {isOpen && <PreviewModal isOpen={isOpen} setIsOpen={setIsOpen} joinRoom={joinRoom} isLoading={isLoading}/>}
       <button className={`text-sm sm:text-base py-3 rounded-md bg-blue-600 text-white hover:bg-blue-500 transition-colors custom-outline w-full max-w-sm ${isLoading ? 'cursor-progress' : ''} flex items-center justify-center`} onClick={joinRoom} disabled={isLoading}>
-        {isLoading ? <TailSpin height={24} width={24} color="white"/> : 'Join Room'}
+        {isLoading ? <Spinner/> : 'Join Room'}
       </button>
     </>
   )

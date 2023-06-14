@@ -2,7 +2,7 @@
 import { toast } from "react-hot-toast"
 import { useRouter } from "next/navigation"
 import { useState } from "react"
-import { TailSpin } from "react-loader-spinner"
+import Spinner from "./spinner";
 
 const CreateRoom = ({ authenticated }:{ authenticated: Boolean }) => {
   const router = useRouter()
@@ -31,7 +31,7 @@ const CreateRoom = ({ authenticated }:{ authenticated: Boolean }) => {
     }
   }
   return (
-    <button onClick={createRoom} className={`text-sm sm:text-base w-full py-3 rounded-md bg-blue-600 text-white hover:bg-blue-500 transition-colors custom-outline ${isLoading ? 'cursor-progress' : ''} flex items-center justify-center`} disabled={isLoading}>{isLoading ? <TailSpin height={24} width={24} color="white"/> : 'Create Room'}</button>
+    <button onClick={createRoom} className={`text-sm sm:text-base w-full py-3 rounded-md bg-blue-600 text-white hover:bg-blue-500 transition-colors custom-outline ${isLoading ? 'cursor-progress' : ''} flex items-center justify-center`} disabled={isLoading}>{isLoading ? <Spinner/> : 'Create Room'}</button>
   )
 }
 

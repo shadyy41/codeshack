@@ -44,7 +44,7 @@ const ClientSide = ({ name, userImage, isPremium }: Props) => {
           <input type="radio" name="userimage" value={`/dicebear/thumbs-${idx}.svg`} checked={selected===`/dicebear/thumbs-${idx}.svg`} onChange={handleChange} className="hidden" aria-hidden="true"/>
         </label>)}
       </div>
-      <div className="w-full flex gap-2 text-sm">
+      <div className="w-full flex gap-2">
         <button onClick={(e)=>{
           e.preventDefault()
           router.back()

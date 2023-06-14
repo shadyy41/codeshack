@@ -44,8 +44,8 @@ const UserimageForm = ({ name, userImage, isPremium }: Props) => {
           </label>)}
         </div>
       </div>
-      <div className="w-full flex gap-2 text-sm">
-        {isPremium ? <Link href={"/user/collections"} className={`py-3 rounded-md border border-white border-opacity-20 text-white hover:bg-neutral-900 bg-neutral-950 transition-colors custom-outline w-1/2`}>
+      <div className="w-full flex gap-2">
+        {isPremium ? <Link href={"/user/collections"} className={`text-sm sm:text-base py-3 rounded-md border border-white border-opacity-20 text-white hover:bg-neutral-900 bg-neutral-950 transition-colors custom-outline w-1/2`}>
           View More
         </Link> : <button onClick={(e)=>{
           e.preventDefault()
