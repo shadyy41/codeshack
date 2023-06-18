@@ -10,6 +10,10 @@ const PreviewModal = ({ isOpen, setIsOpen, joinRoom, isLoading } : any) => {
   const videoRef = useRef<any>()
   const [videoLoading, setVideoLoading] = useState<boolean>(true)
 
+  const handleClose = () =>{
+    if(!videoLoading) setIsOpen(false)
+  }
+
   useEffect(()=>{
     if(!navigator.mediaDevices){
       toast.error("Media devices unavailable")
@@ -36,7 +40,7 @@ const PreviewModal = ({ isOpen, setIsOpen, joinRoom, isLoading } : any) => {
   return (
     <>
       <Transition appear show={isOpen} as={Fragment}>
-        <Dialog as="div" className="relative z-10" onClose={()=>setIsOpen(false)}>
+        <Dialog as="div" className="relative z-10" onClose={handleClose}>
           <Transition.Child
             as={Fragment}
             enter="ease-out duration-300"
@@ -63,22 +67,22 @@ const PreviewModal = ({ isOpen, setIsOpen, joinRoom, isLoading } : any) => {
                 <Dialog.Panel className="w-full max-w-md transform overflow-hidden border rounded-lg border-white border-opacity-10 bg-zinc-950 p-4 text-center flex flex-col gap-4 transition-all">
                   <Dialog.Title
                     as="h3"
-                    className="w-full text-xl font-bold sm:text-2xl text-white"
+                    className="w-full text-xl font-semibold sm:text-2xl text-white"
                   >
                     Video Preview
                   </Dialog.Title>
                   <Divider/>
                   <div className="w-full aspect-video overflow-hidden border rounded-lg border-white border-opacity-20 bg-neutral-950 flex items-center justify-center">
-                    {videoLoading && <Spinner/>} 
+                    {videoLoading && <Spinner sizeclass="h-10 w-10"/>} 
                     <video className={`w-full aspect-video ${videoLoading ? 'hidden' : 'block'}`} ref={videoRef} autoPlay playsInline />
                   </div>
                   <Divider/>
 
                   <div className="flex gap-2">
-                    <button type="button" className="text-sm sm:text-base py-3 rounded-md border border-white border-opacity-20 text-white hover:bg-neutral-900 bg-neutral-950 transition-colors custom-outline w-full max-w-sm" onClick={()=>setIsOpen(false)}>
+                    <button type="button" className={`text-sm sm:text-base py-3 rounded-md border border-white border-opacity-20 text-white hover:bg-neutral-900 bg-neutral-950 transition-colors custom-outline w-full max-w-sm ${videoLoading ? 'cursor-not-allowed' : ''}`} onClick={handleClose} disabled={videoLoading}>
                       Close
                     </button>
-                    <button className={`text-sm sm:text-base py-3 rounded-md bg-blue-600 text-white hover:bg-blue-500 transition-colors custom-outline w-full max-w-sm ${isLoading ? 'cursor-progress' : ''} flex items-center justify-center`} onClick={joinRoom} disabled={isLoading}>
+                    <button className={`text-sm sm:text-base py-3 rounded-md bg-blue-600 text-white hover:bg-blue-500 transition-colors custom-outline w-full max-w-sm ${isLoading ? 'cursor-progress' : ''} ${videoLoading ? 'cursor-not-allowed': ''} flex items-center justify-center`} onClick={joinRoom} disabled={isLoading || videoLoading}>
                       {isLoading ? <Spinner/> : 'Join Room'}
                     </button>
                   </div>

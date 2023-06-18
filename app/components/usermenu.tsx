@@ -103,12 +103,12 @@ const UserMenu = ({ authenticated, name, userImage, isPremium, email } : Props) 
             <div className="py-1 text-slate-300">
               <Menu.Item>
                 {({ active }) => (
-                  <Link href="/auth/signin" className={`${active && 'bg-zinc-900'} text-sm sm:text-md block w-full px-4 py-2 text-left hover:bg-zinc-900 transition-colors`}>Sign in</Link>
+                  <Link href="/auth/signin" className={`${active && 'bg-zinc-900'} text-sm sm:text-md block w-full px-4 py-2 text-left hover:bg-zinc-900 transition-colors`}>Login</Link>
                 )}
               </Menu.Item>
               <Menu.Item>
                 {({ active }) => (
-                  <Link href="/auth/signin" className={`${active && 'bg-zinc-900'} text-sm sm:text-md block w-full px-4 py-2 text-left hover:bg-zinc-900 transition-colors`}>Sign up</Link>
+                  <Link href="/auth/signin" className={`${active && 'bg-zinc-900'} text-sm sm:text-md block w-full px-4 py-2 text-left hover:bg-zinc-900 transition-colors`}>Sign Up</Link>
                 )}
               </Menu.Item>
             </div>

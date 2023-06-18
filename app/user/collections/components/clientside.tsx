@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import Image from "next/image"
 import Divider from "@/app/components/divider"
 import { useRouter } from "next/navigation";
+import Spinner from "@/app/components/spinner";
 
 export interface Props {
   name?: string | null | undefined,
@@ -51,8 +52,8 @@ const ClientSide = ({ name, userImage, isPremium }: Props) => {
         }} className={`text-sm sm:text-base py-3 rounded-md border border-white border-opacity-20 text-white hover:bg-neutral-900 bg-neutral-950 transition-colors custom-outline w-1/2`}>
           Back
         </button>
-        <button type="submit" disabled={ !isPremium || pending || !canSubmit } className={`text-sm sm:text-base py-3 rounded-md bg-blue-600 text-white hover:bg-blue-500 transition-colors custom-outline w-1/2 ${ (!isPremium || !canSubmit) && 'cursor-not-allowed' } ${ pending && 'cursor-wait' }`}>
-          {pending ? 'Updating...' : 'Update'}
+        <button type="submit" disabled={ !isPremium || pending || !canSubmit } className={`text-sm sm:text-base py-3 rounded-md bg-blue-600 text-white hover:bg-blue-500 transition-colors custom-outline w-1/2 ${ (!isPremium || !canSubmit) && 'cursor-not-allowed' } ${ pending && 'cursor-wait' } flex items-center justify-center`}>
+          {pending ? <Spinner/> : 'Update'}
         </button>
       </div>
     </>
