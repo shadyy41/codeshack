@@ -8,7 +8,7 @@ const CreateRoom = ({ authenticated } : { authenticated: Boolean }) => {
   const searchParams = useSearchParams()
   useEffect(()=>{
     const err = searchParams.get('err')
-    if(err) toast.error(err)
+    if(err) toast.error(err, {duration: 4000})
   }, [])
   const router = useRouter()
   const [isLoading, setLoading] = useState(false)
@@ -26,7 +26,7 @@ const CreateRoom = ({ authenticated } : { authenticated: Boolean }) => {
       if(res.status!==200) throw new Error()
       const data = await res.json()
       if(!data) throw new Error()
-      router.push(`/room/join?room=${data.roomId}`)
+      router.push(`/room/join?roomID=${data.roomId}`)
       toast.success("Room created successfully")
     } catch (error) {
       toast.error("Error in creating room")

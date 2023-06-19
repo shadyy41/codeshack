@@ -6,7 +6,7 @@ import PreviewModal from "./previewmodal"
 import JoinButton from "./joinbutton"
 
 const ClientSide = ({ name="Anonymous" } : { name: string | undefined | null }) => {
-  const room = !useSearchParams().has('room') ? "" : useSearchParams().get('room')
+  const room = !useSearchParams().has('roomID') ? "" : useSearchParams().get('roomID')
   const [name_s, setName_s] = useState(name)
   const [roomID, setRoomID] = useState(room)
   const [isOpen, setIsOpen] = useState(false)
