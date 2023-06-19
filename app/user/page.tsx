@@ -35,6 +35,7 @@ const User = async () => {
     const name = data.get('name')
     if(!name || !name.length || name.length>20) return
     await prisma.user.update({
+      //@ts-ignore
       where: { id: session?.user?.id },
       data: { name: name },
     })

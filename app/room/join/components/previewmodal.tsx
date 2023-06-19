@@ -4,8 +4,9 @@ import { useEffect, useRef } from "react"
 import { toast } from "react-hot-toast"
 import Divider from "@/app/components/divider"
 import Spinner from "@/app/components/spinner"
+import JoinButton from "./joinbutton"
 
-const PreviewModal = ({ isOpen, setIsOpen, joinRoom, isLoading } : any) => {
+const PreviewModal = ({ isOpen, setIsOpen, roomID } : any) => {
   const streamRef = useRef<any>()
   const videoRef = useRef<any>()
   const [videoLoading, setVideoLoading] = useState<boolean>(true)
@@ -82,9 +83,7 @@ const PreviewModal = ({ isOpen, setIsOpen, joinRoom, isLoading } : any) => {
                     <button type="button" className={`text-sm sm:text-base py-3 rounded-md border border-white border-opacity-20 text-white hover:bg-neutral-900 bg-neutral-950 transition-colors custom-outline w-full max-w-sm ${videoLoading ? 'cursor-not-allowed' : ''}`} onClick={handleClose} disabled={videoLoading}>
                       Close
                     </button>
-                    <button className={`text-sm sm:text-base py-3 rounded-md bg-blue-600 text-white hover:bg-blue-500 transition-colors custom-outline w-full max-w-sm ${isLoading ? 'cursor-progress' : ''} ${videoLoading ? 'cursor-not-allowed': ''} flex items-center justify-center`} onClick={joinRoom} disabled={isLoading || videoLoading}>
-                      {isLoading ? <Spinner/> : 'Join Room'}
-                    </button>
+                    <JoinButton roomID={roomID} disabled={videoLoading}/>
                   </div>
                 </Dialog.Panel>
               </Transition.Child>

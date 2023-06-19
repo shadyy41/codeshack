@@ -1,10 +1,15 @@
 "use client";
 import { toast } from "react-hot-toast"
-import { useRouter } from "next/navigation"
-import { useState } from "react"
-import Spinner from "./spinner";
+import { useRouter, useSearchParams } from "next/navigation"
+import { useEffect, useState } from "react"
+import Spinner from "./spinner"
 
-const CreateRoom = ({ authenticated }:{ authenticated: Boolean }) => {
+const CreateRoom = ({ authenticated } : { authenticated: Boolean }) => {
+  const searchParams = useSearchParams()
+  useEffect(()=>{
+    const err = searchParams.get('err')
+    if(err) toast.error(err)
+  }, [])
   const router = useRouter()
   const [isLoading, setLoading] = useState(false)
 
