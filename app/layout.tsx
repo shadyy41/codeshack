@@ -54,7 +54,7 @@ export default function RootLayout({
                 },
               },
             }}/>
-            <main className="flex-grow svg-background">
+            <main className="flex-grow overflow-hidden svg-background">
               <Suspense>
                 {children}
               </Suspense>

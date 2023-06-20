@@ -3,6 +3,7 @@
 @tailwind utilities;
 
 body{
+  color-scheme: dark;
 }
 
 .svg-background{
@@ -15,9 +16,34 @@ body{
 }
 
 .custom-outline{
-  @apply focus:outline-none focus:outline-blue-900;
+  @apply focus:outline-none focus:outline-blue-800;
 }
 
 .premium-text{
   @apply bg-clip-text bg-gradient-to-br from-yellow-700 to-yellow-300 text-transparent;
+}
+
+.faded-after{
+  position: relative;
+}
+
+.faded-after:after {
+  position: absolute;
+  bottom: 0;  
+  height: 100%;
+  width: 100%;
+  content: "";
+  background: linear-gradient(to top,
+     rgb(10, 10, 10, 1) 1%, 
+     rgba(255,255,255, 0) 5%
+  );
+  pointer-events: none;
+}
+
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
+.no-scrollbar {
+  -ms-overflow-style: none;  /* IE and Edge */
+  scrollbar-width: none;  /* Firefox */
 }

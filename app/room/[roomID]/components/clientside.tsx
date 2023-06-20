@@ -8,10 +8,10 @@ const ClientSide = async () => {
   const { roomID } = useParams()
 
   return (
-    <div className="h-full w-full flex items-center justify-center p-2 gap-2">
+    <div className="w-full flex items-center justify-center p-2 gap-2 h-full">
       <LeftPanel/>
       <CenterPanel/>
-      <RightPanel/>
+      <RightPanel roomID={roomID}/>
     </div>
   )
 }
