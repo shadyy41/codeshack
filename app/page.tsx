@@ -3,7 +3,7 @@ import banner from "../public/banner.png"
 import Link from "next/link"
 import { authOptions } from "./api/auth/[...nextauth]/route"
 import { getServerSession } from "next-auth"
-import { ArrowRightCircleIcon } from "@heroicons/react/24/outline"
+import { HiOutlineArrowRightCircle } from "react-icons/hi2"
 import CreateRoom from "./components/createroom"
 
 export default async function Home() {
@@ -15,7 +15,7 @@ export default async function Home() {
     <div className="h-full w-full flex px-8 sm:px-16 items-center justify-center lg:justify-between lg:gap-16">
       <div className="h-full w-full sm:w-fit flex flex-col items-center justify-center gap-4 text-center lg:text-left lg:items-start flex-shrink-0">
         {!isPremium && <Link href="/premium" className="drop-shadow-[0_0_8px_rgba(37,99,235,0.3)] custom-outline text-slate-300 text-xs px-2 py-1 rounded-md bg-zinc-950 border border-white border-opacity-30 hover:border-opacity-40 transition">
-          <span className="premium-text mr-1">&#x25CF;</span> Checkout Premium Features <span className="text-white opacity-40"><ArrowRightCircleIcon height={16} width={16} className="inline"/></span>
+          <span className="premium-text mr-1">&#x25CF;</span> Checkout Premium Features <span className="text-white opacity-50"><HiOutlineArrowRightCircle size={16} className="inline"/></span>
         </Link>}
         <div>
           <h2 className="text-3xl font-medium text-slate-300">Welcome to</h2>

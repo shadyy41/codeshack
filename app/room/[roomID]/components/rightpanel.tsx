@@ -1,4 +1,4 @@
-import { ChevronDoubleLeftIcon, ShareIcon } from "@heroicons/react/20/solid"
+import { HiOutlineUserGroup, HiChevronDoubleLeft, HiOutlineShare } from "react-icons/hi"
 import { useState } from "react"
 import Image from "next/image"
 import { toast } from "react-hot-toast"
@@ -49,8 +49,9 @@ const RightPanel = ( { roomID } : { roomID:string } ) => {
 
   return (
     <aside className={`h-full flex-shrink-0 ${expanded ? "w-72" : "w-fit"} border rounded-md border-white border-opacity-10 bg-neutral-950 flex flex-col items-center justify-between h-full gap-2 flex-wrap-wrap overflow-hidden`}>
-      <div className={`${expanded ? 'text-sm' : 'text-xs'} font-bold px-2 h-12 flex items-center justify-center border-b border-white border-opacity-20 w-full flex-shrink-0`}>
-        In room
+      <div className={`text-base font-medium px-2 h-12 flex items-center justify-center gap-2 border-b border-white border-opacity-10 w-full flex-shrink-0 text-slate-300`}>
+        <HiOutlineUserGroup size={22}/>
+        {expanded && <p>Participants ({peersInfo.length})</p>}
       </div>
       <div className="h-full w-full overflow-hidden faded-after">
         <div className={`w-full h-full flex flex-col gap-2 overflow-x-auto px-2 snap-y scroll-py-2 pb-4 no-scrollbar`}>
@@ -80,11 +81,11 @@ const RightPanel = ( { roomID } : { roomID:string } ) => {
 
       <div className={`w-full h-fit px-2 pb-2 flex ${expanded ? 'flex-row' : 'flex-col'} gap-2 flex-shrink-0`}>
         <button className={`text-slate-300 custom-outline border rounded-md border-white border-opacity-10 hover:border-opacity-40 transition bg-neutral-900/50 w-full h-12 flex justify-center items-center`} onClick={handleShare}>
-          <ShareIcon height={20} width={20}/>
+          <HiOutlineShare size={18}/>
         </button>
 
         <button className={`text-slate-300 custom-outline border rounded-md border-white border-opacity-10 hover:border-opacity-40 transition bg-neutral-900/50 w-full h-12 flex justify-center items-center`} onClick={handleExpand}>
-          <ChevronDoubleLeftIcon height={26} width={26} className={`${expanded ? 'rotate-180' : ''} transition-transform`}/>
+          <HiChevronDoubleLeft className={`${expanded ? 'rotate-180' : ''} transition-transform`} size={22}/>
         </button>
       </div>
     </aside>

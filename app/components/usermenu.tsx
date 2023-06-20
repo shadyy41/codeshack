@@ -2,7 +2,7 @@
 import { Fragment } from "react"
 import Link from "next/link"
 import { Menu, Transition } from "@headlessui/react"
-import { Bars3Icon, UserIcon } from "@heroicons/react/20/solid"
+import { HiMenu } from "react-icons/hi"
 import Image from "next/image"
 
 export interface Props {
@@ -86,7 +86,7 @@ const UserMenu = ({ authenticated, name, userImage, isPremium, email } : Props) 
       <Menu as="div" className="sm:hidden relative inline-block text-left">
         <div className="w-8 h-8">
           <Menu.Button className="sm:hidden custom-outline w-full h-full">
-            <Bars3Icon height={32} width={32} aria-hidden="true"/>
+            <HiMenu size={30} aria-hidden="true"/>
           </Menu.Button>
         </div>
 
