@@ -77,7 +77,7 @@ const UserMenu = ({ authenticated, name, userImage, isPremium, email } : Props) 
             Login
           </li>
         </Link>
-        <Link href="/auth/signin" className="custom-outline px-4 py-1 rounded-lg bg-blue-600 hover:cursor-pointer hover:bg-blue-500 transition-colors">
+        <Link href="/auth/signin" className="custom-outline px-4 py-1 rounded-sm bg-blue-600 hover:cursor-pointer hover:bg-blue-500 transition-colors">
           <li>
             Sign Up
           </li>
