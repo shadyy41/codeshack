@@ -19,13 +19,23 @@ const verifyRoom = async ( roomID : string ) => {
 export default async function Room({ params }: { params: { roomID: string } }) {
   const verify : string = await verifyRoom(params.roomID)
   if(verify) redirect(`/?err=${verify}`)
+  let session = await getServerSession(authOptions)
 
-  const session = await getServerSession(authOptions)
-  //@ts-ignore
-  const userid = session?.user?.id
+  if(!session){
+    //@ts-expect-error
+    return <ClientSide session={{
+      user: {
+        userid: "",
+        email: "anonymous@anon.an",
+        image: "/default-user.png",
+        name: "Anonymous",
+        creator: false
+      }
+    }}/>
+  }
 
   return (
     //@ts-expect-error
-    <ClientSide/>
+    <ClientSide session={session}/>
   )
 }
