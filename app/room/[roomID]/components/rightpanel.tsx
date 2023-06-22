@@ -3,6 +3,7 @@ import { ArrowLeftFromLine, Share2, Users } from "lucide-react"
 import Image from "next/image"
 import { toast } from "react-hot-toast"
 import Divider from "@/app/components/divider"
+import { useId } from "react"
 
 // const peersInfo = [
 //   {
@@ -57,7 +58,7 @@ const RightPanel = ( { roomID, peersInfo } : { roomID:string, peersInfo: any[] }
         <div className={`w-full h-full flex flex-col gap-2 overflow-x-auto px-2 snap-y scroll-py-2 pb-4 no-scrollbar`}>
           {
             peersInfo?.map((e, idx)=>{
-              return <div key={e.peerID ? e.peerID : idx} className="snap-start w-full border rounded-md border-white border-opacity-10 hover:border-opacity-40 transition bg-neutral-900/50 flex justify-start">
+              return <div key={useId()} className="snap-start w-full border rounded-md border-white border-opacity-10 hover:border-opacity-40 transition bg-neutral-900/50 flex justify-start">
                 <div className="flex-shrink-0 w-12 aspect-square relative rounded-md overflow-hidden">
                   <Image src={e.image} alt="peer image" fill/>
                 </div>
