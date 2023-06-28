@@ -4,41 +4,33 @@ import { useEffect, useRef, useState } from "react"
 import LeftPanel from "./leftpanel"
 import RightPanel from "./rightpanel"
 import CenterPanel from "./centerpanel"
-import { Room, joinRoom } from "trystero"
+//@ts-ignore
+import { Room, joinRoom } from "trystero/firebase"
 import { toast } from "react-hot-toast"
 
-const ClientSide = ( { session } : any ) => {
-  const userid = session?.user?.id
-  const email = session?.user?.email
-  const image = session?.user?.image
-  const name = session?.user?.name
-  const user = {
-    userid, email, image, creator: false, name, peerID: "12345"
-  }
+export type User = {
+  email: string, image: string, name: string, creator: boolean
+}
 
+const ClientSide = ( { user } : { user: User} ) => {
   const { roomID } = useParams()
 
   const roomRef = useRef<Room>()
-  const [peersInfo, setPeersInfo] = useState([user])
+  const [peersInfo, setPeersInfo] = useState<Array<any>>([])
   const infoActionRef = useRef<any>()
 
   useEffect(()=>{
-    const config = {appId: 'codeshack_shady41'}
-    roomRef.current = joinRoom(config, roomID)
-    infoActionRef.current = roomRef.current.makeAction('drink')
+    roomRef.current = joinRoom({ appId: process.env.NEXT_PUBLIC_FIREBASE_URL }, roomID)
+    infoActionRef.current = roomRef.current.makeAction('peerInfo')
 
-    infoActionRef.current[1]((data: any, peerID: string) => {
+    infoActionRef.current[1]((data: any, peerID: string) => { /* action receiver */
       data.peerID = peerID
-      setPeersInfo([...peersInfo, data])
+      setPeersInfo((peersInfo)=>[...peersInfo, data])
+      toast(`${data.name} joined the room`)
     })
 
-    roomRef.current.onPeerJoin((peerID)=>{
-      infoActionRef.current[0](user, peerID)
-      console.log(`${peerID} joined`)
-    })
-    roomRef.current.onPeerLeave((peerID)=>{
-      setPeersInfo(peersInfo.filter(p=>p.peerID!==peerID))
-      console.log(`${peerID} left`)
+    roomRef.current.onPeerJoin((peerID:string)=>{
+      infoActionRef.current[0](user, peerID) /* action sender */
     })
 
     return ()=>{
@@ -47,21 +39,21 @@ const ClientSide = ( { session } : any ) => {
   }, [])
 
   useEffect(()=>{
-    console.log(peersInfo)
-  }, [peersInfo])
+    if(!roomRef.current) return
+    roomRef.current.onPeerLeave((peerID:string)=>{
+      let peer = peersInfo.find(p=>p.peerID===peerID)
+      setPeersInfo((peersInfo)=>peersInfo.filter(p=>p.peerID!==peerID))
+      if(peer) toast(`${peer.name} left the room`)
+    })
+  }, [peersInfo, roomRef.current])
 
   return (
     <div className="w-full flex items-center justify-center p-2 gap-2 h-full">
       <LeftPanel/>
       <CenterPanel/>
-      <RightPanel roomID={roomID} peersInfo={peersInfo}/>
+      <RightPanel roomID={roomID} peersInfo={peersInfo} user={user}/>
     </div>
   )
 }
 
 export default ClientSide
-
-
-{/* <div className="h-full w-full border rounded-lg border-white border-opacity-10 flex flex-col items-center justify-start gap-4 py-4 px-4 bg-neutral-950">
-        <ClientSide/>
-      </div> */}

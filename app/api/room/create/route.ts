@@ -9,12 +9,15 @@ export async function GET() {
   if(!session) return NextResponse.json({message: "Unauthenticated"}, {status: 401})
   //@ts-ignore
   const userId = session?.user?.id
+  //@ts-ignore
+  const isPremium = session?.user?.isPremium
   const roomId = nanoid(12)
 
   try{
     const obj = {
       creator: userId,
-      joinable: true
+      joinable: true,
+      limit: isPremium ? 16 : 6
     }
     const str = JSON.stringify(obj)
     await kv.set(roomId, str)

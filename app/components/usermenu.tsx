@@ -71,13 +71,13 @@ const UserMenu = ({ authenticated, name, userImage, isPremium, email } : Props) 
     </Menu>
     : 
     <>
-      <ul className="hidden text-md sm:flex gap-2 items-center">
-        <Link className="custom-outline px-4 py-1 rounded-lg hover:text-white transition-colors" href="/auth/signin">
+      <ul className="hidden text-sm sm:flex gap-2 items-center">
+        <Link className="custom-outline px-4 py-2 rounded-md hover:text-white transition-colors" href="/auth/signin">
           <li>
             Login
           </li>
         </Link>
-        <Link href="/auth/signin" className="custom-outline px-4 py-1 rounded-sm bg-blue-600 hover:cursor-pointer hover:bg-blue-500 transition-colors">
+        <Link href="/auth/signin" className="custom-outline px-4 py-2 rounded-md bg-blue-600 hover:cursor-pointer hover:bg-blue-500 transition-colors">
           <li>
             Sign Up
           </li>
