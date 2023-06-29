@@ -3,6 +3,7 @@ import { Session, getServerSession } from 'next-auth'
 import { authOptions } from '@/app/api/auth/[...nextauth]/route'
 import { redirect } from 'next/navigation'
 import { kv } from '@vercel/kv'
+import { customAlphabet } from 'nanoid/non-secure'
 //@ts-ignore
 import { getOccupants } from "trystero/firebase"
 import type { User } from "./components/clientside"
@@ -22,6 +23,7 @@ const verifyRoom = async ( roomID : string ) => {
 
 export default async function Room({ params }: { params: { roomID: string } }) {
   const res : any = await verifyRoom(params.roomID)
+  const nanoid = customAlphabet('123456789', 4)
 
   if(!res.success){
     redirect(`/?err=${res.message}`)
@@ -46,7 +48,7 @@ export default async function Room({ params }: { params: { roomID: string } }) {
   {
     email: "Unregistered User",
     image: "/default-user.png",
-    name: "Anonymous",
+    name: `Anon-${nanoid()}`,
     creator: false
   }
 

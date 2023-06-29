@@ -1,9 +1,9 @@
-import { X } from "lucide-react"
+import { ArrowRightToLine } from "lucide-react"
 
 const CloseButton = ({ setSidepanel }: { setSidepanel: any }) => {
   return (
-    <button onClick={()=>setSidepanel(0)} className="custom-outline rounded-sm text-slate-300 hover:text-white transition-colors p-1">
-      <X size={19}/>
+    <button onClick={()=>setSidepanel(0)} className="custom-outline flex items-center justify-center p-2 border border-white border-opacity-20 rounded bg-neutral-900/50 hover:bg-neutral-900 transition-colors">
+      <ArrowRightToLine size={18}/>
     </button>
   )
 }

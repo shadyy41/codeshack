@@ -111,15 +111,15 @@ import { User } from "./clientside"
 const UsersPanel = ( { roomID, peersInfo, user, setSidepanel, sidepanel } : { roomID: string, peersInfo: any[], user: User, setSidepanel: any, sidepanel: number } ) => {
 
   return (
-    <aside className={`${sidepanel!==2 ? 'hidden' : ''} h-full w-full sm:w-96  border rounded-sm border-white border-opacity-10 bg-neutral-950 flex flex-col items-center justify-between flex-wrap-wrap`}>
-      <header className="px-3 py-2 w-full flex-shrink-0 flex items-center justify-between border-b border-white border-opacity-10">
-          <h2 className="text-slate-300 text-md font-normal">Participants <span className="text-sm"> ({peersInfo.length + 1})</span></h2>
-          <CloseButton setSidepanel={setSidepanel}/>
+    <aside className={`${sidepanel!==2 ? 'hidden' : ''} h-full w-full sm:w-80  border rounded-md border-white border-opacity-10 bg-neutral-950 flex flex-col items-center justify-between flex-wrap-wrap flex-shrink-0`}>
+      <header className="pr-2 pl-3 py-2 w-full flex-shrink-0 flex items-center justify-between border-b border-white border-opacity-10">
+        <h2 className="text-slate-300 text-sm font-normal">Participants</h2>
+        <CloseButton setSidepanel={setSidepanel}/>
       </header>
       <div className="flex-grow w-full flex flex-col justify-start gap-2 overflow-hidden">
         <div className="overflow-auto snap-y flex flex-col gap-2 px-2 py-2 scroll-pt-2">
-          <div className="snap-start w-full border rounded-sm border-white border-opacity-10 flex justify-start">
-            <div className="flex-shrink-0 w-12 aspect-square relative rounded-sm overflow-hidden">
+          <div className="snap-start w-full border rounded border-white border-opacity-10 flex justify-start">
+            <div className="flex-shrink-0 w-12 aspect-square relative rounded overflow-hidden">
               <Image src={user.image} alt="peer image" fill/>
             </div>
             <div className={`h-12 overflow-hidden flex flex-col px-2 py-1 gap-1 flex-grow`}>
@@ -134,8 +134,8 @@ const UsersPanel = ( { roomID, peersInfo, user, setSidepanel, sidepanel } : { ro
           {
             peersInfo?.map((e, idx)=>{
               return (
-                <div key={e.peerID} className="snap-start w-full border rounded-sm border-white border-opacity-10 flex justify-between items-center">
-                  <div className="flex-shrink-0 w-12 aspect-square relative rounded-sm overflow-hidden">
+                <div key={e.peerID} className="snap-start w-full border rounded border-white border-opacity-10 flex justify-between items-center">
+                  <div className="flex-shrink-0 w-12 aspect-square relative rounded overflow-hidden">
                     <Image src={e.image} alt="peer image" fill/>
                   </div>
                   <div className={`h-12 overflow-hidden flex flex-col px-2 py-1 gap-1 flex-grow`}>

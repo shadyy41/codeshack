@@ -7,6 +7,7 @@ import { Room, joinRoom } from "trystero/firebase"
 import { toast } from "react-hot-toast"
 import MessagePanel from "./messagepanel";
 import UsersPanel from "./userspanel";
+import Sidebar from "./sidebar";
 
 export type User = {
   email: string, image: string, name: string, creator: boolean
@@ -72,8 +73,9 @@ const ClientSide = ( { user } : { user: User} ) => {
   }
 
   return (
-    <div className="w-full flex items-center justify-center p-2 gap-2 h-full">
-      <CenterPanel sidepanel={sidepanel} setSidepanel={setSidepanel}/>
+    <div className="w-full flex items-center justify-center p-1 gap-1 h-full">
+      <Sidebar sidepanel={sidepanel} setSidepanel={setSidepanel} roomID={roomID}/>
+      <CenterPanel sidepanel={sidepanel} setSidepanel={setSidepanel} roomID={roomID}/>
       <UsersPanel roomID={roomID} peersInfo={peersInfo} user={user} setSidepanel={setSidepanel} sidepanel={sidepanel}/>
       <MessagePanel roomID={roomID} peersInfo={peersInfo} user={user} setSidepanel={setSidepanel} sidepanel={sidepanel} messages={messages} handleMessage={handleMessage}/>
     </div>

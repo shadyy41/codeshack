@@ -11,6 +11,10 @@ module.exports = {
     extend: {
       colors: {
         "primary-dark": "#0a0d14",
+      },
+
+      fontSize: {
+        xs: ['12px', '18px']
       }
     },
   },
