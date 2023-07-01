@@ -30,7 +30,7 @@ export default async function Home() {
           </Link>
         </div>
       </div>
-      <div className="border border-white border-opacity-10 rounded-lg overflow-hidden flex-grow aspect-[16/10] hidden lg:flex backdrop-blur-md relative">
+      <div className="border border-white border-opacity-10 rounded overflow-hidden flex-grow aspect-[16/10] hidden lg:flex backdrop-blur-md relative">
         <Image src={banner} alt="banner image" placeholder="blur" fill={true}/>
       </div>
     </div>

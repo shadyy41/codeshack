@@ -44,14 +44,14 @@ const User = async () => {
 
   return (
     <div className="h-full w-full flex items-center justify-center px-8 sm:px-0 text-center py-6">
-      <div className="h-fit w-full max-w-sm border rounded-lg border-white border-opacity-10 flex flex-col items-center justify-start py-4 px-4 bg-zinc-950 gap-4">
+      <div className="h-fit w-full max-w-sm border rounded border-white border-opacity-10 flex flex-col items-center justify-start py-2 px-2 bg-zinc-950 gap-2">
         <FormHeader text="Edit Profile"/>
         <Divider text="Update username"/>
         <form action={editUsername} className="w-full flex flex-col items-center justify-center gap-2">
           <UsernameForm name={ name } userImage = { userImage } isPremium = { isPremium }/>
         </form>
         <Divider text="Choose a profile picture"/>
-        <form action={editUserimage} className="w-full flex flex-col items-center justify-center gap-4">
+        <form action={editUserimage} className="w-full flex flex-col items-center justify-center gap-2">
           <UserimageForm name={ name } userImage = { userImage } isPremium = { isPremium }/>
         </form>
       </div>

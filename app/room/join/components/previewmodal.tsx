@@ -65,7 +65,7 @@ const PreviewModal = ({ isOpen, setIsOpen, roomID } : any) => {
                 leaveFrom="opacity-100 scale-100"
                 leaveTo="opacity-0 scale-95"
               >
-                <Dialog.Panel className="w-full max-w-md transform overflow-hidden border rounded-lg border-white border-opacity-10 bg-zinc-950 p-4 text-center flex flex-col gap-4 transition-all">
+                <Dialog.Panel className="w-full max-w-md transform overflow-hidden border rounded border-white border-opacity-10 bg-zinc-950 p-4 text-center flex flex-col gap-4 transition-all">
                   <Dialog.Title
                     as="h3"
                     className="w-full text-xl font-semibold sm:text-2xl text-white"
@@ -73,7 +73,7 @@ const PreviewModal = ({ isOpen, setIsOpen, roomID } : any) => {
                     Video Preview
                   </Dialog.Title>
                   <Divider/>
-                  <div className="w-full aspect-video overflow-hidden border rounded-lg border-white border-opacity-20 bg-neutral-950 flex items-center justify-center">
+                  <div className="w-full aspect-video overflow-hidden border rounded border-white border-opacity-20 bg-neutral-950 flex items-center justify-center">
                     {videoLoading && <Spinner sizeclass="h-10 w-10"/>} 
                     <video className={`w-full aspect-video ${videoLoading ? 'hidden' : 'block'}`} ref={videoRef} autoPlay playsInline />
                   </div>

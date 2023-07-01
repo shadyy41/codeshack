@@ -1,5 +1,8 @@
+import useRoomStore from "@/app/lib/roomstore"
 import ListBox from "./listbox"
-const CenterPanel = ({ sidepanel, setSidepanel, roomID } : { sidepanel: number, setSidepanel: any, roomID: string }) => {
+
+const CenterPanel = () => {
+  const sidepanel = useRoomStore((s:any)=>s.sidepanel)
 
   return (
     <div className={`${sidepanel ? 'hidden sm:flex' : 'flex'} h-full flex-grow bg-neutral-950 flex flex-col overflow-hidden gap-2  border rounded-md border-white border-opacity-10`}>

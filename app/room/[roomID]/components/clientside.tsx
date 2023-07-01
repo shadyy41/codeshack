@@ -5,9 +5,10 @@ import CenterPanel from "./centerpanel"
 //@ts-ignore
 import { Room, joinRoom } from "trystero/firebase"
 import { toast } from "react-hot-toast"
-import MessagePanel from "./messagepanel";
-import UsersPanel from "./userspanel";
-import Sidebar from "./sidebar";
+import MessagePanel from "./messagepanel"
+import UsersPanel from "./userspanel"
+import Sidebar from "./sidebar"
+import useRoomStore from "@/app/lib/roomstore"
 
 export type User = {
   email: string, image: string, name: string, creator: boolean
@@ -18,23 +19,28 @@ export type Message = {
 
 const ClientSide = ( { user } : { user: User} ) => {
   const { roomID } = useParams()
-
   const roomRef = useRef<Room>()
   const [peersInfo, setPeersInfo] = useState<Array<any>>([])
-  const [sidepanel, setSidepanel] = useState<number>(1) // 0 1 2 => 0 = disabled
+
+  const [centerpanel, setCenterpanel] = useState<number>(1) //1 2 3 => 0 = cant be disabled.
   const [messages, setMessages] = useState<Array<Message>>([])
   const infoActionRef = useRef<any>()
   const messageActionRef = useRef<any>()
+  const timeRef = useRef<any>()
 
   useEffect(()=>{
+    timeRef.current = Date.now()
     roomRef.current = joinRoom({ appId: process.env.NEXT_PUBLIC_FIREBASE_URL }, roomID)
+
     infoActionRef.current = roomRef.current.makeAction('peerInfo')
     messageActionRef.current = roomRef.current.makeAction('message')
 
     infoActionRef.current[1]((data: any, peerID: string) => { /* info action receiver */
-      data.peerID = peerID
-      setPeersInfo((peersInfo)=>[...peersInfo, data])
-      toast(`${data.name} joined the room`)
+      const peer = {...data.user, peerID}
+      setPeersInfo((peersInfo)=>[...peersInfo, peer])
+      if(data.time>=timeRef.current){
+        toast(`${peer.name} joined the room`)
+      }
     })
 
     messageActionRef.current[1]((message: Message)=>{  /* message action receiver */
@@ -42,7 +48,7 @@ const ClientSide = ( { user } : { user: User} ) => {
     })
 
     roomRef.current.onPeerJoin((peerID:string)=>{
-      infoActionRef.current[0](user, peerID) /* info action sender */
+      infoActionRef.current[0]({user, time: timeRef.current}, peerID) /* info action sender */
     })
 
     return ()=>{
@@ -74,10 +80,10 @@ const ClientSide = ( { user } : { user: User} ) => {
 
   return (
     <div className="w-full flex items-center justify-center p-1 gap-1 h-full">
-      <Sidebar sidepanel={sidepanel} setSidepanel={setSidepanel} roomID={roomID}/>
-      <CenterPanel sidepanel={sidepanel} setSidepanel={setSidepanel} roomID={roomID}/>
-      <UsersPanel roomID={roomID} peersInfo={peersInfo} user={user} setSidepanel={setSidepanel} sidepanel={sidepanel}/>
-      <MessagePanel roomID={roomID} peersInfo={peersInfo} user={user} setSidepanel={setSidepanel} sidepanel={sidepanel} messages={messages} handleMessage={handleMessage}/>
+      <Sidebar/>
+      <CenterPanel/>
+      <UsersPanel peersInfo={peersInfo} user={user}/>
+      <MessagePanel roomID={roomID} peersInfo={peersInfo} user={user} messages={messages} handleMessage={handleMessage}/>
     </div>
   )
 }

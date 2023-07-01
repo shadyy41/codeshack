@@ -1,9 +1,17 @@
 import { Code, LayoutGrid, LogOut, MessagesSquare, Mic, MonitorUp, Share2, Users, Video } from "lucide-react"
+import Tippy from "@tippyjs/react"
+import 'tippy.js/animations/scale.css'
 import Link from "next/link"
 import { toast } from "react-hot-toast"
+import useRoomStore from "@/app/lib/roomstore"
+import { useParams, useRouter } from "next/navigation"
+import Button from "./sidebarbutton"
 
-
-const Sidebar = ({ sidepanel, setSidepanel, roomID } :  { sidepanel: number, setSidepanel: any, roomID: string }) => {
+const Sidebar = () => {
+  const { roomID } = useParams()
+  const sidepanel = useRoomStore((s:any)=>s.sidepanel)
+  const setSidepanel = useRoomStore((s:any)=>s.setSidepanel)
+  const router = useRouter()
 
   const handlePanelChange = ( panel: number ) => {
     if(sidepanel===panel){
@@ -11,6 +19,10 @@ const Sidebar = ({ sidepanel, setSidepanel, roomID } :  { sidepanel: number, set
       return
     }
     setSidepanel(panel)
+  }
+
+  const handleLeave = () => {
+    router.replace("/")
   }
 
   const handleShare = () => {
@@ -25,21 +37,39 @@ const Sidebar = ({ sidepanel, setSidepanel, roomID } :  { sidepanel: number, set
   }
 
   return (
-    <div className="bg-neutral-950 border h-full border-white border-opacity-10 flex flex-col items-center justify-between gap-2 py-2 px-2 text-slate-300 rounded">
-      <div className="text-slate-200">
-        <Link href="/" className="custom-outline flex items-center justify-center p-2 rounded bg-red-700 hover:bg-red-500 transition-colors"><LogOut size={18}/></Link>
+    <div className={`${sidepanel ? 'hidden sm:flex' : 'flex'} bg-neutral-950 border h-full border-white border-opacity-10 flex flex-col items-center justify-between gap-2 py-2 px-2 text-slate-300 rounded`}>
+      <div className="flex flex-col gap-2 items-center justify-center">
+        <Button content="View Chat" onClickHandler={()=>handlePanelChange(1)}>
+          <MessagesSquare size={18}/>
+        </Button>
+        <Button content="View Participants" onClickHandler={()=>handlePanelChange(2)}>
+         <Users size={18}/>
+        </Button>
       </div>
       <div className="flex flex-col gap-2 items-center justify-center">
-        <button className={`custom-outline flex items-center justify-center p-2 border border-white border-opacity-20 rounded bg-neutral-900/50 hover:bg-neutral-900 transition-colors`}><Code size={18}/></button>
-        <button className={`custom-outline flex items-center justify-center p-2 border border-white border-opacity-20 rounded bg-neutral-900/50 hover:bg-neutral-900 transition-colors`}><LayoutGrid size={18}/></button>
-        <button className={`custom-outline flex items-center justify-center p-2 border border-white border-opacity-20 rounded bg-neutral-900/50 hover:bg-neutral-900 transition-colors`}><MonitorUp size={18}/></button>
-        <button className={`custom-outline flex items-center justify-center p-2 border border-white border-opacity-20 rounded bg-neutral-900/50 hover:bg-neutral-900 transition-colors`} onClick={()=>handlePanelChange(1)}><MessagesSquare size={18}/></button>
-        <button className="custom-outline flex items-center justify-center p-2 border border-white border-opacity-20 rounded bg-neutral-900/50 hover:bg-neutral-900 transition-colors" onClick={()=>handlePanelChange(2)}><Users size={18}/></button>
+        <Button content="Open Editor" onClickHandler={()=>{}}>
+          <Code size={18}/>
+        </Button>
+        <Button content="Open Video Grid" onClickHandler={()=>{}}>
+          <LayoutGrid size={18}/>
+        </Button>
+        <Button content="Present Screen" onClickHandler={()=>{}}>
+          <MonitorUp size={18}/>
+        </Button>
+        <Button content="Toggle Mic" onClickHandler={()=>{}}>
+          <Mic size={18}/>
+        </Button>
+        <Button content="Toggle Camera" onClickHandler={()=>{}}>
+          <Video size={18}/>
+        </Button>
       </div>
       <div className="flex flex-col gap-2 items-center justify-center">
-        <button className="custom-outline flex items-center justify-center p-2 border border-white border-opacity-20 rounded bg-neutral-900/50 hover:bg-neutral-900 transition-colors"><Mic size={18}/></button>
-        <button className="custom-outline flex items-center justify-center p-2 border border-white border-opacity-20 rounded bg-neutral-900/50 hover:bg-neutral-900 transition-colors"><Video size={18}/></button>
-        <button className="custom-outline flex items-center justify-center p-2 border border-white border-opacity-20  rounded bg-neutral-900/50 hover:bg-neutral-900 transition-colors" onClick={handleShare}><Share2 size={18}/></button>
+        <Button content="Copy Room Link" onClickHandler={handleShare}>
+          <Share2 size={18}/>
+        </Button>
+        <Button content="Leave Room" onClickHandler={handleLeave}>
+          <LogOut size={18}/>
+        </Button>
       </div>
     </div>
   )

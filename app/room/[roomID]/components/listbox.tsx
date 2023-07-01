@@ -17,7 +17,7 @@ const ListBox = () => {
     <div className="w-32">
       <Listbox value={selected} onChange={setSelected}>
         <div className="relative">
-          <Listbox.Button className="w-full border border-white border-opacity-20 cursor-pointer pl-3 pr-2 rounded py-2 custom-outline text-xs flex items-center justify-between">
+          <Listbox.Button className="w-full border border-white border-opacity-20 cursor-pointer pl-3 pr-2 rounded py-2 custom-outline text-xs flex items-center justify-between bg-neutral-900/50 hover:bg-neutral-900 transition-colors">
             <span>{selected.name}</span>
             <span className="">
               <ChevronDown aria-hidden="true" size={18}/>
@@ -29,7 +29,7 @@ const ListBox = () => {
             leaveFrom="opacity-100"
             leaveTo="opacity-0"
           >
-            <Listbox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded py-1 text-xs text-slate-300 border border-white border-opacity-20 bg-neutral-950 focus:outline-none">
+            <Listbox.Options className="absolute mt-1 max-h-60 w-full overflow-auto rounded py-1 text-xs text-slate-300 border border-white border-opacity-20 bg-neutral-950 focus:outline-none transition-colors">
               {people.map((person, personIdx) => (
                 <Listbox.Option
                   key={personIdx}

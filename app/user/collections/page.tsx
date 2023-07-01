@@ -30,8 +30,8 @@ const Collections = async () => {
 
   return (
     <div className="h-full w-full flex items-center justify-center px-8 sm:px-0 text-center py-6">
-      <div className="h-fit w-full max-w-xl border rounded-lg border-white border-opacity-10 flex flex-col items-center justify-start py-4 px-4 bg-zinc-950 gap-4">
-        <FormHeader text="Edit User Image"/>
+      <div className="h-fit w-full max-w-xl border rounded border-white border-opacity-10 flex flex-col items-center justify-start p-2 bg-zinc-950 gap-2">
+        <FormHeader text="Edit Profile Picture"/>
         <form action={editUserimage} className="w-full flex flex-col items-center justify-center gap-4">
           <ClientSide name={ name } userImage = { userImage } isPremium = { isPremium }/>
         </form>

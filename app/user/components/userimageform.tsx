@@ -46,22 +46,22 @@ const UserimageForm = ({ name, userImage, isPremium }: Props) => {
         </div>
       </div>
       <div className="w-full flex gap-2">
-        {isPremium ? <Link href={"/user/collections"} className={`text-sm sm:text-base py-3 rounded-md border border-white border-opacity-20 text-white hover:bg-neutral-900 bg-neutral-950 transition-colors custom-outline w-1/2`}>
+        {isPremium ? <Link href={"/user/collections"} className={`text-sm py-3 rounded border border-white border-opacity-20 text-white hover:bg-neutral-900 bg-neutral-950 transition-colors custom-outline w-1/2`}>
           View More
         </Link> : <button onClick={(e)=>{
           e.preventDefault()
           router.back()
-        }} className={`text-sm sm:text-base py-3 rounded-md border border-white border-opacity-20 text-white hover:bg-neutral-900 bg-neutral-950 transition-colors custom-outline w-1/2`}>
+        }} className={`text-sm py-3 rounded border border-white border-opacity-20 text-white hover:bg-neutral-900 bg-neutral-950 transition-colors custom-outline w-1/2`}>
           Back
         </button>}
-        <button type="submit" disabled={ !isPremium || pending || !canSubmit } className={`text-sm sm:text-base py-3 rounded-md bg-blue-600 text-white hover:bg-blue-500 transition-colors custom-outline w-1/2 ${ (!isPremium || !canSubmit) && 'cursor-not-allowed' } ${ pending && 'cursor-wait' } flex items-center justify-center`}>
+        <button type="submit" disabled={ !isPremium || pending || !canSubmit } className={`text-sm py-3 rounded bg-blue-600 text-white hover:bg-blue-500 transition-colors custom-outline w-1/2 ${ (!isPremium || !canSubmit) && 'cursor-not-allowed' } ${ pending && 'cursor-wait' } flex items-center justify-center`}>
           {pending ? <Spinner/> : 'Update'}
         </button>
       </div>
       <button onClick={(e)=>{
         e.preventDefault()
         router.back()
-      }} className={`w-full text-sm sm:text-base py-3 rounded-md border border-white border-opacity-20 text-white hover:bg-neutral-900 bg-neutral-950 transition-colors custom-outline`}>
+      }} className={`w-full text-sm py-3 rounded border border-white border-opacity-20 text-white hover:bg-neutral-900 bg-neutral-950 transition-colors custom-outline`}>
         Back
       </button>
     </>
