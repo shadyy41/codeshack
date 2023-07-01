@@ -4,7 +4,6 @@ import NextTopLoader from 'nextjs-toploader'
 import AuthContext from './context/AuthContext'
 import { Toaster } from 'react-hot-toast'
 import { Inter as FontFamily } from "next/font/google"
-import { Suspense } from 'react'
 
 const font = FontFamily({
   subsets: ['latin'],
