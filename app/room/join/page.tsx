@@ -11,7 +11,7 @@ export default async function Room() {
 
   return (
     <div className="h-full w-full flex items-center justify-center px-8 sm:px-0 text-center py-6">
-      <div className="h-fit w-full max-w-sm border rounded border-white border-opacity-10 flex flex-col items-center justify-start gap-4 py-4 px-4 bg-neutral-950">
+      <div className="h-fit w-full max-w-sm border rounded border-white border-opacity-10 flex flex-col items-center justify-start gap-2 p-2 bg-neutral-950">
         <FormHeader text="Join Room"/>
         <Divider text="Enter Room Details"/>
         <ClientSide name={name}/>

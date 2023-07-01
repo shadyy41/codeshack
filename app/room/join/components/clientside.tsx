@@ -15,14 +15,14 @@ const ClientSide = ({ name="Anonymous" } : { name: string | undefined | null }) 
     <>
       <div className="flex flex-col gap-2 w-full">
         {/* @ts-ignore */}
-        <input type="text" placeholder="Join as" value={name_s} onChange={e=>setName_s(e.target.value)} className="text-sm sm:text-base w-full text-slate-300 py-3 px-4 rounded-md border border-white border-opacity-20 hover:border-opacity-40 transition-colors custom-outline bg-transparent backdrop-blur-sm"/>
+        <input type="text" placeholder="Join as" value={name_s} onChange={e=>setName_s(e.target.value)} className="text-sm w-full text-slate-300 py-3 px-4 rounded border border-white border-opacity-20 hover:border-opacity-40 transition-colors custom-outline bg-transparent backdrop-blur-sm"/>
         {/* @ts-ignore */}
-        <input type="text" placeholder="Enter Room ID" value={roomID} onChange={e=>setRoomID(e.target.value)} className="text-sm sm:text-base w-full text-slate-300 py-3 px-4 rounded-md border border-white border-opacity-20 hover:border-opacity-40 transition-colors custom-outline bg-transparent backdrop-blur-sm" onSubmit={()=>setLoading(true)}/>
+        <input type="text" placeholder="Enter Room ID" value={roomID} onChange={e=>setRoomID(e.target.value)} className="text-sm w-full text-slate-300 py-3 px-4 rounded border border-white border-opacity-20 hover:border-opacity-40 transition-colors custom-outline bg-transparent backdrop-blur-sm" onSubmit={()=>setLoading(true)}/>
         <JoinButton roomID={roomID}/>
       </div>
       <Divider/>
       {isOpen && <PreviewModal isOpen={isOpen} setIsOpen={setIsOpen} roomID={roomID}/>}
-      <button className="text-sm sm:text-base py-3 rounded-md bg-blue-600 text-white hover:bg-blue-500 transition-colors custom-outline w-full max-w-sm" onClick={()=>setIsOpen(true)}>
+      <button className="text-sm py-3 rounded bg-blue-600 text-white hover:bg-blue-500 transition-colors custom-outline w-full max-w-sm" onClick={()=>setIsOpen(true)}>
         Preview Video
       </button>
     </>

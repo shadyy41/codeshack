@@ -8,14 +8,14 @@ const JoinButton = ({ roomID, disabled } : { roomID: string | null, disabled?: b
   }
   if(!roomID || disabled){
     return (
-      <button className={`text-sm sm:text-base py-3 rounded-md bg-blue-600 text-white hover:bg-blue-500 transition-colors custom-outline w-full max-w-sm cursor-not-allowed flex items-center justify-center`} onClick={handleDisabled} disabled={disabled}>
+      <button className={`text-sm py-3 rounded bg-blue-600 text-white hover:bg-blue-500 transition-colors custom-outline w-full max-w-sm cursor-not-allowed flex items-center justify-center`} onClick={handleDisabled} disabled={disabled}>
         Join Room
       </button>
     )
   }
 
   return (
-    <Link className={`text-sm sm:text-base py-3 rounded-md bg-blue-600 text-white hover:bg-blue-500 transition-colors custom-outline w-full max-w-sm flex items-center justify-center`} href={`/room/${roomID}`} prefetch={false}>
+    <Link className={`text-sm py-3 rounded bg-blue-600 text-white hover:bg-blue-500 transition-colors custom-outline w-full max-w-sm flex items-center justify-center`} href={`/room/${roomID}`} prefetch={false}>
       Join Room
     </Link>
   )
