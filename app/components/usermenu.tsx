@@ -32,7 +32,7 @@ const UserMenu = ({ authenticated, name, userImage, isPremium, email } : Props) 
         leaveFrom="transform opacity-100 scale-100"
         leaveTo="transform opacity-0 scale-95"
       >
-        <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded-md bg-zinc-950 shadow-lg ring-1 ring-white ring-opacity-10 focus:outline-none">
+        <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right rounded bg-zinc-950 shadow-lg ring-1 ring-white ring-opacity-10 focus:outline-none">
           <div className="py-1 text-slate-300">
             <Menu.Item disabled>
               <div className="block py-2 border-b border-white border-opacity-5">
@@ -72,12 +72,12 @@ const UserMenu = ({ authenticated, name, userImage, isPremium, email } : Props) 
     : 
     <>
       <ul className="hidden text-sm sm:flex gap-2 items-center">
-        <Link className="custom-outline px-4 py-2 rounded-md hover:text-white transition-colors" href="/auth/signin">
+        <Link className="custom-outline px-4 py-2 rounded hover:text-white transition-colors" href="/auth/signin">
           <li>
             Login
           </li>
         </Link>
-        <Link href="/auth/signin" className="custom-outline px-4 py-2 rounded-md bg-blue-600 hover:cursor-pointer hover:bg-blue-500 transition-colors">
+        <Link href="/auth/signin" className="custom-outline px-4 py-2 rounded bg-blue-600 hover:cursor-pointer hover:bg-blue-500 transition-colors">
           <li>
             Sign Up
           </li>
@@ -99,7 +99,7 @@ const UserMenu = ({ authenticated, name, userImage, isPremium, email } : Props) 
           leaveFrom="transform opacity-100 scale-100"
           leaveTo="transform opacity-0 scale-95"
         >
-          <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right  rounded-md bg-zinc-950 shadow-lg ring-1 ring-white ring-opacity-10 focus:outline-none">
+          <Menu.Items className="absolute right-0 z-10 mt-2 w-48 origin-top-right  rounded bg-zinc-950 shadow-lg ring-1 ring-white ring-opacity-10 focus:outline-none">
             <div className="py-1 text-slate-300">
               <Menu.Item>
                 {({ active }) => (
