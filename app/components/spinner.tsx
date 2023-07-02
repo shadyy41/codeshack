@@ -1,9 +1,9 @@
-const Spinner = ({ sizeclass="h-5 w-5 sm:h-6 sm:w-6", borderclass="border-2" } : { sizeclass?:string, borderclass?:string}) => {
+const Spinner = ({ sizeclass="h-4 w-4", borderclass="border-2", color="text-slate-300" } : { sizeclass?:string, borderclass?:string, color?:string }) => {
   return (
-  <div className={`inline-block ${sizeclass} animate-spin rounded-full ${borderclass} border-solid border-current border-r-transparent align-[-0.125em] motion-reduce:animate-[spin_1.5s_linear_infinite]`} role="status">
-    <span className="sr-only">Loading...</span>
-  </div>
-  )
+    <div className={`animate-spin inline-block ${sizeclass} ${borderclass} ${color} border-current border-t-transparent rounded-full`} role="status" aria-label="loading">
+      <span className="sr-only">Loading...</span>
+    </div>
+    )
 }
 
 export default Spinner

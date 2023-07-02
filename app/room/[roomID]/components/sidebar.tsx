@@ -1,7 +1,4 @@
 import { Code, LayoutGrid, LogOut, MessagesSquare, Mic, MonitorUp, Share2, Users, Video } from "lucide-react"
-import Tippy from "@tippyjs/react"
-import 'tippy.js/animations/scale.css'
-import Link from "next/link"
 import { toast } from "react-hot-toast"
 import useRoomStore from "@/app/lib/roomstore"
 import { useParams, useRouter } from "next/navigation"
@@ -39,35 +36,35 @@ const Sidebar = () => {
   return (
     <div className={`${sidepanel ? 'hidden sm:flex' : 'flex'} bg-neutral-950 border h-full border-white border-opacity-10 flex flex-col items-center justify-between gap-2 py-2 px-2 text-slate-300 rounded`}>
       <div className="flex flex-col gap-2 items-center justify-center">
-        <Button content="View Chat" onClickHandler={()=>handlePanelChange(1)}>
+        <Button content="View Chat" onClickHandler={()=>handlePanelChange(1)} active={sidepanel===1}>
           <MessagesSquare size={18}/>
         </Button>
-        <Button content="View Participants" onClickHandler={()=>handlePanelChange(2)}>
+        <Button content="View Participants" onClickHandler={()=>handlePanelChange(2)} active={sidepanel===2}>
          <Users size={18}/>
         </Button>
       </div>
       <div className="flex flex-col gap-2 items-center justify-center">
-        <Button content="Open Editor" onClickHandler={()=>{}}>
+        <Button content="Open Editor" onClickHandler={()=>{}} active={false}>
           <Code size={18}/>
         </Button>
-        <Button content="Open Video Grid" onClickHandler={()=>{}}>
+        <Button content="Open Video Grid" onClickHandler={()=>{}} active={false}>
           <LayoutGrid size={18}/>
         </Button>
-        <Button content="Present Screen" onClickHandler={()=>{}}>
+        <Button content="Present Screen" onClickHandler={()=>{}} active={false}>
           <MonitorUp size={18}/>
         </Button>
-        <Button content="Toggle Mic" onClickHandler={()=>{}}>
+        <Button content="Toggle Mic" onClickHandler={()=>{}} active={false}>
           <Mic size={18}/>
         </Button>
-        <Button content="Toggle Camera" onClickHandler={()=>{}}>
+        <Button content="Toggle Camera" onClickHandler={()=>{}} active={false}>
           <Video size={18}/>
         </Button>
       </div>
       <div className="flex flex-col gap-2 items-center justify-center">
-        <Button content="Copy Room Link" onClickHandler={handleShare}>
+        <Button content="Copy Room Link" onClickHandler={handleShare} active={false}>
           <Share2 size={18}/>
         </Button>
-        <Button content="Leave Room" onClickHandler={handleLeave}>
+        <Button content="Leave Room" onClickHandler={handleLeave} active={false} danger={true}>
           <LogOut size={18}/>
         </Button>
       </div>

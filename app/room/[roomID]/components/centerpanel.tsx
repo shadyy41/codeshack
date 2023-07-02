@@ -1,11 +1,12 @@
 import useRoomStore from "@/app/lib/roomstore"
 import ListBox from "./listbox"
+import Spinner from "@/app/components/spinner"
 
 const CenterPanel = () => {
   const sidepanel = useRoomStore((s:any)=>s.sidepanel)
 
   return (
-    <div className={`${sidepanel ? 'hidden sm:flex' : 'flex'} h-full flex-grow bg-neutral-950 flex flex-col overflow-hidden gap-2  border rounded-md border-white border-opacity-10`}>
+    <div className={`${sidepanel ? 'hidden sm:flex' : 'flex'} h-full flex-grow bg-neutral-950 flex flex-col overflow-hidden gap-2  border rounded border-white border-opacity-10`}>
       <div className="flex-grow w-full flex flex-col">
         <header className="px-2 py-2 w-full flex-shrink-0 flex items-center justify-between border-b border-white border-opacity-10">
           <ListBox/>
