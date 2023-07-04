@@ -38,13 +38,13 @@ const EditorPanel = () => {
   }, [lang])
 
   useEffect(()=>{
-    if(!userData){
+    if(!userData || !editorRef.current){
       return
     }
 
     const createState = () => {
       const ydoc = new Y.Doc()
-      providerRef.current = new WebrtcProvider(roomID, ydoc, { password: `codeshack_room_${roomID}`, signaling: ['ws://yjs-signalling-shady41.onrender.com/']})
+      providerRef.current = new WebrtcProvider(roomID, ydoc, {signaling: ['ws://yjs-signalling-shady41.onrender.com/']})
       const ytext = ydoc.getText('codemirror')
       const undoManager = new Y.UndoManager(ytext)
   

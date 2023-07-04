@@ -3,7 +3,7 @@ import Navbar from '@/app/components/navbar'
 import NextTopLoader from 'nextjs-toploader'
 import AuthContext from './context/AuthContext'
 import { Toaster } from 'react-hot-toast'
-import { Golos_Text as FontFamily } from "next/font/google"
+import { Chivo as FontFamily } from "next/font/google"
 
 /* 
 Rubik
