@@ -16,16 +16,35 @@ export type User = {
 export type Message = {
   data: string, username: string, timestamp: string, you: boolean
 }
+export type PeerStreamData = {
+  stream: any, name: string, peerID: string
+}
+export type PeerAudioData = {
+  stream: any, peerID: string
+}
 
 const ClientSide = ( { user } : { user: User} ) => {
   const { roomID } = useParams()
   const roomRef = useRef<Room>()
   const [peersInfo, setPeersInfo] = useState<Array<any>>([])
 
-  const [centerpanel, setCenterpanel] = useState<number>(1) //1 2 3 => 0 = cant be disabled.
+  const peerCamStreams = useRoomStore((s:any)=>s.peerCamStreams)
+  const setPeerCamStreams = useRoomStore((s:any)=>s.setPeerCamStreams)
+
+  const peerMicStreams = useRoomStore((s:any)=>s.peerMicStreams)
+  const setPeerMicStreams = useRoomStore((s:any)=>s.setPeerMicStreams)
+
   const [messages, setMessages] = useState<Array<Message>>([])
+
+  const userVideo = useRoomStore((s:any)=>s.userVideo)
+  const setUserVideo = useRoomStore((s:any)=>s.setUserVideo)
+
+  const userAudio = useRoomStore((s:any)=>s.userAudio)
+  const setUserAudio = useRoomStore((s:any)=>s.setUserAudio)
+
   const infoActionRef = useRef<any>()
   const messageActionRef = useRef<any>()
+  const streamRemovedActionRef = useRef<any>()
   const timeRef = useRef<any>()
 
   useEffect(()=>{
@@ -34,6 +53,7 @@ const ClientSide = ( { user } : { user: User} ) => {
 
     infoActionRef.current = roomRef.current.makeAction('peerInfo')
     messageActionRef.current = roomRef.current.makeAction('message')
+    streamRemovedActionRef.current = roomRef.current.makeAction('sr')
 
     infoActionRef.current[1]((data: any, peerID: string) => { /* info action receiver */
       const peer = {...data.user, peerID}
@@ -47,23 +67,105 @@ const ClientSide = ( { user } : { user: User} ) => {
       setMessages((messages)=>[message, ...messages])
     })
 
-    roomRef.current.onPeerJoin((peerID:string)=>{
-      infoActionRef.current[0]({user, time: timeRef.current}, peerID) /* info action sender */
-    })
-
     return ()=>{
       roomRef.current?.leave()
+      setPeerCamStreams([]) /* cleanup as it is a global state */
+      setPeerMicStreams([])
     }
   }, [])
 
   useEffect(()=>{
+    roomRef.current.onPeerJoin((peerID:string)=>{
+      infoActionRef.current[0]({user, time: timeRef.current}, peerID) /* info action sender */
+      if(userVideo){
+        roomRef.current.addStream(userVideo, peerID, { type: "video" })
+      }
+      if(userAudio){
+        roomRef.current.addStream(userVideo, peerID, { type: "audio" })
+      }
+    })
+  }, [userAudio, userVideo, roomRef.current, infoActionRef.current])
+
+  useEffect(()=>{
+    if(userVideo){
+      roomRef.current.addStream(userVideo, null, { type: "video" })
+    }
+
+    return ()=>{
+      if(userVideo){
+        try {
+          roomRef.current.removeStream(userVideo)
+        } catch (error) {
+
+        }
+        if(streamRemovedActionRef?.current) streamRemovedActionRef.current[0]("video") /* stream remove action sender */
+        userVideo.getTracks().forEach(function(track:any) {
+          track.stop()
+        })
+        setUserVideo(null)
+      }
+    }
+  }, [userVideo, roomRef.current, streamRemovedActionRef.current, infoActionRef.current])
+
+  useEffect(()=>{
+    if(userAudio){
+      roomRef.current.addStream(userAudio, null, { type: "audio" })
+    }
+
+    return ()=>{
+      if(userAudio){
+        try {
+          roomRef.current.removeStream(userAudio)
+        } catch (error) {
+
+        }
+        if(streamRemovedActionRef?.current) streamRemovedActionRef.current[0]("audio") /* stream remove action sender */
+
+        userAudio.getTracks().forEach(function(track:any) {
+          track.stop()
+        })
+        setUserAudio(null)
+      }
+    }
+  }, [userAudio, roomRef.current, streamRemovedActionRef.current, infoActionRef.current])
+
+  useEffect(()=>{
     if(!roomRef.current) return
+
+    roomRef.current.onPeerStream((stream:any, peerID:string, metadata: { type: string })=>{
+      if(metadata.type==="video"){
+        let peer = peersInfo.find(p=>p.peerID===peerID)
+        setPeerCamStreams([...peerCamStreams, {name: peer.name, peerID, stream}])
+      }
+      else if(metadata.type==="audio"){
+        let audio = new Audio()
+        audio.srcObject = stream
+        audio.autoplay = true
+      }
+      else{ /* screen-share */
+
+      }
+    })
+
+    if(streamRemovedActionRef?.current){
+      streamRemovedActionRef.current[1]((data: string, peerID: string)=>{ /* stream remove action receiver */
+        if(data==="video"){
+          setPeerCamStreams(peerCamStreams.filter((p:PeerStreamData)=>p.peerID!==peerID))
+        }
+        else if(data==="audio"){
+          setPeerMicStreams(peerMicStreams.filter((p: PeerStreamData)=>p.peerID!==peerID))
+        }
+      })
+    }
+
     roomRef.current.onPeerLeave((peerID:string)=>{
       let peer = peersInfo.find(p=>p.peerID===peerID)
       setPeersInfo((peersInfo)=>peersInfo.filter(p=>p.peerID!==peerID))
+      setPeerCamStreams(peerCamStreams.filter((p:PeerStreamData)=>p.peerID!==peerID))
+      setPeerMicStreams(peerMicStreams.filter((p: PeerStreamData)=>p.peerID!==peerID))
       if(peer) toast(`${peer.name} left the room`)
     })
-  }, [peersInfo, roomRef.current])
+  }, [peersInfo, roomRef.current, peerCamStreams])
 
   const handleMessage = ( data: string ) => {
     const obj = new Date()
@@ -83,7 +185,7 @@ const ClientSide = ( { user } : { user: User} ) => {
       <Sidebar/>
       <CenterPanel/>
       <UsersPanel peersInfo={peersInfo} user={user}/>
-      <MessagePanel roomID={roomID} peersInfo={peersInfo} user={user} messages={messages} handleMessage={handleMessage}/>
+      <MessagePanel messages={messages} handleMessage={handleMessage}/>
     </div>
   )
 }
