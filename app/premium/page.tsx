@@ -2,6 +2,10 @@ import { getServerSession } from "next-auth"
 import ClientSide from "./components/clientside"
 import { authOptions } from "../api/auth/[...nextauth]/route"
 
+export const metadata = {
+  title: 'Premium'
+}
+
 const Premium = async () => {
   const session = await getServerSession(authOptions)
   //@ts-ignore

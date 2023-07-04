@@ -8,6 +8,10 @@ import { customAlphabet } from 'nanoid/non-secure'
 import { getOccupants } from "trystero/firebase"
 import type { User } from "./components/clientside"
 
+export const metadata = {
+  title: 'Room',
+}
+
 const verifyRoom = async ( roomID : string ) => {
   try{
     const room : { creator: string, joinable: boolean, limit: number } | null = await kv.get(roomID)

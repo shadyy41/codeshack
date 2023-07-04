@@ -8,6 +8,10 @@ import UserimageForm from "./components/userimageform"
 import { redirect } from "next/navigation"
 import FormHeader from "../components/formheader"
 
+export const metadata = {
+  title: 'Edit Profile',
+}
+
 const User = async () => {
   const session = await getServerSession(authOptions)
   const name = session?.user?.name

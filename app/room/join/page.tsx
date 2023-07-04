@@ -5,6 +5,10 @@ import ClientSide from './components/clientside'
 import Divider from '@/app/components/divider'
 import FormHeader from '@/app/components/formheader'
 
+export const metadata = {
+  title: 'Join Room',
+}
+
 export default async function Room() {
   const session = await getServerSession(authOptions)
   const name = session?.user?.name

@@ -3,7 +3,15 @@ import Navbar from '@/app/components/navbar'
 import NextTopLoader from 'nextjs-toploader'
 import AuthContext from './context/AuthContext'
 import { Toaster } from 'react-hot-toast'
-import { Inter as FontFamily } from "next/font/google"
+import { Chivo as FontFamily } from "next/font/google"
+
+/* 
+Rubik
+Inter
+Lexend
+Chivo
+Golos_Text
+*/
 
 const font = FontFamily({
   subsets: ['latin'],
@@ -11,7 +19,10 @@ const font = FontFamily({
 })
 
 export const metadata = {
-  title: 'CodeShack',
+  title: {
+    default: 'CodeShack',
+    template: '%s | CodeShack',
+  },
   description: 'P2P Video calling app.',
 }
 
