@@ -1,22 +1,19 @@
-import ListBox from "./listbox"
-
 import { EditorView, basicSetup } from "codemirror"
 import { EditorState, Compartment } from "@codemirror/state"
 import { keymap } from "@codemirror/view"
 import { indentWithTab } from "@codemirror/commands"
 import { cpp } from '@codemirror/lang-cpp'
-import { java } from "@codemirror/lang-java"
-import { javascript } from "@codemirror/lang-javascript"
-import { python } from "@codemirror/lang-python"
 import { myTheme } from "@/app/lib/myTheme"
-
-import { useRef, useEffect, useState } from 'react'
-import { useParams } from "next/navigation"
 
 import * as Y from 'yjs'
 import { yCollab } from 'y-codemirror.next'
 import { WebrtcProvider } from 'y-webrtc'
 
+import { useRef, useEffect, useState } from 'react'
+import { useParams } from "next/navigation"
+import useRoomStore from "@/app/lib/roomstore"
+import ListBox from "./listbox"
+import { languages } from "@/app/lib/languagelist"
 
 const EditorPanel = () => {
   const { roomID } = useParams()
@@ -26,7 +23,25 @@ const EditorPanel = () => {
   const langCompRef = useRef<Compartment>()
   const providerRef = useRef<WebrtcProvider>()
 
+  const lang = useRoomStore((s:any)=>s.lang)
+  const userData = useRoomStore((s:any)=>s.userData)
+
   useEffect(()=>{
+    for(let l of languages){
+      if(lang.name===l.name){
+        viewRef.current?.dispatch({
+          effects: langCompRef.current?.reconfigure(l.func())
+        })
+        break
+      }
+    }
+  }, [lang])
+
+  useEffect(()=>{
+    if(!userData){
+      return
+    }
+
     const createState = () => {
       const ydoc = new Y.Doc()
       providerRef.current = new WebrtcProvider(roomID, ydoc, { password: `codeshack_room_${roomID}`, signaling: ['ws://yjs-signalling-shady41.onrender.com/']})
@@ -34,7 +49,7 @@ const EditorPanel = () => {
       const undoManager = new Y.UndoManager(ytext)
   
       providerRef.current.awareness.setLocalStateField('user', {
-        name: "Username",
+        name: userData.name,
         color: "#2563EB",
         colorLight: "#2563EB",
       })
@@ -48,8 +63,6 @@ const EditorPanel = () => {
         doc: ytext.toString(),
         extensions
       })
-
-      setLoading(false)
       
       return state
     }
@@ -60,7 +73,7 @@ const EditorPanel = () => {
       viewRef.current?.destroy()
       providerRef.current?.destroy()
     }
-  }, [])
+  }, [userData])
 
   return (
     <div className="w-full h-full flex flex-col">

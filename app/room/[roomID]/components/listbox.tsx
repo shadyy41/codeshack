@@ -2,25 +2,25 @@ import { Fragment, useEffect, useState } from 'react'
 import { Listbox, Transition } from '@headlessui/react'
 import { ChevronDown } from 'lucide-react'
 import useRoomStore from '@/app/lib/roomstore'
-
-const languages = [
-  { name: 'C++' },
-  { name: 'JavaScript' },
-  { name: 'Java' },
-  { name: 'Python' }
-]
+import { languages } from '@/app/lib/languagelist'
 
 const ListBox = () => {
   const lang = useRoomStore((s:any)=>s.lang)
   const setLang = useRoomStore((s:any)=>s.setLang)
 
-  useEffect(()=>{
-    console.log(lang)
-  }, [lang])
+  const langAction = useRoomStore((s:any)=>s.langAction)
+
+  const userData = useRoomStore((s:any)=>s.userData)
+
+
+  const handleChange = (langObj:any) =>{
+    langAction[0]({langObj, name: userData?.name ? userData.name : "Someone", onJoin: false})
+    setLang(langObj)
+  }
 
   return (
     <div className="w-32">
-      <Listbox value={lang} onChange={setLang}>
+      <Listbox value={lang} onChange={handleChange}>
         <div className="relative">
           <Listbox.Button className="w-full border border-white border-opacity-20 cursor-pointer pl-3 pr-2 rounded py-2 custom-outline text-xs flex items-center justify-between bg-neutral-900/50 hover:bg-neutral-900 transition-colors">
             <span>{lang.name}</span>

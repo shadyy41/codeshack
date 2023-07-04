@@ -1,4 +1,5 @@
 import { create } from 'zustand'
+import { languages } from './languagelist'
 
 const useRoomStore = create((set) => ({
   sidepanel: 0,
@@ -7,8 +8,12 @@ const useRoomStore = create((set) => ({
   userAudio: null,
   peerCamStreams: [], 
   peerMicStreams: [],
-  lang: { name: 'C++' },
+  lang: languages[0],
+  langAction: null,
+  userData: null,
+  setUserData: (s:any) => set(() => ({ userData: s })),
   setLang: (s:string) => set(() => ({ lang:  s})),
+  setLangAction: (s:any) => set(() => ({ langAction:  s})),
   setSidepanel: (s:number) => set(() => ({ sidepanel:  s})),
   setCenterpanel: (s:number) => set(() => ({ centerpanel:  s})),
   setUserVideo: (s:any) => set(() => ({ userVideo:  s})),

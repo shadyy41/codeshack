@@ -9,6 +9,7 @@ import MessagePanel from "./messagepanel"
 import UsersPanel from "./userspanel"
 import Sidebar from "./sidebar"
 import useRoomStore from "@/app/lib/roomstore"
+import { languages } from "@/app/lib/languagelist"
 
 export type User = {
   email: string, image: string, name: string, creator: boolean
@@ -42,10 +43,24 @@ const ClientSide = ( { user } : { user: User} ) => {
   const userAudio = useRoomStore((s:any)=>s.userAudio)
   const setUserAudio = useRoomStore((s:any)=>s.setUserAudio)
 
+  const lang = useRoomStore((s:any)=>s.lang)
+  const setLang = useRoomStore((s:any)=>s.setLang)
+
+  const langAction = useRoomStore((s:any)=>s.langAction)
+  const setLangAction = useRoomStore((s:any)=>s.setLangAction)
+
+  const setUserData = useRoomStore((s:any)=>s.setUserData)
+
+
+
   const infoActionRef = useRef<any>()
   const messageActionRef = useRef<any>()
   const streamRemovedActionRef = useRef<any>()
   const timeRef = useRef<any>()
+
+  useEffect(()=>{
+    setUserData(user)
+  }, [user])
 
   useEffect(()=>{
     timeRef.current = Date.now()
@@ -54,6 +69,7 @@ const ClientSide = ( { user } : { user: User} ) => {
     infoActionRef.current = roomRef.current.makeAction('peerInfo')
     messageActionRef.current = roomRef.current.makeAction('message')
     streamRemovedActionRef.current = roomRef.current.makeAction('sr')
+    setLangAction(roomRef.current.makeAction('lang'))
 
     infoActionRef.current[1]((data: any, peerID: string) => { /* info action receiver */
       const peer = {...data.user, peerID}
@@ -71,12 +87,28 @@ const ClientSide = ( { user } : { user: User} ) => {
       roomRef.current?.leave()
       setPeerCamStreams([]) /* cleanup as it is a global state */
       setPeerMicStreams([])
+      setLang(languages[0])
     }
   }, [])
 
   useEffect(()=>{
+    if(!langAction) return
+    langAction[1]((data: any, peerID: string) => { /* lang action receiver */
+      const { name, langObj, onJoin, time } = data
+      if(time && time>timeRef.current) return /* new user will also emit onpeerjoin */
+
+      if(langObj.name===lang.name) return /* when a user joins late, all the peers will send the current language */
+      setLang(langObj)
+      if(!onJoin) toast(`${name} changed the language to ${langObj.name}`)
+    })
+  }, [lang, langAction])
+
+  useEffect(()=>{
+    if(!langAction) return
     roomRef.current.onPeerJoin((peerID:string)=>{
       infoActionRef.current[0]({user, time: timeRef.current}, peerID) /* info action sender */
+      langAction[0]({langObj: lang, name: user.name, onJoin: true, time: timeRef.current}, peerID) /* lang action sender */
+
       if(userVideo){
         roomRef.current.addStream(userVideo, peerID, { type: "video" })
       }
@@ -84,7 +116,7 @@ const ClientSide = ( { user } : { user: User} ) => {
         roomRef.current.addStream(userVideo, peerID, { type: "audio" })
       }
     })
-  }, [userAudio, userVideo, roomRef.current, infoActionRef.current])
+  }, [userAudio, userVideo, roomRef.current, infoActionRef.current, lang, langAction])
 
   useEffect(()=>{
     if(userVideo){
