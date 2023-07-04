@@ -44,7 +44,7 @@ const EditorPanel = () => {
 
     const createState = () => {
       const ydoc = new Y.Doc()
-      providerRef.current = new WebrtcProvider(roomID, ydoc, {signaling: ['ws://yjs-signalling-shady41.onrender.com/']})
+      providerRef.current = new WebrtcProvider(roomID, ydoc, {signaling: ['wss://yjs-signalling-shady41.onrender.com/']})
       const ytext = ydoc.getText('codemirror')
       const undoManager = new Y.UndoManager(ytext)
   
@@ -64,6 +64,8 @@ const EditorPanel = () => {
         extensions
       })
       
+      console.log(ydoc)
+
       return state
     }
 
