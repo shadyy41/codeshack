@@ -16,12 +16,10 @@ import { useParams } from "next/navigation"
 import * as Y from 'yjs'
 import { yCollab } from 'y-codemirror.next'
 import { WebrtcProvider } from 'y-webrtc'
-import Spinner from "@/app/components/spinner"
 
 
 const EditorPanel = () => {
   const { roomID } = useParams()
-  const [loading, setLoading] = useState<boolean>(true)
 
   const editorRef = useRef<HTMLDivElement>(null)
   const viewRef = useRef<EditorView>()
@@ -66,14 +64,13 @@ const EditorPanel = () => {
 
   return (
     <div className="w-full h-full flex flex-col">
-      <header className="px-2 py-2 w-full flex-shrink-0 flex items-center justify-between border-b border-white border-opacity-10">
+      <header className="px-2 py-2 w-full flex-shrink-0 flex items-center justify-between border-b border-white border-opacity-10 z-30">
         <ListBox/>
         <button type="submit" className={`text-xs py-2 px-4 rounded bg-blue-600 text-white hover:bg-blue-500 transition-colors custom-outline flex items-center justify-center`}>
           Run Code
         </button>
       </header>
       <div className="w-full h-full flex text-lg font-serif" ref={editorRef}></div>
-      {loading && <Spinner/>}
     </div>
   )
 }
