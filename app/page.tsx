@@ -4,7 +4,7 @@ import Link from "next/link"
 import { authOptions } from "./api/auth/[...nextauth]/route"
 import { getServerSession } from "next-auth"
 import CreateRoom from "./components/createroom"
-import { ArrowRightCircle, GithubIcon } from "lucide-react"
+import { AlertCircle, ArrowRightCircle, CheckCircle2, GithubIcon } from "lucide-react"
 
 export default async function Home() {
   const session = await getServerSession(authOptions)
@@ -18,7 +18,7 @@ export default async function Home() {
           {!isPremium && <Link href="/premium" className="drop-shadow-[0_0_8px_rgba(37,99,235,0.3)] custom-outline text-slate-300 mb-2 text-xs px-2 py-1 rounded-md bg-zinc-950 border border-white border-opacity-20 hover:border-opacity-40 transition">
             <span className="premium-text mr-1">&#x25CF;</span> Checkout Premium Features <span className="text-white opacity-50"><ArrowRightCircle size={16} className="inline" strokeWidth="1.5"/></span>
           </Link>}
-          <h1 className="text-4xl font-semibold max-w-3xl">
+          <h1 className="text-4xl sm:text-5xl font-semibold max-w-3xl">
             Realtime Collaborative Coding, Video Calls and More!
           </h1>
           <p className="text-slate-300 text-xl max-w-3xl w-full break-words">
@@ -32,26 +32,40 @@ export default async function Home() {
           </div>
         </div>
         <div className="w-full sm:py-16 py-8 flex items-center justify-center">
-          <div className="border border-white border-opacity-10 rounded overflow-hidden w-full max-w-7xl aspect-[16/10] flex-shrink-0 flex backdrop-blur-md relative drop-shadow-[0_0_16px_rgba(37,99,235,0.3)]">
+          <div className="border border-white border-opacity-20 rounded overflow-hidden w-full max-w-7xl aspect-[16/10] flex-shrink-0 flex backdrop-blur-md relative drop-shadow-[0_0_16px_rgba(37,99,235,0.3)]">
             <Image src={banner} alt="banner image" placeholder="blur" fill={true}/>
           </div>
         </div>
-        <div className="flex w-full flex-col gap-5 items-center justify-center max-w-4xl">
+        <div className="flex w-full flex-col gap-4 sm:gap-8 items-center justify-center max-w-5xl">
           <h2 className="text-4xl font-semibold">
             Features
           </h2>
-          <div className="w-full grid sm:grid-cols-3 sm:grid-rows-1 grid-rows-3 gap-4 text-center">
-            <div className="flex flex-col items-center justify-center gap-2 border border-white border-opacity-20 rounded py-2 ">
-              <h3 className="text-xl">Online Compilation</h3>
-              <p className="text-md text-slate-300">Run your code remotely, with support for upto 5 languages.</p>
+          <div className="w-full grid sm:grid-cols-3 sm:grid-rows-1 grid-rows-3 gap-4 sm:gap-8 text-center">
+            <div className="flex flex-col items-center justify-center gap-2 border border-white border-opacity-20 rounded p-2 ">
+              <h3 className="text-xl flex items-center justify-center gap-2"><CheckCircle2 size={18} className="inline text-green-400"/>Online Compilation</h3>
+              <p className="text-md text-slate-300">Run your code remotely, with support for upto 4 languages.</p>
             </div>
-            <div className="flex flex-col items-center justify-center gap-2 border border-white border-opacity-20 rounded py-3 ">
-              <h3 className="text-xl">Video Chat</h3>
-              <p className="text-md text-slate-300">Supports secure P2P video streams.</p>
+            <div className="flex flex-col items-center justify-center gap-2 border border-white border-opacity-20 rounded p-2 ">
+              <h3 className="text-xl flex items-center justify-center gap-2"><CheckCircle2 size={18} className="inline text-green-400"/>Video Chat</h3>
+              <p className="text-md text-slate-300">Supports secure P2P video and audio streams.</p>
             </div>
-            <div className="flex flex-col items-center justify-center gap-2 border border-white border-opacity-20 rounded py-3 ">
-              <h3 className="text-xl">Realtime Collaboration</h3>
+            <div className="flex flex-col items-center justify-center gap-2 border border-white border-opacity-20 rounded p-2 ">
+              <h3 className="text-xl flex items-center justify-center gap-2"><CheckCircle2 size={18} className="inline text-green-400"/>Realtime Collaboration</h3>
               <p className="text-md text-slate-300">Realtime code editor powered by CodeMirror 6 and Yjs.</p>
+            </div>
+          </div>
+          <div className="w-full grid sm:grid-cols-3 sm:grid-rows-1 grid-rows-3 gap-4 sm:gap-8 text-center">
+            <div className="flex flex-col items-center justify-center gap-2 border border-white border-opacity-20 rounded p-2 ">
+              <h3 className="text-xl flex items-center justify-center gap-2"><AlertCircle size={18} className="inline text-yellow-400"/> Screen Sharing</h3>
+              <p className="text-md text-slate-300">I have not implemented this feature yet.</p>
+            </div>
+            <div className="flex flex-col items-center justify-center gap-2 border border-white border-opacity-20 rounded p-2 ">
+              <h3 className="text-xl flex items-center justify-center gap-2"><CheckCircle2 size={18} className="inline text-green-400"/>Languages</h3>
+              <p className="text-md text-slate-300">Supports C++, Java, JavaScript and Python.</p>
+            </div>
+            <div className="flex flex-col items-center justify-center gap-2 border border-white border-opacity-20 rounded p-2 ">
+              <h3 className="text-xl flex items-center justify-center gap-2"><CheckCircle2 size={18} className="inline text-green-400"/>Text Chat</h3>
+              <p className="text-md text-slate-300">Send messages to peers via a P2P connection.</p>
             </div>
           </div>
         </div>
