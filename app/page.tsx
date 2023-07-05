@@ -4,7 +4,7 @@ import Link from "next/link"
 import { authOptions } from "./api/auth/[...nextauth]/route"
 import { getServerSession } from "next-auth"
 import CreateRoom from "./components/createroom"
-import { AlertCircle, ArrowRightCircle, CheckCircle2 } from "lucide-react"
+import { AlertCircle, ArrowRightCircle, CheckCircle2, RotateCcw } from "lucide-react"
 import FeatureCard from "./components/featurecard"
 
 const features = [
@@ -49,8 +49,8 @@ export default async function Home() {
     <div className="w-full h-full px-8 pt-8 sm:pt-16 overflow-auto text-center">
       <div className="w-full flex flex-col items-center justify-center gap-10">
         <div className="w-full flex flex-col items-center justify-center gap-5 text-center">
-          {!isPremium && <Link href="/premium" className="drop-shadow-[0_0_8px_rgba(37,99,235,0.3)] custom-outline text-slate-300 mb-2 text-xs px-2 py-1 rounded-md bg-zinc-950 border border-white border-opacity-20 hover:border-opacity-40 transition">
-            <span className="premium-text mr-1">&#x25CF;</span> Checkout Premium Features <span className="text-white opacity-50"><ArrowRightCircle size={16} className="inline" strokeWidth="1.5"/></span>
+          {!isPremium && <Link href="/premium" className="drop-shadow-[0_0_8px_rgba(37,99,235,0.3)] custom-outline text-slate-300 mb-2 text-xs px-2 py-1.5 rounded bg-zinc-950 border border-white border-opacity-20 hover:border-opacity-40 transition flex gap-1 items-center justify-center text-slate-300/50 hover:text-slate-300">
+            <span className="premium-text">&#x25CF;</span><span className="text-slate-300">Checkout Premium Features</span><ArrowRightCircle size={16} className="inline" strokeWidth="1.5"/>
           </Link>}
           <h1 className="text-4xl sm:text-5xl font-semibold max-w-3xl">
             Realtime Collaborative Coding, Video Calls and More!
@@ -65,8 +65,21 @@ export default async function Home() {
             </Link>
           </div>
         </div>
-        <div className="w-full sm:py-16 py-8 flex items-center justify-center">
-          <div className="border border-white border-opacity-20 rounded overflow-hidden w-full max-w-7xl aspect-[16/10] flex-shrink-0 flex bg-neutral-950 relative drop-shadow-[0_0_16px_rgba(37,99,235,0.3)]">
+        <div className="w-full max-w-7xl sm:my-16 my-8 flex flex-col items-center justify-center border border-white border-opacity-20 rounded overflow-hidden drop-shadow-[0_0_16px_rgba(37,99,235,0.3)]">
+          <div className="w-full border-b border-white border-opacity-20 h-10 bg-black hidden sm:flex items-center justify-center relative">
+            <div className="flex items-center justify-center gap-2 p-3 absolute left-0">
+              <span className="h-3 w-3 bg-[#ff5f56] rounded-full"></span>
+              <span className="h-3 w-3 bg-[#ffbd2e] rounded-full"></span>
+              <span className="h-3 w-3 bg-[#27c93f] rounded-full"></span>
+            </div>
+            <div className="h-full w-full max-w-[260px] p-1.5 relative">
+              <div className="w-full h-full bg-green-600 rounded-md bg-opacity-10 text-green-600 text-opacity-90 flex items-center justify-center text-xs relative">
+                <p>codeshack.vercel.app</p>
+                <RotateCcw className="absolute right-2" size={13}/>
+              </div>
+            </div>
+          </div>
+          <div className="w-full aspect-[16/10] flex-shrink-0 flex bg-neutral-950 relative">
             <Image src={banner} alt="banner image" placeholder="blur" fill={true}/>
           </div>
         </div>

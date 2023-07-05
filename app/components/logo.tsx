@@ -6,11 +6,18 @@ export interface Props {
   showText: boolean;
 }
 
+import { Josefin_Sans as FontFamily } from "next/font/google"
+
+const font = FontFamily({
+  subsets: ['latin'],
+  display: 'swap',
+})
+
 const Logo = ({ showText }:Props) => {
   return (
-    <Link href={"/"} className="custom-outline">
-      {/* <span className="text-blue-600">{"<"}</span>{ showText ? "codeshack" : ""}<span className="text-blue-600">{"/>"}</span> */}
-      <Image src={logoSvg} alt="codeshack-logo"/>
+    <Link href={"/"} className={`custom-outline ${font.className} text-2xl`}>
+      <span className="text-blue-600">{"<"}</span>{ showText ? "codeshack" : ""}<span className="text-blue-600">{"/>"}</span>
+      {/* <Image src={logoSvg} alt="codeshack-logo" height={28}/> */}
     </Link>
   )
 }
