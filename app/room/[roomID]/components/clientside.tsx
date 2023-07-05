@@ -114,7 +114,6 @@ const ClientSide = ( { user } : { user: User} ) => {
     if(!outputAction) return
     outputAction[1]((data: any, peerID: string) => { /* output action receiver */
       const { result } = data
-      console.log(result)
       setOutput(result)
     })
   }, [output, outputAction])
