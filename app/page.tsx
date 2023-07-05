@@ -47,7 +47,7 @@ export default async function Home() {
 
   return (
     <div className="w-full h-full px-8 pt-8 sm:pt-16 block overflow-auto text-center">
-      <div className="w-full flex flex-col items-center justify-center gap-8">
+      <div className="w-full flex flex-col items-center justify-center gap-10">
         <div className="w-full flex flex-col items-center justify-center gap-5 text-center">
           {!isPremium && <Link href="/premium" className="drop-shadow-[0_0_8px_rgba(37,99,235,0.3)] custom-outline text-slate-300 mb-2 text-xs px-2 py-1 rounded-md bg-zinc-950 border border-white border-opacity-20 hover:border-opacity-40 transition">
             <span className="premium-text mr-1">&#x25CF;</span> Checkout Premium Features <span className="text-white opacity-50"><ArrowRightCircle size={16} className="inline" strokeWidth="1.5"/></span>
@@ -56,7 +56,7 @@ export default async function Home() {
             Realtime Collaborative Coding, Video Calls and More!
           </h1>
           <p className="text-slate-300 text-xl max-w-3xl w-full break-words">
-            CodeShack is a collaborative coding which supports peer to peer video calls, online code compilation and screen sharing.
+            CodeShack supports collaborative coding, peer to peer video calls, online code compilation and more.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center w-full text-md gap-3 text-slate-300 max-w-lg sm:pt-4">
             <CreateRoom authenticated={ session !==null }/>
@@ -81,11 +81,17 @@ export default async function Home() {
           </div>
         </div>
 
-        <div className="w-full max-w-5xl flex items-center justify-between pb-8 pt-8 text-slate-300">
-          <p className="text-base">Built with Nextjs by <a className="custom-outline text-slate-200" href="https://shady41.netlify.app/" target="_blank" rel="noopener noreferrer">Abhinav Anand</a></p>
-          <div>
-            <a className="custom-outline block" href="https://github.com/shadyy41/codeshack" target="_blank" rel="noopener noreferrer"><GithubIcon size={20}/></a>
-          </div>
+        <div className="flex w-full flex-col gap-4 items-center justify-center max-w-5xl">
+          <h2 className="text-4xl font-semibold">
+            Contribute
+          </h2>
+          <p className="text-slate-300 text-xl max-w-3xl w-full break-words">
+            CodeShack is an open source project, checkout the <a className="custom-outline underline decoration-blue-600 decoration-wavy hover:text-white transition-colors" href="https://github.com/shadyy41/codeshack" target="_blank" rel="noopener noreferrer">Github repo</a> for contributing. There is list of pending features in README.md, any help is appreciated.
+          </p>
+        </div>
+
+        <div className="w-full max-w-5xl flex items-center justify-center pb-8 pt-8 text-slate-300">
+          <p className="text-base">Built with Nextjs by <a className="custom-outline underline decoration-blue-600 decoration-wavy hover:text-white transition-colors" href="https://shady41.netlify.app/" target="_blank" rel="noopener noreferrer">Abhinav Anand</a></p>
         </div>
       </div>
     </div>
