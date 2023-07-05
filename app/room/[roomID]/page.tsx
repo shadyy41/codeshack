@@ -50,7 +50,7 @@ export default async function Room({ params }: { params: { roomID: string } }) {
     creator: userid===res.room.creator
   } : 
   {
-    email: "Unregistered User",
+    email: "Guest",
     image: "/default-user.png",
     name: `Anon-${nanoid()}`,
     creator: false
