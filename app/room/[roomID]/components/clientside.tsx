@@ -49,9 +49,13 @@ const ClientSide = ( { user } : { user: User} ) => {
   const langAction = useRoomStore((s:any)=>s.langAction)
   const setLangAction = useRoomStore((s:any)=>s.setLangAction)
 
+  const outputAction = useRoomStore((s:any)=>s.outputAction)
+  const setOutputAction = useRoomStore((s:any)=>s.setOutputAction)
+
+  const output = useRoomStore((s:any)=>s.output)
+  const setOutput = useRoomStore((s:any)=>s.setOutput)
+
   const setUserData = useRoomStore((s:any)=>s.setUserData)
-
-
 
   const infoActionRef = useRef<any>()
   const messageActionRef = useRef<any>()
@@ -70,6 +74,8 @@ const ClientSide = ( { user } : { user: User} ) => {
     messageActionRef.current = roomRef.current.makeAction('message')
     streamRemovedActionRef.current = roomRef.current.makeAction('sr')
     setLangAction(roomRef.current.makeAction('lang'))
+    setOutputAction(roomRef.current.makeAction('op'))
+
 
     infoActionRef.current[1]((data: any, peerID: string) => { /* info action receiver */
       const peer = {...data.user, peerID}
@@ -88,6 +94,7 @@ const ClientSide = ( { user } : { user: User} ) => {
       setPeerCamStreams([]) /* cleanup as it is a global state */
       setPeerMicStreams([])
       setLang(languages[0])
+      setOutput("")
     }
   }, [])
 
@@ -102,6 +109,15 @@ const ClientSide = ( { user } : { user: User} ) => {
       if(!onJoin) toast(`${name} changed the language to ${langObj.name}`)
     })
   }, [lang, langAction])
+
+  useEffect(()=>{
+    if(!outputAction) return
+    outputAction[1]((data: any, peerID: string) => { /* output action receiver */
+      const { result } = data
+      console.log(result)
+      setOutput(result)
+    })
+  }, [output, outputAction])
 
   useEffect(()=>{
     if(!langAction) return

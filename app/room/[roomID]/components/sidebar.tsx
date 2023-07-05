@@ -116,7 +116,7 @@ const Sidebar = () => {
         <Button content="Open Editor" onClickHandler={()=>handleCenterChange(2)} active={centerpanel===2}>
           <Code size={18}/>
         </Button>
-        <Button content="Present Screen" onClickHandler={()=>{}} active={false}>
+        <Button content="Present Screen" onClickHandler={()=>toast.error("This feature has not been implemented yet.")} active={false}>
           <MonitorUp size={18}/>
         </Button>
         <Button content="Toggle Mic" onClickHandler={toggleMic} active={userAudio} danger={!userAudio}>

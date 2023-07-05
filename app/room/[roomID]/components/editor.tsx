@@ -4,16 +4,17 @@ import { keymap } from "@codemirror/view"
 import { indentWithTab } from "@codemirror/commands"
 import { cpp } from '@codemirror/lang-cpp'
 import { myTheme } from "@/app/lib/myTheme"
+import uniqolor from 'uniqolor'
 
 import * as Y from 'yjs'
 import { yCollab } from 'y-codemirror.next'
 import { WebsocketProvider } from 'y-websocket'
 
-import { useRef, useEffect, useState } from 'react'
+import { useRef, useEffect } from 'react'
 import { useParams } from "next/navigation"
 import useRoomStore from "@/app/lib/roomstore"
-import ListBox from "./listbox"
 import { languages } from "@/app/lib/languagelist"
+import { toast } from "react-hot-toast"
 
 const Editor = () => {
   const { roomID } = useParams()
@@ -25,6 +26,84 @@ const Editor = () => {
 
   const lang = useRoomStore((s:any)=>s.lang)
   const userData = useRoomStore((s:any)=>s.userData)
+
+  const running = useRoomStore((s:any)=>s.running)
+  const setRunning = useRoomStore((s:any)=>s.setRunning)
+
+  const setOutput = useRoomStore((s:any)=>s.setOutput)
+
+  const outputAction = useRoomStore((s:any)=>s.outputAction)
+
+  useEffect(()=>{
+    const get_details = async(p:any)=> {
+      const payload = new URLSearchParams({
+        id: p.id,
+        api_key: 'guest'
+      })
+
+      const querystring = payload.toString()
+      const raw = await fetch(`https://api.paiza.io/runners/get_details?${querystring}`)
+      const res = await raw.json()
+
+      return res
+    }
+
+    const create = async(source_code: any)=>{
+      const data = JSON.stringify(
+        {
+          api_key: "guest",
+          language: lang.value,
+          source_code,
+          longpoll: true
+        }
+      )
+
+      const options = {
+        body: data,
+        method: "POST",
+        headers : { 'Content-Type': 'application/json' }
+      }
+
+      const raw = await fetch('https://api.paiza.io/runners/create', options)
+
+      const res = await raw.json()
+
+      return get_details(res)
+    }
+    const handleRun = async() => {
+      const source_code = viewRef.current?.state.doc.toString()
+      try {
+        const res = await create(source_code)
+        const {stdout, build_result, build_stderr, build_stdout, result, stderr, time} = res
+        let message
+        if(build_result==='failure'){ //compilation error
+          message = build_stderr + "\n" + build_stdout
+        }
+        else{
+          if(result==="success"){
+            message = stdout
+          }
+          else if(result==="timeout"){
+            message = "Code took longer than 1.00 secs to run"
+          }
+          else{
+            message = stderr + "\n" + stdout
+          }
+        }
+
+        setOutput(message)
+        outputAction[0]({result: message})
+      } catch(e){
+        toast.error("An error occured")
+      }
+      finally{
+        setRunning(false)
+      }
+    }
+    if(running){
+      handleRun()
+    }
+  }, [running, lang])
 
   useEffect(()=>{
     for(let l of languages){
@@ -49,10 +128,12 @@ const Editor = () => {
 
     providerRef.current = new WebsocketProvider("wss://codeshack-ws-server.onrender.com/", roomID, ydoc)
 
+    const color = uniqolor(userData.name).color
+
     providerRef.current.awareness.setLocalStateField('user', {
       name: userData.name,
-      color: "#2563EB",
-      colorLight: "#2563EB",
+      color: color,
+      colorLight: color,
     })
     
     const extensions = [basicSetup, keymap.of([indentWithTab]), myTheme, EditorView.lineWrapping, yCollab(ytext, providerRef.current.awareness, { undoManager })]
@@ -75,7 +156,7 @@ const Editor = () => {
 
   return (
     <>
-      <div className="w-full h-full flex text-lg font-serif" ref={editorRef}></div>
+      <div className={`w-full flex-grow text-sm font-serif scroll-pb-10 overflow-auto`} ref={editorRef}></div>
     </>
   )
 }
