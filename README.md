@@ -6,6 +6,7 @@ CodeShack is a realtime collaborative coding web application with additional fea
 ## Tech Stack
 * NextJS 13
 * Tailwind CSS
+* Zustand
 * CodeMirror 6
 * Yjs, y-websocket, y-codemirror.next
 * Vercel KV, Prisma, MongoDB
