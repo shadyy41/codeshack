@@ -4,7 +4,7 @@ import Link from "next/link"
 import { authOptions } from "./api/auth/[...nextauth]/route"
 import { getServerSession } from "next-auth"
 import CreateRoom from "./components/createroom"
-import { AlertCircle, ArrowRightCircle, CheckCircle2, GithubIcon } from "lucide-react"
+import { AlertCircle, ArrowRightCircle, CheckCircle2 } from "lucide-react"
 import FeatureCard from "./components/featurecard"
 
 const features = [
@@ -35,7 +35,7 @@ const features = [
   },
   {
     title: "Screen Sharing",
-    content: "I have not implemented this feature yet.",
+    content: "Work in progress.",
     icon: <AlertCircle size={18} className="inline text-yellow-400"/>
   }
 ]
@@ -46,7 +46,7 @@ export default async function Home() {
   const isPremium = session?.user?.isPremium
 
   return (
-    <div className="w-full h-full px-8 pt-8 sm:pt-16 block overflow-auto text-center">
+    <div className="w-full h-full px-8 pt-8 sm:pt-16 overflow-auto text-center">
       <div className="w-full flex flex-col items-center justify-center gap-10">
         <div className="w-full flex flex-col items-center justify-center gap-5 text-center">
           {!isPremium && <Link href="/premium" className="drop-shadow-[0_0_8px_rgba(37,99,235,0.3)] custom-outline text-slate-300 mb-2 text-xs px-2 py-1 rounded-md bg-zinc-950 border border-white border-opacity-20 hover:border-opacity-40 transition">
@@ -66,7 +66,7 @@ export default async function Home() {
           </div>
         </div>
         <div className="w-full sm:py-16 py-8 flex items-center justify-center">
-          <div className="border border-white border-opacity-20 rounded overflow-hidden w-full max-w-7xl aspect-[16/10] flex-shrink-0 flex backdrop-blur-md relative drop-shadow-[0_0_16px_rgba(37,99,235,0.3)]">
+          <div className="border border-white border-opacity-20 rounded overflow-hidden w-full max-w-7xl aspect-[16/10] flex-shrink-0 flex bg-neutral-950 relative drop-shadow-[0_0_16px_rgba(37,99,235,0.3)]">
             <Image src={banner} alt="banner image" placeholder="blur" fill={true}/>
           </div>
         </div>
@@ -74,7 +74,7 @@ export default async function Home() {
           <h2 className="text-4xl font-semibold">
             Features
           </h2>
-          <div className="w-full grid sm:grid-cols-3 sm:grid-rows-2 grid-rows-6 grid-cols-1 gap-4 sm:gap-8 text-center">
+          <div className="w-full grid md:grid-cols-3 md:grid-rows-2 grid-rows-6 grid-cols-1 gap-4 lg:gap-8 text-center">
             {features.map((f, idx)=>{
               return <FeatureCard title={f.title} key={idx} content={f.content} icon={f.icon}/>
             })}
