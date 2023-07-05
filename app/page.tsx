@@ -5,6 +5,40 @@ import { authOptions } from "./api/auth/[...nextauth]/route"
 import { getServerSession } from "next-auth"
 import CreateRoom from "./components/createroom"
 import { AlertCircle, ArrowRightCircle, CheckCircle2, GithubIcon } from "lucide-react"
+import FeatureCard from "./components/featurecard"
+
+const features = [
+  {
+    title: "Online Compilation",
+    content: "Run your code remotely, with support for upto 4 languages.",
+    icon: <CheckCircle2 size={18} className="inline text-green-400"/>
+  },
+  {
+    title: "Video Chat",
+    content: "Supports secure P2P video and audio streams.",
+    icon: <CheckCircle2 size={18} className="inline text-green-400"/>
+  },
+  {
+    title: "Realtime Collaboration",
+    content: "Realtime code editor powered by CodeMirror6 and Yjs.",
+    icon: <CheckCircle2 size={18} className="inline text-green-400"/>
+  },
+  {
+    title: "Text Chat",
+    content: "Send messages to peers via a P2P connection.",
+    icon: <CheckCircle2 size={18} className="inline text-green-400"/>
+  },
+  {
+    title: "Languages",
+    content: "Supports C++, Java, JavaScript and Python.",
+    icon: <CheckCircle2 size={18} className="inline text-green-400"/>
+  },
+  {
+    title: "Screen Sharing",
+    content: "I have not implemented this feature yet.",
+    icon: <AlertCircle size={18} className="inline text-yellow-400"/>
+  }
+]
 
 export default async function Home() {
   const session = await getServerSession(authOptions)
@@ -36,44 +70,21 @@ export default async function Home() {
             <Image src={banner} alt="banner image" placeholder="blur" fill={true}/>
           </div>
         </div>
-        <div className="flex w-full flex-col gap-4 sm:gap-8 items-center justify-center max-w-5xl">
+        <div className="flex w-full flex-col gap-6 sm:gap-8 items-center justify-center max-w-5xl">
           <h2 className="text-4xl font-semibold">
             Features
           </h2>
-          <div className="w-full grid sm:grid-cols-3 sm:grid-rows-1 grid-rows-3 gap-4 sm:gap-8 text-center">
-            <div className="flex flex-col items-center justify-center gap-2 border border-white border-opacity-20 rounded p-2 ">
-              <h3 className="text-xl flex items-center justify-center gap-2"><CheckCircle2 size={18} className="inline text-green-400"/>Online Compilation</h3>
-              <p className="text-md text-slate-300">Run your code remotely, with support for upto 4 languages.</p>
-            </div>
-            <div className="flex flex-col items-center justify-center gap-2 border border-white border-opacity-20 rounded p-2 ">
-              <h3 className="text-xl flex items-center justify-center gap-2"><CheckCircle2 size={18} className="inline text-green-400"/>Video Chat</h3>
-              <p className="text-md text-slate-300">Supports secure P2P video and audio streams.</p>
-            </div>
-            <div className="flex flex-col items-center justify-center gap-2 border border-white border-opacity-20 rounded p-2 ">
-              <h3 className="text-xl flex items-center justify-center gap-2"><CheckCircle2 size={18} className="inline text-green-400"/>Realtime Collaboration</h3>
-              <p className="text-md text-slate-300">Realtime code editor powered by CodeMirror 6 and Yjs.</p>
-            </div>
-          </div>
-          <div className="w-full grid sm:grid-cols-3 sm:grid-rows-1 grid-rows-3 gap-4 sm:gap-8 text-center">
-            <div className="flex flex-col items-center justify-center gap-2 border border-white border-opacity-20 rounded p-2 ">
-              <h3 className="text-xl flex items-center justify-center gap-2"><AlertCircle size={18} className="inline text-yellow-400"/> Screen Sharing</h3>
-              <p className="text-md text-slate-300">I have not implemented this feature yet.</p>
-            </div>
-            <div className="flex flex-col items-center justify-center gap-2 border border-white border-opacity-20 rounded p-2 ">
-              <h3 className="text-xl flex items-center justify-center gap-2"><CheckCircle2 size={18} className="inline text-green-400"/>Languages</h3>
-              <p className="text-md text-slate-300">Supports C++, Java, JavaScript and Python.</p>
-            </div>
-            <div className="flex flex-col items-center justify-center gap-2 border border-white border-opacity-20 rounded p-2 ">
-              <h3 className="text-xl flex items-center justify-center gap-2"><CheckCircle2 size={18} className="inline text-green-400"/>Text Chat</h3>
-              <p className="text-md text-slate-300">Send messages to peers via a P2P connection.</p>
-            </div>
+          <div className="w-full grid sm:grid-cols-3 sm:grid-rows-2 grid-rows-6 grid-cols-1 gap-4 sm:gap-8 text-center">
+            {features.map((f, idx)=>{
+              return <FeatureCard title={f.title} key={idx} content={f.content} icon={f.icon}/>
+            })}
           </div>
         </div>
 
-        <div className="w-full max-w-6xl flex items-center justify-between pb-8 sm:pt-8 text-slate-300">
-          <p className="text-sm">Built with Nextjs by <a className="custom-outline text-slate-200" href="https://shady41.netlify.app/" target="_blank" rel="noopener noreferrer">Abhinav Anand</a></p>
+        <div className="w-full max-w-5xl flex items-center justify-between pb-8 pt-8 text-slate-300">
+          <p className="text-base">Built with Nextjs by <a className="custom-outline text-slate-200" href="https://shady41.netlify.app/" target="_blank" rel="noopener noreferrer">Abhinav Anand</a></p>
           <div>
-            <a className="custom-outline block" href="https://github.com/shadyy41/codeshack" target="_blank" rel="noopener noreferrer"><GithubIcon size={18}/></a>
+            <a className="custom-outline block" href="https://github.com/shadyy41/codeshack" target="_blank" rel="noopener noreferrer"><GithubIcon size={20}/></a>
           </div>
         </div>
       </div>
