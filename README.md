@@ -1,34 +1,30 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
 
-## Getting Started
+# CodeShack
 
-First, run the development server:
+CodeShack is a realtime collaborative coding web application with additional features such as video calls, text chat, online code compilation.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-```
+## Tech Stack
+* NextJS 13
+* Tailwind CSS
+* CodeMirror 6
+* Yjs, y-websocket, y-codemirror.next
+* Vercel KV, Prisma, MongoDB
+* NextAuth
+* Dicebear (for user profile images)
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## Screen Shot
+![screen shot](https://codeshack.vercel.app/banner.png)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Pending features
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+``` Store Created Rooms ``` Store the room ID's of rooms created by the user in their mongoDB user schema.
 
-## Learn More
+``` Admin Actions ``` Add admin features for a room such as mute, kick etc.
 
-To learn more about Next.js, take a look at the following resources:
+``` Make the navbar hideable ``` There is no use for the navbar when a user is in a room. 
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## Misc stuff
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+``` Add tests ``` Add basic unit tests.
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+``` Add more screenshots to readme ``` 2880x1800 resolution
