@@ -64,7 +64,7 @@ export default function RootLayout({
                 },
               },
             }}/>
-            <main className="flex-grow overflow-hidden svg-background">
+            <main className="flex-grow overflow-hidden">
               {children}
             </main>
           </div>
