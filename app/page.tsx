@@ -4,7 +4,7 @@ import Link from "next/link"
 import { authOptions } from "./api/auth/[...nextauth]/route"
 import { getServerSession } from "next-auth"
 import CreateRoom from "./components/createroom"
-import { AlertCircle, ArrowRightCircle, CheckCircle2, RotateCcw } from "lucide-react"
+import { AlertCircle, ArrowRight, ArrowRightCircle, CheckCircle2, RotateCcw } from "lucide-react"
 import FeatureCard from "./components/featurecard"
 
 const features = [
@@ -29,7 +29,7 @@ const features = [
     icon: <CheckCircle2 size={18} className="inline text-green-400"/>
   },
   {
-    title: "Languages",
+    title: "Multiple Languages",
     content: "Supports C++, Java, JavaScript and Python.",
     icon: <CheckCircle2 size={18} className="inline text-green-400"/>
   },
@@ -40,6 +40,24 @@ const features = [
   }
 ]
 
+const premium_features = [
+  {
+    title: "Room Capacity",
+    content: "Rooms support 16 concurrent peers.",
+    icon: <CheckCircle2 size={18} className="inline text-green-400"/>
+  },
+  {
+    title: "Profile Customization",
+    content: "Edit username and profile picture.",
+    icon: <CheckCircle2 size={18} className="inline text-green-400"/>
+  },
+  {
+    title: "Custom Username Color",
+    content: "Work in progress.",
+    icon: <AlertCircle size={18} className="inline text-yellow-400"/>
+  },
+]
+
 export default async function Home() {
   const session = await getServerSession(authOptions)
   //@ts-ignore
@@ -47,11 +65,8 @@ export default async function Home() {
 
   return (
     <div className="w-full h-full px-8 pt-8 sm:pt-16 overflow-auto text-center">
-      <div className="w-full flex flex-col items-center justify-center gap-10">
+      <div className="w-full flex flex-col items-center justify-center gap-12">
         <div className="w-full flex flex-col items-center justify-center gap-5 text-center">
-          {!isPremium && <Link href="/premium" className="drop-shadow-[0_0_8px_rgba(37,99,235,0.3)] custom-outline text-slate-300 mb-2 text-xs px-2 py-1.5 rounded bg-zinc-950 border border-white border-opacity-20 hover:border-opacity-40 transition flex gap-1 items-center justify-center text-slate-300/50 hover:text-slate-300">
-            <span className="premium-text">&#x25CF;</span><span className="text-slate-300">Checkout Premium Features</span><ArrowRightCircle size={16} className="inline" strokeWidth="1.5"/>
-          </Link>}
           <h1 className="text-4xl sm:text-5xl font-semibold max-w-3xl">
             Realtime Collaborative Coding, Video Calls and More!
           </h1>
@@ -65,12 +80,12 @@ export default async function Home() {
             </Link>
           </div>
         </div>
-        <div className="w-full max-w-7xl sm:my-16 my-8 flex flex-col items-center justify-center border border-white border-opacity-20 rounded overflow-hidden drop-shadow-[0_0_16px_rgba(37,99,235,0.3)]">
-          <div className="w-full border-b border-white border-opacity-20 h-10 bg-black hidden sm:flex items-center justify-center relative">
+        <div className="shadow-[5px_5px_0px_0px_#2563eb] w-full max-w-7xl sm:my-16 my-8 flex flex-col items-center justify-center border border-white border-opacity-20 rounded overflow-hidden">
+          <div className="w-full border-b border-white border-opacity-20 h-10 bg-black hidden md:flex items-center justify-center relative">
             <div className="flex items-center justify-center gap-2 p-3 absolute left-0">
-              <span className="h-3 w-3 bg-[#ff5f56] rounded-full"></span>
-              <span className="h-3 w-3 bg-[#ffbd2e] rounded-full"></span>
-              <span className="h-3 w-3 bg-[#27c93f] rounded-full"></span>
+              <span className="h-3.5 w-3.5 bg-[#ff5f56] rounded-full"></span>
+              <span className="h-3.5 w-3.5 bg-[#ffbd2e] rounded-full"></span>
+              <span className="h-3.5 w-3.5 bg-[#27c93f] rounded-full"></span>
             </div>
             <div className="h-full w-full max-w-[260px] p-1.5 relative">
               <div className="w-full h-full bg-green-600 rounded-md bg-opacity-10 text-green-600 text-opacity-90 flex items-center justify-center text-xs relative">
@@ -93,7 +108,19 @@ export default async function Home() {
             })}
           </div>
         </div>
-
+        <div className="flex w-full flex-col gap-6 sm:gap-8 items-center justify-center max-w-5xl">
+          <h2 className="text-4xl font-semibold premium-text">
+            Premium Features
+          </h2>
+          <div className="w-full grid md:grid-cols-3 md:grid-rows-1 grid-rows-3 grid-cols-1 gap-4 lg:gap-8 text-center">
+            {premium_features.map((f, idx)=>{
+              return <FeatureCard title={f.title} key={idx} content={f.content} icon={f.icon}/>
+            })}
+          </div>
+          <p className="text-xl text-slate-300">
+            Premium is free for all as I dont have access to the Razorpay production API.
+          </p>
+        </div>
         <div className="flex w-full flex-col gap-4 items-center justify-center max-w-5xl">
           <h2 className="text-4xl font-semibold">
             Contribute
