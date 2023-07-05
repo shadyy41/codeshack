@@ -16,7 +16,7 @@ export interface Props {
 const UserMenu = ({ authenticated, name, userImage, isPremium, email } : Props) => {
   return (
     authenticated ? 
-    <Menu as="div" className="relative inline-block text-left">
+    <Menu as="div" className="relative inline-block text-left z-50">
       <div className="w-8 h-8">
         <Menu.Button className={`w-full h-full rounded-sm relative overflow-hidden custom-outline bg-blue-600`}>
           <Image src={userImage ? userImage : "/default-user.png"} alt="Profile Picture" priority={true} height={32} width={32}/>
@@ -71,7 +71,7 @@ const UserMenu = ({ authenticated, name, userImage, isPremium, email } : Props) 
     </Menu>
     : 
     <>
-      <ul className="hidden text-sm sm:flex gap-2 items-center">
+      <ul className="hidden text-xs sm:flex gap-2 items-center">
         <Link className="custom-outline px-4 py-2 rounded hover:text-white transition-colors" href="/auth/signin">
           <li>
             Login
@@ -83,7 +83,7 @@ const UserMenu = ({ authenticated, name, userImage, isPremium, email } : Props) 
           </li>
         </Link>
       </ul>
-      <Menu as="div" className="sm:hidden relative inline-block text-left">
+      <Menu as="div" className="sm:hidden relative inline-block text-left z-50">
         <div className="w-8 h-8">
           <Menu.Button className="sm:hidden custom-outline w-full h-full">
             <MenuIcon size={32} aria-hidden="true"/>
