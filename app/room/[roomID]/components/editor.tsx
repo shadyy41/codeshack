@@ -141,10 +141,8 @@ const Editor = () => {
 
     providerRef.current.on("status", (s:any)=>{
       if(s.status==="connected"){
-        setTimeout(()=>{
-          setEditorConnected(true)
-          toast.success("Editor connected.")
-        }, 3000)
+        setEditorConnected(true)
+        toast.success("Editor connected.")
       }
     })
 
