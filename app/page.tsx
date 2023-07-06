@@ -4,7 +4,7 @@ import Link from "next/link"
 import { authOptions } from "./api/auth/[...nextauth]/route"
 import { getServerSession } from "next-auth"
 import CreateRoom from "./components/createroom"
-import { AlertCircle, ArrowRight, ArrowRightCircle, CheckCircle2, RotateCcw } from "lucide-react"
+import { AlertCircle, CheckCircle2, RotateCcw, XCircle } from "lucide-react"
 import FeatureCard from "./components/featurecard"
 
 const features = [
@@ -108,14 +108,35 @@ export default async function Home() {
             })}
           </div>
         </div>
-        <div className="flex w-full flex-col gap-6 sm:gap-8 items-center justify-center max-w-5xl">
-          <h2 className="text-4xl font-semibold premium-text">
-            Premium Features
+        <div className="flex w-full flex-col gap-6 sm:gap-8 items-center justify-center max-w-4xl">
+          <h2 className="text-4xl font-semibold">
+            Pricing
           </h2>
-          <div className="w-full grid md:grid-cols-3 md:grid-rows-1 grid-rows-3 grid-cols-1 gap-4 lg:gap-8 text-center">
-            {premium_features.map((f, idx)=>{
-              return <FeatureCard title={f.title} key={idx} content={f.content} icon={f.icon}/>
-            })}
+          <div className="w-full grid md:grid-cols-2 md:grid-rows-1 grid-rows-2 grid-cols-1 gap-4 lg:gap-8 text-center">
+            <div className="border cursor-pointer border-white border-opacity-20 hover:bg-neutral-900 hover:border-opacity-40 transition-colors rounded flex flex-col items-center justify-center gap-4 bg-neutral-900/20 p-4">
+              <div className="w-full">
+                <h3 className="text-2xl">Freemium</h3>
+                <p className="text-4xl font-bold">Free</p>
+                <p className="text-sm text-slate-300">Forever</p>
+              </div>
+              <ul className="flex flex-col gap-2 items-center justify-center text-xl">
+                <li className="flex items-center justify-center gap-1"><XCircle size={18} className="inline text-red-400"/>Default username</li>
+                <li className="flex items-center justify-center gap-1"><XCircle size={18} className="inline text-red-400"/>6 Concurrent users in rooms</li>
+                <li className="flex items-center justify-center gap-1"><XCircle size={18} className="inline text-red-400"/>Default profile picture</li>
+              </ul>
+            </div>
+            <Link href="/premium" className="border border-white border-opacity-20 hover:bg-neutral-900 hover:border-opacity-40 transition-colors rounded flex flex-col items-center justify-center gap-4 bg-neutral-900/20 p-4">
+              <div className="w-full">
+                <h3 className="text-2xl premium-text">Premium</h3>
+                <p className="text-4xl font-bold"><span className="font-normal">&#36;</span> 4.99</p>
+                <p className="text-sm text-slate-300">Lifetime membership</p>
+              </div>
+              <ul className="flex flex-col gap-2 items-center justify-center text-xl">
+                <li className="flex items-center justify-center gap-1"><CheckCircle2 size={18} className="inline text-green-400"/>Customizable username</li>
+                <li className="flex items-center justify-center gap-1"><CheckCircle2 size={18} className="inline text-green-400"/>16 Concurrent users in rooms</li>
+                <li className="flex items-center justify-center gap-1"><CheckCircle2 size={18} className="inline text-green-400"/>Customizable profile picture</li>
+              </ul>
+            </Link>
           </div>
           <p className="text-xl text-slate-300">
             Premium is free for all as I dont have access to the Razorpay production API.
