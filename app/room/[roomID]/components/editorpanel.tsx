@@ -13,7 +13,6 @@ const EditorPanel = () => {
   const output = useRoomStore((s:any)=>s.output)
   const setOutput = useRoomStore((s:any)=>s.setOutput)
 
-
   return (
     <div className="w-full h-full flex flex-col">
       <header className="px-2 py-2 w-full flex-shrink-0 flex items-center justify-between border-b border-white border-opacity-10 z-30">

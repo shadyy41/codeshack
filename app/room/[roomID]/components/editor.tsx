@@ -15,6 +15,7 @@ import { useParams } from "next/navigation"
 import useRoomStore from "@/app/lib/roomstore"
 import { languages } from "@/app/lib/languagelist"
 import { toast } from "react-hot-toast"
+import Spinner from "@/app/components/spinner"
 
 const Editor = () => {
   const { roomID } = useParams()
@@ -33,6 +34,9 @@ const Editor = () => {
   const setOutput = useRoomStore((s:any)=>s.setOutput)
 
   const outputAction = useRoomStore((s:any)=>s.outputAction)
+
+  const editorConnected = useRoomStore((s:any)=>s.editorConnected)
+  const setEditorConnected = useRoomStore((s:any)=>s.setEditorConnected)
 
   useEffect(()=>{
     const get_details = async(p:any)=> {
@@ -122,7 +126,6 @@ const Editor = () => {
     }
 
     const ydoc = new Y.Doc()
-    
     const ytext = ydoc.getText('codemirror')
     const undoManager = new Y.UndoManager(ytext)
 
@@ -134,6 +137,19 @@ const Editor = () => {
       name: userData.name,
       color: color,
       colorLight: color,
+    })
+
+    providerRef.current.on("status", (s:any)=>{
+      if(s.status==="connected"){
+        setTimeout(()=>{
+          setEditorConnected(true)
+          toast.success("Editor connected.")
+        }, 3000)
+      }
+    })
+
+    providerRef.current.on("connection-error", ()=>{
+      toast.error("Editor connection failed.")
     })
     
     const extensions = [basicSetup, keymap.of([indentWithTab]), myTheme, EditorView.lineWrapping, yCollab(ytext, providerRef.current.awareness, { undoManager })]
@@ -156,7 +172,8 @@ const Editor = () => {
 
   return (
     <>
-      <div className={`w-full flex-grow text-sm font-serif scroll-pb-10 overflow-auto`} ref={editorRef}></div>
+      <div className={`w-full ${editorConnected ? "flex" : "hidden"} flex-grow text-sm font-serif scroll-pb-10 overflow-auto`} ref={editorRef}></div>
+      {!editorConnected && <div className="w-full flex-grow flex items-center justify-center"><h2 className="text-slate-300 text-lg sm:text-xl">Connecting editor...</h2></div>}
     </>
   )
 }

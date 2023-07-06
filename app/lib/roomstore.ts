@@ -14,6 +14,8 @@ const useRoomStore = create((set) => ({
   outputAction: null,
   userData: null,
   running: false,
+  editorConnected: false,
+  setEditorConnected: (s:boolean) => set(() => ({ editorConnected:  s })),
   setRunning: (s:boolean) => set(() => ({ running:  s })),
   setOutput: (s:any) => set(() => ({ output:  s })),
   setOutputAction: (s:any) => set(() => ({ outputAction:  s })),
