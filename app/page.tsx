@@ -80,14 +80,14 @@ export default async function Home() {
             </Link>
           </div>
         </div>
-        <div className="shadow-[5px_5px_0px_0px_#2563eb] w-full max-w-7xl sm:my-16 my-8 flex flex-col items-center justify-center border border-white border-opacity-20 rounded overflow-hidden">
-          <div className="w-full border-b border-white border-opacity-20 h-10 bg-black hidden md:flex items-center justify-center relative">
-            <div className="flex items-center justify-center gap-2 p-3 absolute left-0">
-              <span className="h-3.5 w-3.5 bg-[#ff5f56] rounded-full"></span>
-              <span className="h-3.5 w-3.5 bg-[#ffbd2e] rounded-full"></span>
-              <span className="h-3.5 w-3.5 bg-[#27c93f] rounded-full"></span>
+        <div className="shadow-[6px_6px_0px_0px_#2563eb] w-full max-w-7xl sm:my-16 my-8 flex flex-col items-center justify-center border border-white border-opacity-20 rounded overflow-hidden">
+          <div className="w-full border-b border-white border-opacity-20 h-5 sm:h-10 bg-black flex items-center justify-center relative">
+            <div className="flex items-center justify-center gap-1.5 sm:gap-2 p-2 sm:p-3 absolute left-0">
+              <span className="h-2 sm:h-3.5 w-2 sm:w-3.5 bg-[#ff5f56] rounded-full"></span>
+              <span className="h-2 sm:h-3.5 w-2 sm:w-3.5 bg-[#ffbd2e] rounded-full"></span>
+              <span className="h-2 sm:h-3.5 w-2 sm:w-3.5 bg-[#27c93f] rounded-full"></span>
             </div>
-            <div className="h-full w-full max-w-[260px] p-1.5 relative">
+            <div className="h-full w-full max-w-[260px] p-1.5 relative hidden sm:block">
               <div className="w-full h-full bg-green-600 rounded-md bg-opacity-10 text-green-600 text-opacity-90 flex items-center justify-center text-xs relative">
                 <p>codeshack.vercel.app</p>
                 <RotateCcw className="absolute right-2" size={13}/>
