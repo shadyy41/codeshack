@@ -51,7 +51,7 @@ export default async function Home() {
             Realtime Collaborative Coding, Video Calls and More!
           </h1>
           <p className="text-slate-300 text-xl max-w-3xl w-full break-words">
-            CodeShack supports collaborative coding, peer to peer video calls, online code compilation and more.
+            CodeShack supports code collaboration, peer to peer video calls, online code compilation and more.
           </p>
           <div className="flex flex-col sm:flex-row items-center justify-center w-full text-md gap-3 text-slate-300 max-w-lg sm:pt-4">
             <CreateRoom authenticated={ session !==null }/>
