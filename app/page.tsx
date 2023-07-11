@@ -40,31 +40,11 @@ const features = [
   }
 ]
 
-const premium_features = [
-  {
-    title: "Room Capacity",
-    content: "Rooms support 16 concurrent peers.",
-    icon: <CheckCircle2 size={18} className="inline text-green-400"/>
-  },
-  {
-    title: "Profile Customization",
-    content: "Edit username and profile picture.",
-    icon: <CheckCircle2 size={18} className="inline text-green-400"/>
-  },
-  {
-    title: "Custom Username Color",
-    content: "Work in progress.",
-    icon: <AlertCircle size={18} className="inline text-yellow-400"/>
-  },
-]
-
 export default async function Home() {
   const session = await getServerSession(authOptions)
-  //@ts-ignore
-  const isPremium = session?.user?.isPremium
 
   return (
-    <div className="w-full h-full px-8 pt-8 sm:pt-16 overflow-auto text-center">
+    <div className="flex-grow flex flex-col w-full px-8 pt-8 sm:pt-16 text-center">
       <div className="w-full flex flex-col items-center justify-center gap-12">
         <div className="w-full flex flex-col items-center justify-center gap-5 text-center">
           <h1 className="text-4xl sm:text-5xl font-semibold max-w-3xl">
@@ -88,7 +68,7 @@ export default async function Home() {
               <span className="h-2 sm:h-3.5 w-2 sm:w-3.5 bg-[#27c93f] rounded-full"></span>
             </div>
             <div className="h-full w-full max-w-[260px] p-1.5 relative hidden sm:block">
-              <div className="w-full h-full bg-green-600 rounded-md bg-opacity-10 text-green-600 text-opacity-90 flex items-center justify-center text-xs relative">
+              <div className="w-full h-full bg-green-600 rounded bg-opacity-10 text-green-600 text-opacity-90 flex items-center justify-center text-xs relative">
                 <p>codeshack.vercel.app</p>
                 <RotateCcw className="absolute right-2" size={13}/>
               </div>
@@ -139,7 +119,7 @@ export default async function Home() {
             </Link>
           </div>
           <p className="text-xl text-slate-300">
-            Premium is free for all as I dont have access to the Razorpay production API.
+            Payments are in testing mode. Razorpay rejected my KYC.
           </p>
         </div>
         <div className="flex w-full flex-col gap-4 items-center justify-center max-w-5xl">
@@ -147,12 +127,12 @@ export default async function Home() {
             Contribute
           </h2>
           <p className="text-slate-300 text-xl max-w-3xl w-full break-words">
-            CodeShack is an open source project, checkout the <a className="custom-outline underline decoration-blue-600 decoration-wavy hover:text-white transition-colors" href="https://github.com/shadyy41/codeshack" target="_blank" rel="noopener noreferrer">Github repo</a> for contributing. There is list of pending features in README.md, any help is appreciated.
+            CodeShack is an open source project, checkout the <a className="custom-outline underline decoration-blue-600 decoration-2 hover:text-white transition-colors" href="https://github.com/shadyy41/codeshack" target="_blank" rel="noopener noreferrer">Github repo</a> for contributing. There is list of pending features in README.md, any help is appreciated.
           </p>
         </div>
 
         <div className="w-full max-w-5xl flex items-center justify-center pb-8 pt-8 text-slate-300">
-          <p className="text-base">Built with Nextjs by <a className="custom-outline underline decoration-blue-600 decoration-wavy hover:text-white transition-colors" href="https://shady41.netlify.app/" target="_blank" rel="noopener noreferrer">Abhinav Anand</a></p>
+          <p className="text-base">Built with Nextjs by <a className="custom-outline underline decoration-blue-600 decoration-2 hover:text-white transition-colors" href="https://shady41.netlify.app/" target="_blank" rel="noopener noreferrer">Abhinav Anand</a></p>
         </div>
       </div>
     </div>

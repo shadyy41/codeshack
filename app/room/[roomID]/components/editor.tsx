@@ -15,7 +15,6 @@ import { useParams } from "next/navigation"
 import useRoomStore from "@/app/lib/roomstore"
 import { languages } from "@/app/lib/languagelist"
 import { toast } from "react-hot-toast"
-import Spinner from "@/app/components/spinner"
 
 const Editor = () => {
   const { roomID } = useParams()

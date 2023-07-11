@@ -1,5 +1,4 @@
 import useRoomStore from "@/app/lib/roomstore"
-import Button from "./sidebarbutton"
 import { ArrowRightToLine } from "lucide-react"
 
 const PanelHeader = ({ content }: { content: string }) => {

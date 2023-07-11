@@ -37,37 +37,33 @@ export default function RootLayout({
         <link rel="icon" href="/favicon.ico" sizes="any"/>
         <link rel="apple-touch-icon" href="/apple-touch-icon.png" type="image/png"sizes="180x180"/>
       </head>
-      <body className="bg-zinc-950 text-slate-100 h-full">
+      <body className="bg-zinc-950 text-slate-100 h-full flex flex-col">
         <AuthContext>
           <NextTopLoader showSpinner={false} shadow={false} height={3} color='#2563EB'/>
-          <div className="flex flex-col h-full">
-            {/* @ts-ignore */}
-            <Navbar/>
-            <Toaster toastOptions={{
-              duration: 3000,
-              style: {
-                border: '1px solid rgba(255, 255, 255, 0.1)',
-                color: '#fbf8f8',
-                background: 'rgb(10, 10, 10)',
-                fontSize: '14px'
+          {/* @ts-ignore */}
+          <Navbar/>
+          <Toaster toastOptions={{
+            duration: 3000,
+            style: {
+              border: '1px solid rgba(255, 255, 255, 0.1)',
+              color: '#fbf8f8',
+              background: 'rgb(10, 10, 10)',
+              fontSize: '14px'
+            },
+            success: {
+              iconTheme: {
+                primary: '#2563EB',
+                secondary: '#fbf8f8',
               },
-              success: {
-                iconTheme: {
-                  primary: '#2563EB',
-                  secondary: '#fbf8f8',
-                },
+            },
+            error: {
+              iconTheme: {
+                primary: '#EF4444',
+                secondary: '#fbf8f8',
               },
-              error: {
-                iconTheme: {
-                  primary: '#EF4444',
-                  secondary: '#fbf8f8',
-                },
-              },
-            }}/>
-            <main className="flex-grow overflow-hidden">
-              {children}
-            </main>
-          </div>
+            },
+          }}/>
+          { children }
         </AuthContext>
       </body>
     </html>

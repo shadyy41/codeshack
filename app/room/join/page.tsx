@@ -14,7 +14,7 @@ export default async function Room() {
   const name = session?.user?.name
 
   return (
-    <div className="h-full w-full flex items-center justify-center px-8 sm:px-0 text-center py-6">
+    <div className="flex-grow flex-col overflow-auto w-full flex items-center justify-center px-8 sm:px-0 text-center py-6">
       <div className="h-fit w-full max-w-sm border rounded border-white border-opacity-10 flex flex-col items-center justify-start gap-2 p-2 bg-neutral-950">
         <FormHeader text="Join Room"/>
         <Divider text="Enter Room Details"/>

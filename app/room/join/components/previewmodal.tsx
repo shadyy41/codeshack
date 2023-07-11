@@ -80,7 +80,7 @@ const PreviewModal = ({ isOpen, setIsOpen, roomID } : any) => {
                   <Divider text="Mic and Camera are off by default"/>
 
                   <div className="flex gap-2">
-                    <button type="button" className={`text-sm py-3 rounded-md border border-white border-opacity-20 text-white hover:bg-neutral-900 bg-neutral-950 transition-colors custom-outline w-full max-w-sm ${videoLoading ? 'cursor-not-allowed' : ''}`} onClick={handleClose} disabled={videoLoading}>
+                    <button type="button" className={`text-sm py-3 rounded border border-white border-opacity-20 text-white hover:bg-neutral-900 bg-neutral-950 transition-colors custom-outline w-full max-w-sm ${videoLoading ? 'cursor-not-allowed' : ''}`} onClick={handleClose} disabled={videoLoading}>
                       Close
                     </button>
                     <JoinButton roomID={roomID} disabled={videoLoading}/>

@@ -111,7 +111,7 @@ const UsersPanel = ( { peersInfo, user } : { peersInfo: any[], user: User } ) =>
   const sidepanel = useRoomStore((s:any)=>s.sidepanel)
 
   return (
-    <aside className={`${sidepanel!==2 ? 'hidden' : ''} h-full w-full sm:w-80  border rounded-md border-white border-opacity-10 bg-neutral-950 flex flex-col items-center justify-between flex-wrap-wrap flex-shrink-0`}>
+    <aside className={`${sidepanel!==2 ? 'hidden' : ''} h-full w-full sm:w-80  border rounded border-white border-opacity-10 bg-neutral-950 flex flex-col items-center justify-between flex-wrap-wrap flex-shrink-0`}>
       <PanelHeader content={`Participants (${peersInfo.length+1})`}/>
       <div className="flex-grow w-full flex flex-col justify-start gap-2 overflow-hidden">
         <div className="overflow-auto snap-y flex flex-col gap-2 px-2 py-2 scroll-pt-2">

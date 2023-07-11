@@ -228,7 +228,7 @@ const ClientSide = ( { user } : { user: User} ) => {
   }
 
   return (
-    <div className="w-full flex items-center justify-center p-1 gap-1 h-full">
+    <div className="w-full flex-grow flex overflow-auto items-center justify-center p-1 gap-1 h-full">
       <Sidebar/>
       <CenterPanel/>
       <UsersPanel peersInfo={peersInfo} user={user}/>

@@ -90,7 +90,7 @@ const ClientSide = ({ authenticated, isPremium }: Props) => {
         src="https://checkout.razorpay.com/v1/checkout.js"
       />
       <div className="h-fit w-full max-w-sm border rounded border-white border-opacity-10 flex flex-col items-center justify-start p-2 bg-zinc-950 gap-2">
-        <h1 className="text-xl font-bold sm:text-2xl premium-text">Premium Features</h1>
+        <h1 className="text-xl font-bold sm:text-2xl premium-text">Premium</h1>
         <Divider text="Lifetime Access"/>
         <div className="flex gap-1 flex-col w-full py-3">
           <p className="text-slate-200 text-4xl font-medium">

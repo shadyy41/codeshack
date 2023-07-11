@@ -1,6 +1,6 @@
 import { useState } from "react"
 import PanelHeader from "./panelheader"
-import type { User, Message } from "./clientside"
+import type { Message } from "./clientside"
 import useRoomStore from "@/app/lib/roomstore"
 
 const MessagePanel = ( { messages, handleMessage } : { messages: Array<Message>, handleMessage: any} ) => {
@@ -8,7 +8,7 @@ const MessagePanel = ( { messages, handleMessage } : { messages: Array<Message>,
   const sidepanel = useRoomStore((s:any)=>s.sidepanel)
 
   return (
-    <aside className={`${sidepanel!==1 ? 'hidden' : ''} h-full w-full sm:w-80  border rounded-md border-white border-opacity-10 bg-neutral-950 flex flex-col items-center justify-between flex-wrap-wrap flex-shrink-0`}>
+    <aside className={`${sidepanel!==1 ? 'hidden' : ''} h-full w-full sm:w-80  border rounded border-white border-opacity-10 bg-neutral-950 flex flex-col items-center justify-between flex-wrap-wrap flex-shrink-0`}>
       <PanelHeader content="Messages"/>
       <div className="flex-grow flex flex-col justify-end overflow-hidden w-full">
         <div className="overflow-auto snap-y flex flex-col-reverse gap-2 px-2 py-2 scroll-pb-2">

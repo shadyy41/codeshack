@@ -3,7 +3,7 @@ import { toast } from "react-hot-toast"
 import useRoomStore from "@/app/lib/roomstore"
 import { useParams, useRouter } from "next/navigation"
 import Button from "./sidebarbutton"
-import { useEffect, useState } from "react"
+import { useState } from "react"
 import Spinner from "@/app/components/spinner"
 
 const Sidebar = () => {
