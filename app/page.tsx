@@ -119,20 +119,20 @@ export default async function Home() {
             </Link>
           </div>
           <p className="text-xl text-slate-300">
-            Payments are in testing mode. Razorpay rejected my KYC.
+            Payments are in testing mode. Razorpay rejected my KYC 🥺.
           </p>
         </div>
         <div className="flex w-full flex-col gap-4 items-center justify-center max-w-5xl">
           <h2 className="text-4xl font-semibold">
             Contribute
           </h2>
-          <p className="text-slate-300 text-xl max-w-3xl w-full break-words">
-            CodeShack is an open source project, checkout the <a className="custom-outline underline decoration-blue-600 decoration-2 hover:text-white transition-colors" href="https://github.com/shadyy41/codeshack" target="_blank" rel="noopener noreferrer">Github repo</a> for contributing. There is list of pending features in README.md, any help is appreciated.
+          <p className="text-slate-300 text-xl max-w-2xl w-full break-words">
+            CodeShack is an open source project, checkout the <a className="custom-outline underline decoration-blue-600 decoration-2 hover:text-white transition-colors" href="https://github.com/shadyy41/codeshack" target="_blank" rel="noopener noreferrer">Github repo</a> for contributing.
           </p>
         </div>
 
         <div className="w-full max-w-5xl flex items-center justify-center pb-8 pt-8 text-slate-300">
-          <p className="text-base">Built with Nextjs by <a className="custom-outline underline decoration-blue-600 decoration-2 hover:text-white transition-colors" href="https://shady41.netlify.app/" target="_blank" rel="noopener noreferrer">Abhinav Anand</a></p>
+          <p className="text-base">Built with Next.js by <a className="custom-outline underline decoration-blue-600 decoration-2 hover:text-white transition-colors" href="https://shady41.netlify.app/" target="_blank" rel="noopener noreferrer">Abhinav Anand</a></p>
         </div>
       </div>
     </div>

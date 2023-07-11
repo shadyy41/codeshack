@@ -84,11 +84,9 @@ const UserMenu = ({ authenticated, name, userImage, isPremium, email } : Props) 
         </Link>
       </ul>
       <Menu as="div" className="sm:hidden relative inline-block text-left z-50">
-        <div className="w-8 h-8">
-          <Menu.Button className="sm:hidden custom-outline w-full h-full">
-            <MenuIcon size={32} aria-hidden="true"/>
-          </Menu.Button>
-        </div>
+        <Menu.Button className="sm:hidden custom-outline w-full h-full flex items-center justify-center">
+          <MenuIcon size={24} aria-hidden="true"/>
+        </Menu.Button>
 
         <Transition
           as={Fragment}
