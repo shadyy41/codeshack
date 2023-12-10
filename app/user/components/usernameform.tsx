@@ -1,6 +1,6 @@
 "use client";
 import Spinner from "@/app/components/spinner"
-import { useState, useEffect } from "react"
+import { useState } from "react"
 import { useRouter } from "next/navigation"
 
 export interface Props {

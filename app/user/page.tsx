@@ -4,6 +4,7 @@ import UsernameForm from "./components/usernameform"
 import { redirect } from "next/navigation"
 import FormHeader from "../components/formheader"
 import UserimageForm from "./components/userimageform"
+import Link from "next/link"
 
 export const metadata = {
   title: 'Edit Profile',
@@ -19,6 +20,11 @@ const User = async () => {
 
   return (
     <div className="h-full w-full flex flex-col items-start justify-start bg-zinc-950 gap-4 px-3 py-3 text-start">
+      {
+        !isPremium && <div className="text-slate-300 w-full text-center">
+        Join <Link href="/premium" className="premium-text font-bold">Premium</Link> to enable profile customization!
+        </div>
+      }
       <FormHeader text="Account Information"/>
       <UsernameForm name={ name } isPremium = { isPremium } email={ email }/>
       <FormHeader text="Edit Avatar"/>

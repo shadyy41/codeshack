@@ -57,7 +57,7 @@ const UserMenu = ({ authenticated, name, userImage, isPremium, email } : Props) 
             </Menu.Item>}
             <Menu.Item>
               {({ active }) => (
-                <Link href="/user" className={`${active && 'bg-zinc-900'} text-sm sm:text-md block w-full px-4 py-2 text-left hover:bg-zinc-900 transition-colors`}>Edit profile</Link>
+                <Link href="/user" className={`${active && 'bg-zinc-900'} text-sm sm:text-md block w-full px-4 py-2 text-left hover:bg-zinc-900 transition-colors`}>Dashboard</Link>
               )}
             </Menu.Item>
             <Menu.Item>
