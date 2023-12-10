@@ -7,9 +7,7 @@ import { authOptions } from '../../auth/[...nextauth]/route'
 export async function GET() {
   const session = await getServerSession(authOptions)
   if(!session) return NextResponse.json({message: "Unauthenticated"}, {status: 401})
-  //@ts-ignore
   const userId = session?.user?.id
-  //@ts-ignore
   const isPremium = session?.user?.isPremium
   const roomId = nanoid(12)
 

@@ -39,8 +39,6 @@ export default async function Room({ params }: { params: { roomID: string } }) {
   }
   
   let session : Session | null = await getServerSession(authOptions)
-
-  //@ts-ignore
   const userid = session ? session.user?.id : ""
 
   const user : User = (session && session.user) ? {

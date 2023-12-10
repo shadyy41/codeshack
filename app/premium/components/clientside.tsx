@@ -38,8 +38,7 @@ const ClientSide = ({ authenticated, isPremium }: Props) => {
         amount: data.amount,
         order_id: data.id,
         description: "Testing Description",
-        //@ts-ignore
-        handler: async (response) => {
+        handler: async (response:any) => {
           setLoading(true)
           const body = {
             signature: response.razorpay_signature,
@@ -69,8 +68,7 @@ const ClientSide = ({ authenticated, isPremium }: Props) => {
       //@ts-ignore
       const paymentObject = new window.Razorpay(options)
       paymentObject.open()
-      //@ts-ignore
-      paymentObject.on("payment.failed", function (response) {
+      paymentObject.on("payment.failed", function (response:any) {
         alert("Payment failed. Please try again.")
         toast.error("Payment failed. Please try again.")
       })

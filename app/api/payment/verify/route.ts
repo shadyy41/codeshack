@@ -15,13 +15,11 @@ export async function POST(request: Request) {
   if(validatePaymentVerification({order_id, payment_id}, signature, RZP_SECRET)){
     try {
       await prisma.user.update({
-        //@ts-ignore
         where: { id: session.user?.id },
         data: { isPremium: true },
       })
     } catch (error) {
-      //@ts-ignore
-      console.log(error, "COULD NOT UPDATE PREMIUM STATUS", session.id)
+      console.log(error, "COULD NOT UPDATE PREMIUM STATUS", session.user.id)
     }
     return NextResponse.json({ message: "Payment verified" }, { status: 200 })
   }

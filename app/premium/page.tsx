@@ -8,7 +8,6 @@ export const metadata = {
 
 const Premium = async () => {
   const session = await getServerSession(authOptions)
-  //@ts-ignore
   const isPremium = session?.user?.isPremium
 
   return <ClientSide authenticated={ session!==null } isPremium={isPremium}/>
