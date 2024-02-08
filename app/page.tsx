@@ -132,7 +132,7 @@ export default async function Home() {
         </div>
 
         <div className="w-full max-w-5xl flex items-center justify-center pb-8 pt-8 text-slate-300">
-          <p className="text-base">Built with Next.js by <a className="custom-outline underline decoration-blue-600 decoration-2 hover:text-white transition-colors" href="https://shady41.netlify.app/" target="_blank" rel="noopener noreferrer">Abhinav Anand</a></p>
+          <p className="text-base">Built with Next.js by <a className="custom-outline underline decoration-blue-600 decoration-2 hover:text-white transition-colors" href="https://shady41.vercel.app/" target="_blank" rel="noopener noreferrer">Abhinav Anand</a></p>
         </div>
       </div>
     </div>
